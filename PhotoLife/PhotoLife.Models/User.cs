@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -16,9 +17,11 @@ namespace PhotoLife.Models
         {
             this.UserName = username;
             this.Email = email;
+            this.UserName = name;
             this.Description = description;
         }
-
+        
+        public string Name { get; set; }
         public string Description { get; set; }
 
         public Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
