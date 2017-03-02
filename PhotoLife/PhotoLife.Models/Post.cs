@@ -10,9 +10,11 @@ namespace PhotoLife.Models
 {
     public class Post
     {
+        private ICollection<Comment> comments;
+
         public Post()
         {
-
+            this.comments = new HashSet<Comment>();
         }
 
         public Post(
@@ -50,5 +52,11 @@ namespace PhotoLife.Models
         public string Description { get; set; }
 
         public string Title { get; set; }
+
+        public virtual ICollection<Comment> Comments
+        {
+            get { return this.comments; }
+            set { this.comments = value; }
+        }
     }
 }

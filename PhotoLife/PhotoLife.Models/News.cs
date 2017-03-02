@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -6,9 +7,11 @@ namespace PhotoLife.Models
 {
     public class News
     {
+        private ICollection<Comment> comments;
+
         public News()
         {
-            
+            this.comments = new HashSet<Comment>();
         }
 
         public News(
@@ -47,5 +50,10 @@ namespace PhotoLife.Models
         public string Text { get; set; }
 
         public string Title { get; set; }
+        public virtual ICollection<Comment> Comments
+        {
+            get { return this.comments; }
+            set { this.comments = value; }
+        }
     }
 }
