@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoLife.Web", "PhotoLife\PhotoLife.Web.csproj", "{60E193C5-6677-40FB-9C7D-A1C7EB559CE0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoLife.Web", "PhotoLife.Web\PhotoLife.Web.csproj", "{60E193C5-6677-40FB-9C7D-A1C7EB559CE0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoLife.Tests", "PhotoLife.Tests\PhotoLife.Tests.csproj", "{33C74FB5-7A90-4278-9569-4E80DD198F1C}"
 EndProject

@@ -92,7 +92,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PhotoLife\PhotoLife.Web.csproj">
+    <ProjectReference Include="..\PhotoLife.Web\PhotoLife.Web.csproj">
       <Project>{60E193C5-6677-40FB-9C7D-A1C7EB559CE0}</Project>
       <Name>PhotoLife.Web</Name>
     </ProjectReference>
