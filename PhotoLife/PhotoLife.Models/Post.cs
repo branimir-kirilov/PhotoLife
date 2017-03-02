@@ -1,50 +1,53 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace PhotoLife.Models
 {
-    public class News
+    public class Post
     {
-        public News()
+        public Post()
         {
-            
+
         }
 
-        public News(
-            string title, 
-            string text, 
+        public Post(
+            string title,
+            string description,
             string imageUrl,
             string author,
-            Category category, 
-            int views, 
-            DateTime datePublished)
+            Category category,
+            DateTime datePublished,
+            int votes)
         {
             this.Title = title;
-            this.Text = text;
+            this.Description = description;
             this.ImageUrl = imageUrl;
             this.Author = author;
             this.Category = category;
-            this.Views = views;
             this.DatePublished = datePublished;
+            this.Votes = votes;
         }
 
-
         [Key]
-        public int NewsId { get; set; }
+        public int PostId { get; set; }
+
+        public int Votes { get; set; }
 
         public DateTime DatePublished { get; set; }
 
-        public int Views { get; set; }
-
         [ForeignKey("CategoryId")]
-        public virtual Category Category { get; set; }
+        public Category Category { get; set; }
 
         public string Author { get; set; }
 
         public string ImageUrl { get; set; }
 
-        public string Text { get; set; }
+        public string Description { get; set; }
 
         public string Title { get; set; }
     }

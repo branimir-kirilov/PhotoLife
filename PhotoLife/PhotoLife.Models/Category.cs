@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PhotoLife.Models.Enums;
 
 namespace PhotoLife.Models
@@ -12,10 +8,12 @@ namespace PhotoLife.Models
     {
 
         private ICollection<News> News;
+        private ICollection<Post> Posts;
 
         public Category()
         {
             this.News = new HashSet<News>();
+            this.Posts = new HashSet<Post>();
         }
 
         public Category(CategoryEnum name)
@@ -28,10 +26,16 @@ namespace PhotoLife.Models
 
         public CategoryEnum Name { get; set; }
 
-        public virtual ICollection<News> Products
+        public virtual ICollection<News> NewsCollection
         {
             get { return this.News; }
             set { this.News = value; }
+        }
+
+        public virtual ICollection<Post> PostsCollection
+        {
+            get { return this.Posts; }
+            set { this.Posts = value; }
         }
     }
 }
