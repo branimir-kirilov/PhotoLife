@@ -1,3 +1,5 @@
+using PhotoLife.App_Start.NinjectModules;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(PhotoLife.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(PhotoLife.App_Start.NinjectWebCommon), "Stop")]
 
@@ -61,7 +63,9 @@ namespace PhotoLife.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-
+            kernel.Load(new AuthenticationNinjectModule());
+            kernel.Load(new DataNinjectModule());
+            kernel.Load(new FactoriesNinjectModule());
         }        
     }
 }
