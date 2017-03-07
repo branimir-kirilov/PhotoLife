@@ -61,6 +61,7 @@
     <Compile Include="ICommentFactory.cs" />
     <Compile Include="INewsFactory.cs" />
     <Compile Include="IPostFactory.cs" />
+    <Compile Include="IUserFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

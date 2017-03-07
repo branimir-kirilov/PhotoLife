@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Ninject.Modules;
+﻿using Ninject.Modules;
 using PhotoLife.Data.Contracts;
-using Ninject.Extensions.Conventions;
 using Ninject.Web.Common;
 using PhotoLife.Data;
 
