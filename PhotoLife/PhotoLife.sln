@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoLife.Authentication", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoLife.Services", "PhotoLife.Services\PhotoLife.Services.csproj", "{6041536D-03A2-4175-BD96-E25340CFD59D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoLife.Data.Tests", "PhotoLife.Data.Tests\PhotoLife.Data.Tests.csproj", "{59C36CFB-EC72-4B51-B320-B6F3EB9B9E01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{6041536D-03A2-4175-BD96-E25340CFD59D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6041536D-03A2-4175-BD96-E25340CFD59D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6041536D-03A2-4175-BD96-E25340CFD59D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59C36CFB-EC72-4B51-B320-B6F3EB9B9E01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59C36CFB-EC72-4B51-B320-B6F3EB9B9E01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59C36CFB-EC72-4B51-B320-B6F3EB9B9E01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59C36CFB-EC72-4B51-B320-B6F3EB9B9E01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
