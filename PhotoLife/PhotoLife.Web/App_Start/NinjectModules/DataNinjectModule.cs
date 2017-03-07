@@ -9,6 +9,7 @@ namespace PhotoLife.App_Start.NinjectModules
     {
         public override void Load()
         {
+            this.Bind<IPhotoLifeEntities>().To<PhotoLifeEntities>().InRequestScope();
             this.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
             this.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
         }
