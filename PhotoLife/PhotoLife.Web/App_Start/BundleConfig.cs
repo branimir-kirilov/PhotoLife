@@ -23,9 +23,13 @@ namespace PhotoLife
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/cloudinary").Include(
+                    "~/Scripts/jquery.fileupload.js",
+                    "~/Scripts/jquery.cloudinary.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/Site.less"));   
+                      "~/Content/Site.less"));
         }
     }
 }

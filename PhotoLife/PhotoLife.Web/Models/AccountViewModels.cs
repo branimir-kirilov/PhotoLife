@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 
 namespace PhotoLife.Models
 {
@@ -89,6 +91,8 @@ namespace PhotoLife.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public Cloudinary cloudinary { get; set; }
 
     }
 

@@ -39,6 +39,23 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/cloudinary");
     @RenderSection("scripts", required: false)
+    
+    
+    <script>
+        $.cloudinary.config({
+            "cloud_name": "djga3zgwr",
+            "api_key": "786453771238183",
+            "private_cdn": false,
+            "cdn_subdomain": false
+        });
+
+        $(function () {
+            if ($.fn.cloudinary_fileupload !== undefined) {
+                $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
+            }
+        });
+    </script>
 </body>
 </html>
