@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoLife.Models", "PhotoLi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoLife.Data", "PhotoLife.Data\PhotoLife.Data.csproj", "{CDCD7A45-9C2F-49C2-8AE2-966AAF09D3CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoLife.Factories", "PhotoLife.Factories\PhotoLife.Factories.csproj", "{1FF8C40E-F273-434C-9A8F-03FEEED4B54D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{CDCD7A45-9C2F-49C2-8AE2-966AAF09D3CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDCD7A45-9C2F-49C2-8AE2-966AAF09D3CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDCD7A45-9C2F-49C2-8AE2-966AAF09D3CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FF8C40E-F273-434C-9A8F-03FEEED4B54D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FF8C40E-F273-434C-9A8F-03FEEED4B54D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FF8C40E-F273-434C-9A8F-03FEEED4B54D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FF8C40E-F273-434C-9A8F-03FEEED4B54D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
