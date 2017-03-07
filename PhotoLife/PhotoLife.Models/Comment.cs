@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PhotoLife.Models
 {
@@ -10,7 +11,7 @@ namespace PhotoLife.Models
             
         }
 
-        public Comment(string author, DateTime datePublished, string text)
+        public Comment(User author, DateTime datePublished, string text)
         {
             this.Author = author;
             this.DatePublished = datePublished;
@@ -24,6 +25,9 @@ namespace PhotoLife.Models
 
         public DateTime DatePublished { get; set; }
 
-        public string Author { get; set; }
+        [ForeignKey("Author")]
+        public string UserId { get; set; }
+
+        public virtual User Author { get; set; }
     }
 }

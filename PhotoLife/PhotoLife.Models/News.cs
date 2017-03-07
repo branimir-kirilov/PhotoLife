@@ -18,7 +18,7 @@ namespace PhotoLife.Models
             string title, 
             string text, 
             string imageUrl,
-            string author,
+            User author,
             Category category, 
             int views, 
             DateTime datePublished)
@@ -40,13 +40,16 @@ namespace PhotoLife.Models
 
         public int Views { get; set; }
 
+        [ForeignKey("Author")]
+        public string UserId { get; set; }
+    
+        public virtual User Author { get; set; }
+
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
 
         public int CategoryId { get; set; }
-
-        public string Author { get; set; }
-
+        
         public string ImageUrl { get; set; }
 
         public string Text { get; set; }
