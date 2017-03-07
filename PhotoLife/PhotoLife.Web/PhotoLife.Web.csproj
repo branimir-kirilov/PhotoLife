@@ -306,6 +306,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PhotoLife.Authentication\PhotoLife.Authentication.csproj">
+      <Project>{8A8EF576-E8B5-4C0C-92AC-6A47E12BF799}</Project>
+      <Name>PhotoLife.Authentication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PhotoLife.Data\PhotoLife.Data.csproj">
       <Project>{cdcd7a45-9c2f-49c2-8ae2-966aaf09d3cf}</Project>
       <Name>PhotoLife.Data</Name>
