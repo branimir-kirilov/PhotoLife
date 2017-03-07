@@ -9,8 +9,8 @@ namespace PhotoLife.App_Start.NinjectModules
     {
         public override void Load()
         {
-            Kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
-            Kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
+            this.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
+            this.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
         }
     }
 }
