@@ -57,7 +57,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICategoryFactory.cs" />
     <Compile Include="ICommentFactory.cs" />
+    <Compile Include="INewsFactory.cs" />
+    <Compile Include="IPostFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
