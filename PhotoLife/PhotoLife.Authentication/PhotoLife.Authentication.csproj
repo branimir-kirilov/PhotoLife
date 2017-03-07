@@ -54,6 +54,10 @@
       <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
       <Private>True</Private>
@@ -77,6 +81,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -85,16 +90,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationManagers\ApplicationSignInManager.cs" />
     <Compile Include="ApplicationManagers\ApplicationUserManager.cs" />
     <Compile Include="IdentityMessageServices\EmailServer.cs" />
     <Compile Include="IdentityMessageServices\SmsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\HttpContextAuthenticationProvider.cs" />
+    <Compile Include="Providers\IAuthenticationProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PhotoLife.Data\PhotoLife.Data.csproj">
+      <Project>{CDCD7A45-9C2F-49C2-8AE2-966AAF09D3CF}</Project>
+      <Name>PhotoLife.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PhotoLife.Models\PhotoLife.Models.csproj">
       <Project>{49792F7F-EE1F-46AC-A388-7B97011DBB16}</Project>
       <Name>PhotoLife.Models</Name>
