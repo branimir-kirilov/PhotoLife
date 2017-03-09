@@ -102,6 +102,8 @@ namespace PhotoLife.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
+        public string ProfilePicUrl { get; set; }
+
         public Cloudinary Cloudinary { get; set; }
 
     }
