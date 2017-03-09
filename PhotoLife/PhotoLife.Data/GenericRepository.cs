@@ -37,28 +37,31 @@ namespace PhotoLife.Data
 
         public IEnumerable<T> GetAll()
         {
-            return this.Set;
+            return this.Context.DbSet<T>().ToList();
         }
 
         public IEnumerable<T> GetAll(Expression<Func<T, bool>> filterExpression)
         {
-            return this.Set
-                .Where(filterExpression);
+            return this.Context.DbSet<T>()
+                .Where(filterExpression)
+                .ToList();
         }
 
         public IEnumerable<T> GetAll<T1>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression)
         {
-            return this.Set
+            return this.Context.DbSet<T>()
                 .Where(filterExpression)
-                .OrderBy(sortExpression);
+                .OrderBy(sortExpression)
+                .ToList();
         }
 
         public IEnumerable<T2> GetAll<T1, T2>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression, Expression<Func<T, T2>> selectExpression)
         {
-            return this.Set
+            return this.Context.DbSet<T>()
                  .Where(filterExpression)
                  .OrderBy(sortExpression)
-                 .Select(selectExpression);
+                 .Select(selectExpression)
+                 .ToList();
         }
 
         public void Add(T entity)

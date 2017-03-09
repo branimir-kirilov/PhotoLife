@@ -40,7 +40,7 @@ namespace PhotoLife.Data.Tests.GenericRepository.Tests
             //Arrange
             var data = this.InitializeFakeData();
             var mockedSet = this.initializeFakeSet(data);
-            
+
             var mockedDbContext = new Mock<IPhotoLifeEntities>();
             mockedDbContext.Setup(x => x.DbSet<MockedGenericRepositoryType>()).Returns(mockedSet.Object);
 
@@ -51,6 +51,25 @@ namespace PhotoLife.Data.Tests.GenericRepository.Tests
 
             //Assert
             mockedDbContext.Verify(mdb => mdb.DbSet<MockedGenericRepositoryType>(), Times.Once);
+        }
+
+        [Test]
+        public void _Return_Correctly_WithNoExpression()
+        {
+            //Arrange
+            var data = this.InitializeFakeData();
+            var mockedSet = this.initializeFakeSet(data);
+
+            var mockedDbContext = new Mock<IPhotoLifeEntities>();
+            mockedDbContext.Setup(x => x.DbSet<MockedGenericRepositoryType>()).Returns(mockedSet.Object);
+
+            var repository = new GenericRepository<MockedGenericRepositoryType>(mockedDbContext.Object);
+
+            //Act
+            var result = repository.GetAll();
+
+            //Assert
+            CollectionAssert.AreEqual(data, result);
         }
 
     }
