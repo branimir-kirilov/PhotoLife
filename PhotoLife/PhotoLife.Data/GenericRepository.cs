@@ -18,22 +18,16 @@ namespace PhotoLife.Data
             }
 
             this.Context = dbContext;
-            this.Set = this.Context.DbSet<T>();
         }
-
-        protected IDbSet<T> Set { get; set; }
-
+        
         protected IPhotoLifeEntities Context { get; set; }
 
         public T GetById(object id)
         {
-            return this.Set.Find(id);
+            return this.Context.DbSet<T>().Find(id);
         }
 
-        public IEnumerable<T> Entities
-        {
-            get { return this.Set; }
-        }
+        public IEnumerable<T> Entities => this.Context.DbSet<T>().ToList();
 
         public IEnumerable<T> GetAll()
         {

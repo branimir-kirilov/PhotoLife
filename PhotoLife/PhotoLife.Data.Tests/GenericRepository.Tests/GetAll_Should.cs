@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using Moq;
 using NUnit.Framework;
 using PhotoLife.Data.Contracts;
@@ -42,6 +44,7 @@ namespace PhotoLife.Data.Tests.GenericRepository.Tests
             var mockedSet = this.initializeFakeSet(data);
 
             var mockedDbContext = new Mock<IPhotoLifeEntities>();
+
             mockedDbContext.Setup(x => x.DbSet<MockedGenericRepositoryType>()).Returns(mockedSet.Object);
 
             var repository = new GenericRepository<MockedGenericRepositoryType>(mockedDbContext.Object);
@@ -70,6 +73,38 @@ namespace PhotoLife.Data.Tests.GenericRepository.Tests
 
             //Assert
             CollectionAssert.AreEqual(data, result);
+        }
+
+        [TestCase(true, true)]
+        [TestCase(false, false)]
+        [TestCase(true, false)]
+        [TestCase(false, true)]
+        public void _Return_Correctly_WithSortingExpressino(bool first, bool second)
+        {
+            //Arrange
+            var data = new List<MockedGenericRepositoryType>
+            {
+               new MockedGenericRepositoryType {IsTrue = first},
+               new MockedGenericRepositoryType {IsTrue = second}
+            }.AsQueryable();
+
+            var mockedSet = this.initializeFakeSet(data);
+
+            var mockedDbContext = new Mock<IPhotoLifeEntities>();
+            mockedDbContext.Setup(x => x.DbSet<MockedGenericRepositoryType>()).Returns(mockedSet.Object);
+
+            var repository = new GenericRepository<MockedGenericRepositoryType>(mockedDbContext.Object);
+
+            Expression<Func<MockedGenericRepositoryType, bool>> sortingExpression =
+                (MockedGenericRepositoryType t) => t.IsTrue;
+
+            var actual = data.Where(sortingExpression);
+
+            //Act
+            var result = repository.GetAll(sortingExpression);
+
+            //Assert
+            Assert.AreEqual(result, actual);
         }
 
     }
