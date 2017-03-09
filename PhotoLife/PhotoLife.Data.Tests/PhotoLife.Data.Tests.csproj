@@ -79,6 +79,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="GenericRepository.Tests\Add_Should.cs" />
     <Compile Include="GenericRepository.Tests\Constructor_Should.cs" />
     <Compile Include="GenericRepository.Tests\GetAll_Should.cs" />
     <Compile Include="GenericRepository.Tests\Mocks\MockedGenericRepositoryType.cs" />
