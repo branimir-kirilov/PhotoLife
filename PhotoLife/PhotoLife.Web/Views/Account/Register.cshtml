@@ -32,6 +32,11 @@
             @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.HiddenFor(m => m.ProfilePicUrl, new { @class = "col-md-2 control-label", @id = "pic-url" })
+    </div>
+    
     <div class="form-group">
         @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -102,6 +107,10 @@
                         $('.status_value').text('Idle');
                         $.post('/Account/UploadDirect', data.result);
                         var info = $('<div class="uploaded_info"/>');
+                        console.log(data.result);
+
+                        $("#pic-url").val(data.result.url);
+
                         $(info).append($('<div class="data"/>').append(prettydump(data.result)));
                         $(info)
                             .append($('<div class="image"/>')

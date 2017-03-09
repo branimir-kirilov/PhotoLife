@@ -154,7 +154,7 @@ namespace PhotoLife.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email, Description = model.Description, Name = model.Name };
+                var user = new User { UserName = model.Email, Email = model.Email, Description = model.Description, Name = model.Name, ProfilePicUrl = model.ProfilePicUrl };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
