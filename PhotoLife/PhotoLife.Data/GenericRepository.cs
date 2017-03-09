@@ -10,7 +10,7 @@ namespace PhotoLife.Data
     public class GenericRepository<T> : IRepository<T>
      where T : class
     {
-        public GenericRepository(DbContext dbContext)
+        public GenericRepository(IPhotoLifeEntities dbContext)
         {
             if (dbContext == null)
             {
@@ -18,12 +18,12 @@ namespace PhotoLife.Data
             }
 
             this.Context = dbContext;
-            this.Set = this.Context.Set<T>();
+            this.Set = this.Context.DbSet<T>();
         }
 
         protected IDbSet<T> Set { get; set; }
 
-        protected DbContext Context { get; set; }
+        protected IPhotoLifeEntities Context { get; set; }
 
         public T GetById(object id)
         {
@@ -33,6 +33,11 @@ namespace PhotoLife.Data
         public IEnumerable<T> Entities
         {
             get { return this.Set; }
+        }
+
+        public IEnumerable<T> GetAll()
+        {
+            return this.Set;
         }
 
         public IEnumerable<T> GetAll(Expression<Func<T, bool>> filterExpression)
@@ -58,20 +63,18 @@ namespace PhotoLife.Data
 
         public void Add(T entity)
         {
-            var entry = this.Context.Entry(entity);
-            entry.State = EntityState.Added;
+            this.Context.SetAdded(entity);
         }
 
         public void Update(T entity)
         {
-            var entry = this.Context.Entry(entity);
-            entry.State = EntityState.Modified;
+            this.Context.SetUpdated(entity);
+
         }
 
         public void Delete(T entity)
         {
-            var entry = this.Context.Entry(entity);
-            entry.State = EntityState.Deleted;
+            this.Context.SetDeleted(entity);
         }
     }
 }

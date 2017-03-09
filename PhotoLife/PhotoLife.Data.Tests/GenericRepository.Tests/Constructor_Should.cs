@@ -2,7 +2,6 @@
 using Moq;
 using NUnit.Framework;
 using PhotoLife.Data.Tests.GenericRepository.Tests.Mocks;
-using PhotoLife.Data;
 
 namespace PhotoLife.Data.Tests.GenericRepository.Tests
 {
@@ -21,6 +20,7 @@ namespace PhotoLife.Data.Tests.GenericRepository.Tests
         {
             //Arrange
             var mockedDbContext = new Mock<PhotoLifeEntities>();
+
             //Act & Assert
             Assert.DoesNotThrow(() => new GenericRepository<MockedGenericRepositoryType>(mockedDbContext.Object));
         }
