@@ -1,11 +1,15 @@
 ﻿body {
-  padding-top: 60px;
+  padding-top: 50px;
   padding-bottom: 20px;
+  padding-left: 0px;
+  padding-right: 0px;
+  background-color: #ffffff;
+  color: #000000;
 }
 /* Set padding to keep content from hitting the edges */
 .body-content {
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -18,4 +22,20 @@ input,
 select,
 textarea {
   max-width: 280px;
+}
+.business-header {
+  height: 400px;
+  background: url('http://res.cloudinary.com/djga3zgwr/image/upload/v1489076469/logo_jf9gqr.png') center center no-repeat scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+/* Customize the text color and shadow color and to optimize text legibility. */
+.tagline {
+  text-shadow: 0 0 10px #000;
+  color: #fff;
+}
+.img-center {
+  margin: 0 auto;
 }
