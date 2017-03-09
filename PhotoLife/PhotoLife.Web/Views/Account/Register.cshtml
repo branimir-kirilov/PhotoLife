@@ -36,7 +36,7 @@
     <div class="form-group">
         @Html.HiddenFor(m => m.ProfilePicUrl, new { @class = "col-md-2 control-label", @id = "pic-url" })
     </div>
-    
+
     <div class="form-group">
         @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -54,15 +54,19 @@
             <input type="submit" class="btn btn-default" value="Register" />
         </div>
     </div>
-    <form>
-        @Model.Cloudinary.Api.BuildUploadForm("image_id", "auto",
-            new SortedDictionary<string, object>() { },
-            null)
-    </form>
+
+    <div class="upload-box col-md-12">
+        @Html.Label("Upload Profile Pic", new {@class = "col-md-10"});
+        <form>
+            @Model.Cloudinary.Api.BuildUploadForm("image_id", "auto",
+                new SortedDictionary<string, object>() {},
+                null)
+        </form>
+    </div>
+
      <!-- status box -->
-    <div class="status">
-        <h2>Status</h2>
-        <span class="status_value">Idle</span>
+    <div class="status col-md-12">
+        <span class="status_value"></span>
     </div>
 
     <div class="uploaded_info_holder">
@@ -104,22 +108,23 @@
                 })
                 .on('cloudinarydone',
                     function (e, data) {
-                        $('.status_value').text('Idle');
+                        $('.status_value').text('Selected Picture');
+                        $('.upload-box').hide();
+                      
                         $.post('/Account/UploadDirect', data.result);
                         var info = $('<div class="uploaded_info"/>');
                         console.log(data.result);
 
                         $("#pic-url").val(data.result.url);
 
-                        $(info).append($('<div class="data"/>').append(prettydump(data.result)));
                         $(info)
                             .append($('<div class="image"/>')
                                 .append(
                                     $.cloudinary.image(data.result.public_id,
                                     {
                                         format: data.result.format,
-                                        width: 150,
-                                        height: 150,
+                                        width: 200,
+                                        height: 200,
                                         crop: "fill"
                                     })
                                 ));
