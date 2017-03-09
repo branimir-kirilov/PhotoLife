@@ -13,17 +13,20 @@ namespace PhotoLife.Models
             
         }
 
-        public User(string username, string email, string name, string description)
+        public User(string username, string email, string name, string description, string profilePicUrl)
         {
             this.UserName = username;
             this.Email = email;
             this.UserName = name;
             this.Description = description;
+            this.ProfilePicUrl = profilePicUrl;
         }
         
         public string Name { get; set; }
         public string Description { get; set; }
-        
+
+        public string ProfilePicUrl { get; set; }
+
         public Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
             return manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
