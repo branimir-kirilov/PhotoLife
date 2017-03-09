@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using CloudinaryDotNet;
 
 namespace PhotoLife.Models
 {
@@ -64,6 +65,17 @@ namespace PhotoLife.Models
 
     public class RegisterViewModel
     {
+        public RegisterViewModel()
+        {
+            //Configuring cloudinary account
+            Account account = new Account(
+               "djga3zgwr",
+               "786453771238183",
+               "Lts6xv-uEkffhjUqJS0xThKrsI0");
+
+            this.Cloudinary = new Cloudinary(account);
+        }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -89,6 +101,8 @@ namespace PhotoLife.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public Cloudinary Cloudinary { get; set; }
 
     }
 
