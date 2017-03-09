@@ -19,7 +19,7 @@ namespace PhotoLife.Data
 
             this.Context = dbContext;
         }
-        
+
         protected IPhotoLifeEntities Context { get; set; }
 
         public T GetById(object id)
@@ -41,12 +41,17 @@ namespace PhotoLife.Data
                 .ToList();
         }
 
-        public IEnumerable<T> GetAll<T1>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression)
+        public IEnumerable<T> GetAll<T1>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression, bool isAscending)
         {
-            return this.Context.DbSet<T>()
-                .Where(filterExpression)
-                .OrderBy(sortExpression)
-                .ToList();
+            return isAscending
+                ? this.Context.DbSet<T>()
+                    .Where(filterExpression)
+                    .OrderBy(sortExpression)
+                    .ToList()
+                : this.Context.DbSet<T>()
+                    .Where(filterExpression)
+                    .OrderByDescending(sortExpression)
+                    .ToList();
         }
 
         public IEnumerable<T2> GetAll<T1, T2>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression, Expression<Func<T, T2>> selectExpression)

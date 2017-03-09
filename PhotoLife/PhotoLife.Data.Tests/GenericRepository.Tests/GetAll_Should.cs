@@ -107,5 +107,41 @@ namespace PhotoLife.Data.Tests.GenericRepository.Tests
             Assert.AreEqual(result, actual);
         }
 
+        [TestCase(true, true)]
+        [TestCase(false, false)]
+        [TestCase(true, false)]
+        [TestCase(false, true)]
+        public void _Return_Correctly_WithSorting_AndOrdering_Expressino(bool first, bool second)
+        {
+            //Arrange
+            var data = new List<MockedGenericRepositoryType>
+            {
+               new MockedGenericRepositoryType {IsTrue = first},
+               new MockedGenericRepositoryType {IsTrue = second}
+            }.AsQueryable();
+
+            var mockedSet = this.initializeFakeSet(data);
+
+            var mockedDbContext = new Mock<IPhotoLifeEntities>();
+            mockedDbContext.Setup(x => x.DbSet<MockedGenericRepositoryType>()).Returns(mockedSet.Object);
+
+            var repository = new GenericRepository<MockedGenericRepositoryType>(mockedDbContext.Object);
+
+            Expression<Func<MockedGenericRepositoryType, bool>> sortingExpression =
+                (MockedGenericRepositoryType t) => t.IsTrue;
+
+            Expression<Func<MockedGenericRepositoryType, int>> orderExpression =
+                (t) => t.GetHashCode(); 
+
+            var actual = data.Where(sortingExpression)
+                            .OrderBy(orderExpression);
+
+            //Act
+            var result = repository.GetAll(sortingExpression, orderExpression, true);
+
+            //Assert
+            Assert.AreEqual(result, actual);
+        }
+
     }
 }
