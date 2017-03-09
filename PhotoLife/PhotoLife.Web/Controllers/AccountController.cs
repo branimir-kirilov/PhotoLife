@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -23,7 +25,7 @@ namespace PhotoLife.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -35,9 +37,9 @@ namespace PhotoLife.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -121,7 +123,7 @@ namespace PhotoLife.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -156,8 +158,8 @@ namespace PhotoLife.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -168,9 +170,52 @@ namespace PhotoLife.Controllers
                 }
                 AddErrors(result);
             }
-
+           
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        [HttpPost]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public void UploadDirect()
+        {
+            var headers = HttpContext.Request.Headers;
+            string content = null;
+            using (StreamReader reader = new StreamReader(HttpContext.Request.InputStream))
+            {
+                content = reader.ReadToEnd();
+            }
+            if (String.IsNullOrEmpty(content)) return;
+
+            Dictionary<string, string> results = new Dictionary<string, string>();
+            string[] pairs = content.Split(new char[] { '&' },
+              StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var pair in pairs)
+            {
+                string[] splittedPair = pair.Split('=');
+                results.Add(splittedPair[0], splittedPair[1]);
+            }
+
+            var url = results["type"];
+
+            //Photo photo = new Photo()
+            //{
+            //    Bytes = Int32.Parse(results["bytes"]),
+            //    CreatedAt = DateTime.ParseExact(HttpUtility.UrlDecode(results["created_at"]),
+            //    "yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture),
+            //    Format = results["format"],
+            //    Height = Int32.Parse(results["height"]),
+            //    Path = results["path"],
+            //    PublicId = results["public_id"],
+            //    ResourceType = results["resource_type"],
+            //    SecureUrl = results["secure_url"],
+            //    Signature = results["signature"],
+            //    Type = results["type"],
+            //    Url = results["url"],
+            //    Version = Int32.Parse(results["version"]),
+            //    Width = Int32.Parse(results["width"]),
+
         }
 
         //
