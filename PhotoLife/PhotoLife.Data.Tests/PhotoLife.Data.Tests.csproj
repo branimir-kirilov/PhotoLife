@@ -83,6 +83,7 @@
     <Compile Include="GenericRepository.Tests\Constructor_Should.cs" />
     <Compile Include="GenericRepository.Tests\GetAll_Should.cs" />
     <Compile Include="GenericRepository.Tests\Mocks\MockedGenericRepositoryType.cs" />
+    <Compile Include="GenericRepository.Tests\Update_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
