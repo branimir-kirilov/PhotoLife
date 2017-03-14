@@ -16,7 +16,7 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             var mockedFactory = new Mock<IUserFactory>();
 
             //Act & Assert 
-            Assert.Throws<NullReferenceException>(() => new AccountController(null, mockedFactory.Object));
+            Assert.Throws<ArgumentNullException>(() => new AccountController(null, mockedFactory.Object));
 
         }
     }
