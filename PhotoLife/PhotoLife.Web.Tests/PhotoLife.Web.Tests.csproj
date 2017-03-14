@@ -94,6 +94,7 @@
     <Compile Include="Controllers\Account\Constructor_Should.cs" />
     <Compile Include="Controllers\Account\Login_Should.cs" />
     <Compile Include="Controllers\Account\LogOff_Should.cs" />
+    <Compile Include="Controllers\Account\Register_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
