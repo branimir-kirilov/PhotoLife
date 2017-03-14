@@ -6,7 +6,7 @@
 ## Interested in photography? Ambitious to learn from the best? Ambitious to share your own photos and receive reviews? This is the place for you!
 
 
-##TODO: 
+## TODO: 
 - Extract services
 - Use cloud platform to store the photos
 - Write tests
