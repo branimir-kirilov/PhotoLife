@@ -91,6 +91,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Controllers\Account\Constructor_Should.cs" />
+    <Compile Include="Controllers\Account\LogOff_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
