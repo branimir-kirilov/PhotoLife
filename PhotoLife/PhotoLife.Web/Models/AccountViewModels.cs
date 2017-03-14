@@ -69,9 +69,9 @@ namespace PhotoLife.Models
         {
             //Configuring cloudinary account
             Account account = new Account(
-               "djga3zgwr",
-               "786453771238183",
-               "Lts6xv-uEkffhjUqJS0xThKrsI0");
+               Properties.Settings.Default.CloudName,
+               Properties.Settings.Default.CloudinaryApiKey,
+               Properties.Settings.Default.CloudinaryApiSecret);
 
             this.Cloudinary = new Cloudinary(account);
         }
