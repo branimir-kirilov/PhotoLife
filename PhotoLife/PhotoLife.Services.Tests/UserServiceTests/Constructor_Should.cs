@@ -29,5 +29,33 @@ namespace PhotoLife.Services.Tests.UserServiceTests
             //Act & Assert
             Assert.Throws<ArgumentNullException>(() => new UserService(mockedUserRepository.Object, null));
         }
+
+        [Test]
+        public void _NotBeNull_WhenEverything_PassedCorrectly()
+        {
+            //Arrange
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
+            var mockedUserRepository = new Mock<IRepository<User>>();
+
+            //Act 
+            var userService = new UserService(mockedUserRepository.Object, mockedUnitOfWork.Object);
+
+            //Assert
+            Assert.IsNotNull(userService);
+        }
+
+        [Test]
+        public void _Initializes_AsCorrectInstance_WhenEverything_PassedCorrectly()
+        {
+            //Arrange
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
+            var mockedUserRepository = new Mock<IRepository<User>>();
+
+            //Act 
+            var userService = new UserService(mockedUserRepository.Object, mockedUnitOfWork.Object);
+
+            //Assert
+            Assert.IsInstanceOf<UserService>(userService);
+        }
     }
 }
