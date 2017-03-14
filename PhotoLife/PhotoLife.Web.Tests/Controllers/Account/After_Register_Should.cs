@@ -12,7 +12,7 @@ namespace PhotoLife.Web.Tests.Controllers.Account
     public class After_Register_Should
     {
         [TestCase("fakeMail@fakeService.fakeDomain", "branimir", "fakeDescription", "fakePassword", "fakeUrl")]
-        public void _Call_UserFactory_CreateUser_WhenStateIsValid(
+        public void _Call_AuthenticationProvider_RegisterAndLoginUser_Correctly(
             string email,
             string name,
             string description,
@@ -48,6 +48,50 @@ namespace PhotoLife.Web.Tests.Controllers.Account
 
             //Assert
             mockedFactory.Verify(mf => mf.CreateUser(email, email, name, description, profilePicUrl), Times.Once);
+        }
+
+
+        [TestCase("fakeMail@fakeService.fakeDomain", "branimir", "fakeDescription", "fakePassword", "fakeUrl")]
+        public void _Call_UserFactory_CreateUser_WhenStateIsValid(
+            string email,
+            string name,
+            string description,
+            string password,
+            string profilePicUrl)
+        {
+            //Arrange
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+            mockedAuthenticationProvider.Setup(
+                    p =>
+                        p.RegisterAndLoginUser(
+                            It.IsAny<User>(),
+                            It.IsAny<string>(),
+                            It.IsAny<bool>(),
+                            It.IsAny<bool>()))
+                .Returns(IdentityResult.Success);
+
+            var user = new User();
+
+            var mockedFactory = new Mock<IUserFactory>();
+            mockedFactory.Setup(f => f.CreateUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+                 .Returns(user);
+
+            var model = new RegisterViewModel()
+            {
+                Email = email,
+                Name = name,
+                Password = password,
+                Description = description,
+                ProfilePicUrl = profilePicUrl
+            };
+
+            var controller = new AccountController(mockedAuthenticationProvider.Object, mockedFactory.Object);
+
+            //Act
+            controller.Register(model);
+
+            //Assert
+            mockedAuthenticationProvider.Setup(ap => ap.RegisterAndLoginUser(user, password, It.IsAny<bool>(), It.IsAny<bool>()));
         }
     }
 }
