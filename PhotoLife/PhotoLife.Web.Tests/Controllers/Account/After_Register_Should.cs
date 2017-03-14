@@ -223,5 +223,93 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             //Assert
             Assert.AreSame(model, res.Model);
         }
+
+        [TestCase("fakeMail@fakeService.fakeDomain", "branimir", "fakeDescription", "fakePassword", "fakeUrl")]
+        public void _Return_View_WhenIdentityResult_Success_ModelState_NotValid(
+          string email,
+          string name,
+          string description,
+          string password,
+          string profilePicUrl)
+        {
+            //Arrange
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+            mockedAuthenticationProvider.Setup(
+                    p =>
+                        p.RegisterAndLoginUser(
+                            It.IsAny<User>(),
+                            It.IsAny<string>(),
+                            It.IsAny<bool>(),
+                            It.IsAny<bool>()))
+                .Returns(IdentityResult.Failed());
+
+            var user = new User();
+
+            var mockedFactory = new Mock<IUserFactory>();
+            mockedFactory.Setup(f => f.CreateUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+                 .Returns(user);
+
+            var model = new RegisterViewModel()
+            {
+                Email = email,
+                Name = name,
+                Password = password,
+                Description = description,
+                ProfilePicUrl = profilePicUrl
+            };
+
+            var controller = new AccountController(mockedAuthenticationProvider.Object, mockedFactory.Object);
+            controller.ModelState.AddModelError("error", "error-message");
+
+            //Act
+            var res = controller.Register(model);
+
+            //Assert
+            Assert.IsInstanceOf<ViewResult>(res);
+        }
+
+        [TestCase("fakeMail@fakeService.fakeDomain", "branimir", "fakeDescription", "fakePassword", "fakeUrl")]
+        public void _Set_ViewModel_Correctly_WhenModelState_NotValid(
+          string email,
+          string name,
+          string description,
+          string password,
+          string profilePicUrl)
+        {
+            //Arrange
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+            mockedAuthenticationProvider.Setup(
+                    p =>
+                        p.RegisterAndLoginUser(
+                            It.IsAny<User>(),
+                            It.IsAny<string>(),
+                            It.IsAny<bool>(),
+                            It.IsAny<bool>()))
+                .Returns(IdentityResult.Failed());
+
+            var user = new User();
+
+            var mockedFactory = new Mock<IUserFactory>();
+            mockedFactory.Setup(f => f.CreateUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+                 .Returns(user);
+
+            var model = new RegisterViewModel()
+            {
+                Email = email,
+                Name = name,
+                Password = password,
+                Description = description,
+                ProfilePicUrl = profilePicUrl
+            };
+
+            var controller = new AccountController(mockedAuthenticationProvider.Object, mockedFactory.Object);
+            controller.ModelState.AddModelError("error", "error-message");
+
+            //Act
+            var res = controller.Register(model) as ViewResult;
+
+            //Assert
+            Assert.AreSame(model, res.Model);
+        }
     }
 }
