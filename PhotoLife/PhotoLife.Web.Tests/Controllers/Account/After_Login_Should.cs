@@ -14,6 +14,42 @@ namespace PhotoLife.Web.Tests.Controllers.Account
         [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", true, "/home")]
         [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", false, "/home")]
 
+        public void _Call_Provider_SignInWithPassword_ModelState_IsValid(
+           string email,
+           string password,
+           bool rememberMe,
+           string returnUrl)
+        {
+            //Arrange
+            var mockedProvider = new Mock<IAuthenticationProvider>();
+            var mockedFactory = new Mock<IUserFactory>();
+
+            var loginViewModel = new LoginViewModel()
+            {
+                Email = email,
+                Password = password,
+                RememberMe = rememberMe
+            };
+
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
+
+            //Act
+            controller.Login(loginViewModel, returnUrl);
+
+            //Assert
+            mockedProvider.Verify(
+                p => p
+                .SignInWithPassword(
+                    email,
+                    password, 
+                    rememberMe,
+                    It.IsAny<bool>()),
+                Times.Once);
+        }
+
+        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", true, "/home")]
+        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", false, "/home")]
+
         public void _Return_ViewWithModel_If_ModelState_NotValid(
             string email,
             string password,
