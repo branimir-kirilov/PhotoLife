@@ -90,8 +90,8 @@ namespace PhotoLife.Controllers
                 var user = this.userFactory.CreateUser(
                     model.Email,
                     model.Email,
-                    model.Description,
                     model.Name,
+                    model.Description,
                     model.ProfilePicUrl);
                 var result = this.authenticationProvider.RegisterAndLoginUser(user, model.Password, isPersistent: false, rememberBrowser: true);
 
