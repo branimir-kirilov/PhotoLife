@@ -91,6 +91,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Controllers\Account\After_Login_Should.cs" />
+    <Compile Include="Controllers\Account\After_Register_Should.cs" />
     <Compile Include="Controllers\Account\Constructor_Should.cs" />
     <Compile Include="Controllers\Account\Login_Should.cs" />
     <Compile Include="Controllers\Account\LogOff_Should.cs" />
