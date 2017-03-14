@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Moq;
 using NUnit.Framework;
 using PhotoLife.Authentication.Providers;
@@ -93,5 +94,92 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             //Assert
             mockedAuthenticationProvider.Setup(ap => ap.RegisterAndLoginUser(user, password, It.IsAny<bool>(), It.IsAny<bool>()));
         }
+
+        [TestCase("fakeMail@fakeService.fakeDomain", "branimir", "fakeDescription", "fakePassword", "fakeUrl")]
+        public void _Return_RedirectToRouteResult_WhenIdentityResult_Success(
+            string email,
+            string name,
+            string description,
+            string password,
+            string profilePicUrl)
+        {
+            //Arrange
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+            mockedAuthenticationProvider.Setup(
+                    p =>
+                        p.RegisterAndLoginUser(
+                            It.IsAny<User>(),
+                            It.IsAny<string>(),
+                            It.IsAny<bool>(),
+                            It.IsAny<bool>()))
+                .Returns(IdentityResult.Success);
+
+            var user = new User();
+
+            var mockedFactory = new Mock<IUserFactory>();
+            mockedFactory.Setup(f => f.CreateUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+                 .Returns(user);
+
+            var model = new RegisterViewModel()
+            {
+                Email = email,
+                Name = name,
+                Password = password,
+                Description = description,
+                ProfilePicUrl = profilePicUrl
+            };
+
+            var controller = new AccountController(mockedAuthenticationProvider.Object, mockedFactory.Object);
+
+            //Act
+            var res = controller.Register(model);
+
+            //Assert
+            Assert.IsInstanceOf<RedirectToRouteResult>(res);
+        }
+
+        [TestCase("fakeMail@fakeService.fakeDomain", "branimir", "fakeDescription", "fakePassword", "fakeUrl")]
+        public void _Return__WhenIdentityResult_NotSuccess(
+            string email,
+            string name,
+            string description,
+            string password,
+            string profilePicUrl)
+        {
+            //Arrange
+            var mockedAuthenticationProvider = new Mock<IAuthenticationProvider>();
+            mockedAuthenticationProvider.Setup(
+                    p =>
+                        p.RegisterAndLoginUser(
+                            It.IsAny<User>(),
+                            It.IsAny<string>(),
+                            It.IsAny<bool>(),
+                            It.IsAny<bool>()))
+                .Returns(IdentityResult.Failed());
+
+            var user = new User();
+
+            var mockedFactory = new Mock<IUserFactory>();
+            mockedFactory.Setup(f => f.CreateUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+                 .Returns(user);
+
+            var model = new RegisterViewModel()
+            {
+                Email = email,
+                Name = name,
+                Password = password,
+                Description = description,
+                ProfilePicUrl = profilePicUrl
+            };
+
+            var controller = new AccountController(mockedAuthenticationProvider.Object, mockedFactory.Object);
+
+            //Act
+            var res = controller.Register(model);
+
+            //Assert
+            Assert.IsInstanceOf<ViewResult>(res);
+        }
+
     }
 }
