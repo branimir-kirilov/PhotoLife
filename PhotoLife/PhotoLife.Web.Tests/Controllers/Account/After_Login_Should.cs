@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Microsoft.AspNet.Identity.Owin;
 using Moq;
 using NUnit.Framework;
 using PhotoLife.Authentication.Providers;
@@ -75,6 +76,105 @@ namespace PhotoLife.Web.Tests.Controllers.Account
 
             //Assert
             Assert.AreSame(loginViewModel, res.Model);
+        }
+
+        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", true, "/home")]
+        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", false, "/home")]
+
+        public void _Return_RedirectResult_WithCorrect_Url_WhenProvider_ReturnsSuccess(
+          string email,
+          string password,
+          bool rememberMe,
+          string returnUrl)
+        {
+            //Arrange
+            var mockedProvider = new Mock<IAuthenticationProvider>();
+            var mockedFactory = new Mock<IUserFactory>();
+
+            var loginViewModel = new LoginViewModel()
+            {
+                Email = email,
+                Password = password,
+                RememberMe = rememberMe
+            };
+
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
+
+            //Act
+            var result = controller.Login(loginViewModel, returnUrl) as RedirectResult;
+
+            //Assert
+            Assert.AreEqual(returnUrl, result.Url);
+        }
+
+        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", true, null)]
+        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", false, null)]
+
+        public void _Return_RedirectResult_Home_WhenProvider_Returns_EmptyReturnUrl(
+         string email,
+         string password,
+         bool rememberMe,
+         string returnUrl)
+        {
+            //Arrange
+            var mockedProvider = new Mock<IAuthenticationProvider>();
+            mockedProvider.Setup(
+                    p =>
+                        p.SignInWithPassword(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(),
+                            It.IsAny<bool>()))
+                .Returns(SignInStatus.Success);
+
+            var mockedFactory = new Mock<IUserFactory>();
+
+            var loginViewModel = new LoginViewModel()
+            {
+                Email = email,
+                Password = password,
+                RememberMe = rememberMe
+            };
+
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
+
+            //Act
+            var result = controller.Login(loginViewModel, returnUrl) as RedirectResult;
+
+            //Assert
+            Assert.AreEqual("/Home/Index", result.Url);
+        }
+
+        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", true, null)]
+        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", false, null)]
+
+        public void _Return_LockoutView_WhenProvider_ReturnLockedOutStatus(
+        string email,
+        string password,
+        bool rememberMe,
+        string returnUrl)
+        {
+            //Arrange
+            var mockedProvider = new Mock<IAuthenticationProvider>();
+            mockedProvider.Setup(
+                    p =>
+                        p.SignInWithPassword(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(),
+                            It.IsAny<bool>()))
+                .Returns(SignInStatus.LockedOut);
+
+            var mockedFactory = new Mock<IUserFactory>();
+
+            var loginViewModel = new LoginViewModel()
+            {
+                Email = email,
+                Password = password,
+                RememberMe = rememberMe
+            };
+
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
+
+            //Act
+            var result = controller.Login(loginViewModel, returnUrl) as ViewResult;
+
+            //Assert
+            Assert.AreEqual("Lockout", result.ViewName);
         }
     }
 }
