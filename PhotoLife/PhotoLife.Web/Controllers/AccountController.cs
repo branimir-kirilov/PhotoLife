@@ -54,8 +54,8 @@ namespace PhotoLife.Controllers
                 return View(model);
             }
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
+            returnUrl = string.IsNullOrEmpty(returnUrl) ? "/Home/Index" : returnUrl;
+            
             var result = authenticationProvider.SignInWithPassword(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
