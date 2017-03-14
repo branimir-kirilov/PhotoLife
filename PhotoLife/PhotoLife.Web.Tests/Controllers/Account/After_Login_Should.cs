@@ -42,7 +42,7 @@ namespace PhotoLife.Web.Tests.Controllers.Account
                 p => p
                 .SignInWithPassword(
                     email,
-                    password, 
+                    password,
                     rememberMe,
                     It.IsAny<bool>()),
                 Times.Once);
@@ -175,6 +175,76 @@ namespace PhotoLife.Web.Tests.Controllers.Account
 
             //Assert
             Assert.AreEqual("Lockout", result.ViewName);
+        }
+
+        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", true, null)]
+        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", false, null)]
+
+        public void _Set_ModelState_NotValid_WhenProvider_ReturnsFail(
+        string email,
+        string password,
+        bool rememberMe,
+        string returnUrl)
+        {
+            //Arrange
+            var mockedProvider = new Mock<IAuthenticationProvider>();
+            mockedProvider.Setup(
+                    p =>
+                        p.SignInWithPassword(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(),
+                            It.IsAny<bool>()))
+                .Returns(SignInStatus.Failure);
+
+            var mockedFactory = new Mock<IUserFactory>();
+
+            var loginViewModel = new LoginViewModel()
+            {
+                Email = email,
+                Password = password,
+                RememberMe = rememberMe
+            };
+
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
+
+            //Act
+            controller.Login(loginViewModel, returnUrl);
+
+            //Assert
+            Assert.IsFalse(controller.ModelState.IsValid);
+        }
+
+        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", true, null)]
+        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", false, null)]
+
+        public void _Return_ViewWithModel_WhenProvider_ReturnsFail(
+        string email,
+        string password,
+        bool rememberMe,
+        string returnUrl)
+        {
+            //Arrange
+            var mockedProvider = new Mock<IAuthenticationProvider>();
+            mockedProvider.Setup(
+                    p =>
+                        p.SignInWithPassword(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(),
+                            It.IsAny<bool>()))
+                .Returns(SignInStatus.Failure);
+
+            var mockedFactory = new Mock<IUserFactory>();
+
+            var loginViewModel = new LoginViewModel()
+            {
+                Email = email,
+                Password = password,
+                RememberMe = rememberMe
+            };
+
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
+
+            //Act
+            var res = controller.Login(loginViewModel, returnUrl) as ViewResult;
+
+            //Assert
+            Assert.AreEqual(loginViewModel, res.Model);
         }
     }
 }
