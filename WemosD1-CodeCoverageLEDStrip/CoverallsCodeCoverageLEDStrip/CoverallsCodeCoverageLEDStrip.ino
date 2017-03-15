@@ -2,13 +2,19 @@
  * This is arduino client that changes LED stripe colors according to percentage of code coverage.
  * For now the colors would change every 10%, so in total 10 different colors.
  * 
+ * 90 - 100: 00FF00
+ * 80 -  90: FFCC00
+ * 70 -  80: FF9900
+ * 60 -  70: FF6600
+ * 50 -  60: FF3300
+ *     < 50: FF0000
  */
 
 #include <ESP8266WiFi.h>
 #include <WiFiClientSecure.h>
 #include<ArduinoJson.h>
 
-#define BLUEPIN 13
+#define BLUEPIN 13 
 #define GREENPIN 12
 #define REDPIN 14 
 
@@ -21,7 +27,48 @@ const int httpsPort = 443;
 // SHA1 fingerprint of the certificate
 const char* fingerprint = "6D A8 77 AB 48 93 2B 81 4B 93 6C 3E 53 54 8B 1A FC 61 1C 05";
 
+void changeLights(double coverage){
+  if(coverage >= 90){
+    analogWrite(REDPIN, 0);
+    analogWrite(BLUEPIN, 0);
+    analogWrite(GREENPIN, 255);  
+  }
+  else if(coverage >= 80 && coverage < 90){
+    analogWrite(REDPIN, 255);
+    analogWrite(BLUEPIN, 0);
+    analogWrite(GREENPIN, 200);
+  }
+  else if(coverage >= 70 && coverage < 80){
+    analogWrite(REDPIN, 255);
+    analogWrite(BLUEPIN, 0);
+    analogWrite(GREENPIN, 150);
+  }
+  else if(coverage >= 60 && coverage < 70 ){
+    analogWrite(REDPIN, 255);
+    analogWrite(BLUEPIN, 0);
+    analogWrite(GREENPIN, 100);
+  }
+  else if(coverage >= 50 && coverage < 60){
+    analogWrite(REDPIN, 255);
+    analogWrite(BLUEPIN, 0);
+    analogWrite(GREENPIN, 50);      
+  }
+  else{
+    analogWrite(REDPIN, 255);
+    analogWrite(BLUEPIN, 0);
+    analogWrite(GREENPIN, 0);  
+  }
+}
+
 void setup() {
+  pinMode(BLUEPIN, OUTPUT);
+  pinMode(GREENPIN, OUTPUT);
+  pinMode(REDPIN, OUTPUT);
+
+  analogWrite(REDPIN, 0);
+  analogWrite(BLUEPIN, 0);
+  analogWrite(GREENPIN, 0);  
+  
   Serial.begin(115200);
   Serial.println();
   Serial.print("connecting to ");
@@ -90,9 +137,14 @@ void setup() {
   
   Serial.println("==========");
   Serial.println(percentage);
+
+  changeLights(percentage);
+  
   Serial.println("==========");
   Serial.println("closing connection");
 }
 
 void loop() {
 }
+
+
