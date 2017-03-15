@@ -9,9 +9,21 @@
 
 #### :bowtie: Using the *[Wemos D1](https://www.wemos.cc/product/d1.html)* (based on *ESP8266* and programmable in the *Arduino IDE*) I managed to create a simple sketch that changes RGB LED strip's colors according to the percentage of **code coverage**. It makes a call to the coveralls API every 5 minutes (for now) and changes the colors from red (below 50% code coverage) to green (above 90%).
 
+Below 50% code coverage color (Red, #FF0000)
+
+<img src="/WemosD1-CodeCoverageLEDStrip/below50.jpg" alt="Below 50" width="300">
+
+Just above 50% code coverage color (Some kind of orange, #FF3300)
+
+<img src="/WemosD1-CodeCoverageLEDStrip/55.jpg" alt="55" width="300">
+
 #### This is the schema I used to connect the RGB strip. I didn't use a breadboard. The N-Channel MOSFETs I bought are common - *[IRLN540N](http://www.infineon.com/dgdl/irl540n.pdf?fileId=5546d462533600a40153565fbd752565)*
 
 ![Connecting the RGB LED strip](/WemosD1-CodeCoverageLEDStrip/HowToConnect.png)
+
+I managed to fit the whole messy thing in a little cardboard box and left a hole only for the 12V power source and the led stripe output.
+
+<img src="/WemosD1-CodeCoverageLEDStrip/inside.jpg" alt="Inside the box" width="300">
 
 ## TODOs: 
 - Extract services
