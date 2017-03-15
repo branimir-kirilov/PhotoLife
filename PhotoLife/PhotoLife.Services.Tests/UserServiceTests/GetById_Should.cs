@@ -44,5 +44,25 @@ namespace PhotoLife.Services.Tests.UserServiceTests
             //Assert            
             Assert.AreSame(mockedUser.Object, res);
         }
+
+        [TestCase("some id")]
+        [TestCase("other id")]
+        public void _Return_CorrectInstance(string id)
+        {
+            //Arrange
+            var mockedUser = new Mock<User>();
+            var mockedRepository = new Mock<IRepository<User>>();
+            mockedRepository.Setup(r => r.GetById(It.IsAny<string>())).Returns(mockedUser.Object);
+
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
+
+            var userService = new UserService(mockedRepository.Object, mockedUnitOfWork.Object);
+
+            //Act
+            var res = userService.GetUserById(id);
+
+            //Assert            
+            Assert.IsInstanceOf<User>(res);
+        }
     }
 }
