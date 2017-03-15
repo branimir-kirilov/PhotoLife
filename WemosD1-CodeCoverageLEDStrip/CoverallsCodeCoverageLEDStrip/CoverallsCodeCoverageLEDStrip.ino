@@ -1,6 +1,6 @@
 /*
- * This is arduino client that changes LED stripe colors according to percentage of code coverage.
- * For now the colors would change every 10%, so in total 10 different colors.
+ * This is arduino client (Wemos D1 based on ESP8266) that changes LED stripe colors according to percentage of code coverage.
+ * For now the colors would change every 10% from 100% to 50%, and one for below 50%, so in total 6 different colors.
  * 
  * 90 - 100: 00FF00
  * 80 -  90: FFCC00
@@ -8,18 +8,21 @@
  * 60 -  70: FF6600
  * 50 -  60: FF3300
  *     < 50: FF0000
+ *     
+ *TODO: Blink when continious integration build not passing.
  */
 
 #include <ESP8266WiFi.h>
 #include <WiFiClientSecure.h>
 #include<ArduinoJson.h>
 
+/*Defining pins. Note that the are some mismatches on Wemos D1. (the retired one, not mini)*/
 #define BLUEPIN 13 
 #define GREENPIN 12
 #define REDPIN 14 
 
-const char* ssid = "ChangeWithYourWiFiName";
-const char* password = "ChangeWithYourWiFiPassword"
+const char* ssid = "SSID"; //Replace with your WiFi ssid
+const char* password = "PASSWORD"; //Replace with your WiFi password
 
 const char* host = "coveralls.io";
 const int httpsPort = 443;
@@ -27,6 +30,7 @@ const int httpsPort = 443;
 // SHA1 fingerprint of the certificate
 const char* fingerprint = "6D A8 77 AB 48 93 2B 81 4B 93 6C 3E 53 54 8B 1A FC 61 1C 05";
 
+//Simple function that changes the colors according to coverage
 void changeLights(double coverage){
   if(coverage >= 90){
     analogWrite(REDPIN, 0);
@@ -81,8 +85,10 @@ void setup() {
   Serial.println("");
   Serial.println("WiFi connected");
   Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());
+  Serial.println(WiFi.localIP()); 
+}
 
+void loop() {
   // Use WiFiClientSecure class to create TLS connection
   WiFiClientSecure client;
   Serial.print("connecting to ");
@@ -138,13 +144,13 @@ void setup() {
   Serial.println("==========");
   Serial.println(percentage);
 
-  changeLights(95);
+  changeLights(percentage);
   
   Serial.println("==========");
   Serial.println("closing connection");
-}
 
-void loop() {
+  //Do this every 5 minutes
+  delay(300000);
 }
 
 
