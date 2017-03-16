@@ -140,10 +140,10 @@ namespace PhotoLife.Services.Tests.UserServiceTests
            string profilePicUrl)
         {
             //Arrange
-            var mockedUser = new User();
+            var user = new User();
 
             var mockedRepository = new Mock<IRepository<User>>();
-            mockedRepository.Setup(r => r.GetById(It.IsAny<object>())).Returns(mockedUser);
+            mockedRepository.Setup(r => r.GetById(It.IsAny<object>())).Returns(user);
 
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
 
@@ -153,7 +153,57 @@ namespace PhotoLife.Services.Tests.UserServiceTests
             userService.EditUser(id, username, name, description, profilePicUrl);
 
             //Assert            
-            Assert.AreEqual(profilePicUrl, mockedUser.ProfilePicUrl);
+            Assert.AreEqual(profilePicUrl, user.ProfilePicUrl);
+        }
+
+        [TestCase("somefancyid", "branimir", "Branimir", "I am branimir", "cloudinary.com/someid")]
+        public void _Call_Repository_Update_Method_Correctly(
+           string id,
+           string username,
+           string name,
+           string description,
+           string profilePicUrl)
+        {
+            //Arrange
+            var user = new User();
+
+            var mockedRepository = new Mock<IRepository<User>>();
+            mockedRepository.Setup(r => r.GetById(It.IsAny<object>())).Returns(user);
+
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
+
+            var userService = new UserService(mockedRepository.Object, mockedUnitOfWork.Object);
+
+            //Act
+            userService.EditUser(id, username, name, description, profilePicUrl);
+
+            //Assert            
+            mockedRepository.Verify(r => r.Update(user), Times.Once);
+        }
+
+        [TestCase("somefancyid", "branimir", "Branimir", "I am branimir", "cloudinary.com/someid")]
+        public void _Call_UnitOfWork_Commit_Method_Correctly(
+          string id,
+          string username,
+          string name,
+          string description,
+          string profilePicUrl)
+        {
+            //Arrange
+            var user = new User();
+
+            var mockedRepository = new Mock<IRepository<User>>();
+            mockedRepository.Setup(r => r.GetById(It.IsAny<object>())).Returns(user);
+
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
+
+            var userService = new UserService(mockedRepository.Object, mockedUnitOfWork.Object);
+
+            //Act
+            userService.EditUser(id, username, name, description, profilePicUrl);
+
+            //Assert            
+            mockedUnitOfWork.Verify(u => u.Commit(), Times.Once);
         }
     }
 }
