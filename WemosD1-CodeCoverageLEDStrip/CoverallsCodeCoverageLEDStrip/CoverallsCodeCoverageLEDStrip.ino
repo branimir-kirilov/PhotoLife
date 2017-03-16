@@ -21,8 +21,8 @@
 #define GREENPIN 12
 #define REDPIN 14 
 
-const char* ssid = "NotYourWiFi"; //Replace with your WiFi ssid
-const char* password = "bananana"; //Replace with your WiFi password
+const char* ssid = "SSID"; //Replace with your WiFi ssid
+const char* password = "PASSWORD"; //Replace with your WiFi password
 
 const char* host = "coveralls.io";
 const int httpsPort = 443;
@@ -123,7 +123,6 @@ void loop() {
   }
   String line = client.readStringUntil('\n');
   Serial.println("reply was:");
-  Serial.println("==========");
   Serial.println(line);
 
   char jsonArray[500];
@@ -138,18 +137,22 @@ void loop() {
     Serial.println("parseObject() failed");
     return;
   }
-  
+
+  //Percentage of test code coverage: 
   double percentage = root["covered_percent"];
   
   Serial.println("==========");
-  Serial.println(percentage);
+  Serial.println("Percentage: " + percentage);
 
-  changeLights(0);
+  //Change the lights
+  changeLights(percentage);
   
   Serial.println("==========");
   Serial.println("closing connection");
 
-  //Do this every 5 minutes
+  /*Change this for delay between requests
+  * It is currently set to 5 mins
+  */
   delay(300000);
 }
 

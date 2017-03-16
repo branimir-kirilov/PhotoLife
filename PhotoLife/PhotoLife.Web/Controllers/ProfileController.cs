@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using PhotoLife.Authentication.Providers;
 using PhotoLife.Services.Contracts;
@@ -15,12 +12,12 @@ namespace PhotoLife.Controllers
 
         public ProfileController(IAuthenticationProvider authProvider, IUserService userService)
         {
-            if (AuthenticationProvider == null)
+            if (authProvider == null)
             {
                 throw new ArgumentNullException(nameof(AuthenticationProvider));
             }
 
-            if (UserSerivce == null)
+            if (userService == null)
             {
                 throw new ArgumentNullException(nameof(UserSerivce));
             }
@@ -28,10 +25,11 @@ namespace PhotoLife.Controllers
             this.AuthenticationProvider = authProvider;
             this.UserSerivce = userService;
         }
+
         // GET: Profile
-        public ActionResult Index()
+        public ActionResult UserProfile()
         {
             return View();
         }
     }
-}
+}   
