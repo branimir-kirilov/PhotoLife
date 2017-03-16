@@ -17,12 +17,12 @@ namespace PhotoLife.Services
         {
             if (userRepository == null)
             {
-                throw new ArgumentNullException(nameof(userRepository));
+                throw new ArgumentNullException("userRepository");
             }
 
             if (unitOfWork == null)
             {
-                throw new ArgumentNullException(nameof(unitOfWork));
+                throw new ArgumentNullException("unitOfWork");
             }
 
             this.userRepository = userRepository;
