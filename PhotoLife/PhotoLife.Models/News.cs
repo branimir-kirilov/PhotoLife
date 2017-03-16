@@ -31,7 +31,6 @@ namespace PhotoLife.Models
             this.DatePublished = datePublished;
         }
 
-
         [Key]
         public int NewsId { get; set; }
 
