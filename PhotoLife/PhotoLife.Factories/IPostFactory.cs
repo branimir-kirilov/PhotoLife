@@ -10,7 +10,6 @@ namespace PhotoLife.Factories
             string imageUrl,
             User author,
             Category category,
-            DateTime datePublished,
-            int votes);
+            DateTime datePublished);
     }
 }

@@ -11,7 +11,6 @@ namespace PhotoLife.Factories
             string imageUrl,
             User author,
             Category category,
-            int views,
             DateTime datePublished);
     }
 }

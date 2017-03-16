@@ -23,8 +23,7 @@ namespace PhotoLife.Models
             string imageUrl,
             User author,
             Category category,
-            DateTime datePublished,
-            int votes)
+            DateTime datePublished)
         {
             this.Title = title;
             this.Description = description;
@@ -32,7 +31,7 @@ namespace PhotoLife.Models
             this.Author = author;
             this.Category = category;
             this.DatePublished = datePublished;
-            this.Votes = votes;
+            this.Votes = 0;
         }
 
         [Key]
