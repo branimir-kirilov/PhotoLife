@@ -26,7 +26,13 @@ namespace PhotoLife.Data
             return this.Context.DbSet<T>().Find(id);
         }
 
-        public IEnumerable<T> Entities => this.Context.DbSet<T>().ToList();
+        public IEnumerable<T> Entities
+        {
+            get
+            {
+                return this.Context.DbSet<T>().ToList();
+            }
+        }
 
         public IEnumerable<T> GetAll()
         {
