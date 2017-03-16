@@ -30,5 +30,25 @@ namespace PhotoLife.Services.Tests.UserServiceTests
             //Assert            
             mockedRepository.Verify(r => r.GetAll(It.IsAny<Expression<Func<User,bool>>>()), Times.Once);
         }
+
+        [TestCase("branimiri")]
+        [TestCase("not_branimiri")]
+        public void _ReturnCorrectly_GetAll_Method(string username)
+        {
+            //Arrange
+            var mockedUser = new Mock<User>();
+            var mockedRepository = new Mock<IRepository<User>>();
+            mockedRepository.Setup(r => r.GetAll(It.IsAny<Expression<Func<User, bool>>>())).Returns(new List<User> {mockedUser.Object});
+
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
+
+            var userService = new UserService(mockedRepository.Object, mockedUnitOfWork.Object);
+
+            //Act
+            var result = userService.GetUserByUsername(username);
+
+            //Assert            
+            Assert.AreSame(mockedUser.Object, result);
+        }
     }
 }
