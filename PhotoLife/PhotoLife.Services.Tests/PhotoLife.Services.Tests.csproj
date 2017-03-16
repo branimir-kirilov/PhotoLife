@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserServiceTests\Constructor_Should.cs" />
+    <Compile Include="UserServiceTests\EditUser_Should.cs" />
     <Compile Include="UserServiceTests\GetById_Should.cs" />
     <Compile Include="UserServiceTests\GetByUsername_Should.cs" />
   </ItemGroup>

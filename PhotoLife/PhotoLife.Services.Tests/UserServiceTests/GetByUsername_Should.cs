@@ -37,6 +37,7 @@ namespace PhotoLife.Services.Tests.UserServiceTests
         {
             //Arrange
             var mockedUser = new Mock<User>();
+
             var mockedRepository = new Mock<IRepository<User>>();
             mockedRepository.Setup(r => r.GetAll(It.IsAny<Expression<Func<User, bool>>>())).Returns(new List<User> {mockedUser.Object});
 
