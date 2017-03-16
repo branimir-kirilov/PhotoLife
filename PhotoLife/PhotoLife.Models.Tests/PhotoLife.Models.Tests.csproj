@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserModelTests\Constructor_Should.cs" />
+    <Compile Include="UserModelTests\Property_.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
