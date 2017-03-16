@@ -15,7 +15,7 @@ namespace PhotoLife.Services.Tests.UserServiceTests
     public class EditUser_Should
     {
         [TestCase("somefancyid", "branimir", "Branimir", "I am branimir", "cloudinary.com/someid" )]
-        public void _ReturnCorrectly_GetAll_Method(
+        public void _CallRepository_GetById_Method(
             string id,
             string username,
             string name,
@@ -33,6 +33,27 @@ namespace PhotoLife.Services.Tests.UserServiceTests
 
             //Assert            
             mockedRepository.Verify(r => r.GetById(id), Times.Once);
+        }
+
+        [TestCase("somefancyid", "branimir", "Branimir", "I am branimir", "cloudinary.com/someid")]
+        public void _ReturnCorrectly_GetAll_Method(
+            string id,
+            string username,
+            string name,
+            string description,
+            string profilePicUrl)
+        {
+            //Arrange
+            var mockedRepository = new Mock<IRepository<User>>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
+
+            var userService = new UserService(mockedRepository.Object, mockedUnitOfWork.Object);
+
+            //Act
+            userService.EditUser(id, username, name, description, profilePicUrl);
+
+            //Assert            
+            mockedUnitOfWork.Verify(u => u.Commit(), Times.Never);
         }
     }
 }
