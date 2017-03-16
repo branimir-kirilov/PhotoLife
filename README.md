@@ -1,5 +1,6 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/jt3jtnvqnyfstq25?svg=true)](https://ci.appveyor.com/project/Branimir123/photolife)
 [![Coverage Status](https://coveralls.io/repos/github/Branimir123/PhotoLife/badge.svg?branch=master)](https://coveralls.io/github/Branimir123/PhotoLife?branch=master)
+[![NuGet Pre Release](https://img.shields.io/nuget/vpre/Microsoft.AspNet.Mvc.svg)](https://github.com/Branimir123/PhotoLife)
 
 # Photo Life
 
