@@ -241,6 +241,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -308,10 +309,10 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -337,6 +338,10 @@
     <ProjectReference Include="..\PhotoLife.Models\PhotoLife.Models.csproj">
       <Project>{49792F7F-EE1F-46AC-A388-7B97011DBB16}</Project>
       <Name>PhotoLife.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhotoLife.Services\PhotoLife.Services.csproj">
+      <Project>{6041536D-03A2-4175-BD96-E25340CFD59D}</Project>
+      <Name>PhotoLife.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
