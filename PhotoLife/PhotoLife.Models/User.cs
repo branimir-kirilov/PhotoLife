@@ -16,7 +16,7 @@ namespace PhotoLife.Models
         {
             this.UserName = username;
             this.Email = email;
-            this.UserName = name;
+            this.Name = name;
             this.Description = description;
             this.ProfilePicUrl = profilePicUrl;
         }
