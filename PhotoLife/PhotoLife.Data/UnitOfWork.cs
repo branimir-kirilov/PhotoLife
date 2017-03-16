@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Data.Entity;
 using PhotoLife.Data.Contracts;
 
 namespace PhotoLife.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DbContext dbContext;
+        private readonly IPhotoLifeEntities dbContext;
 
-        public UnitOfWork(DbContext context)
+        public UnitOfWork(IPhotoLifeEntities context)
         {
             if (context == null)
             {
