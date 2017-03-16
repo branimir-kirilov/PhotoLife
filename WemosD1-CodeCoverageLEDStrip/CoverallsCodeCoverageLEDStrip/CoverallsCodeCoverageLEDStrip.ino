@@ -21,8 +21,8 @@
 #define GREENPIN 12
 #define REDPIN 14 
 
-const char* ssid = "SSID"; //Replace with your WiFi ssid
-const char* password = "PASSWORD"; //Replace with your WiFi password
+const char* ssid = "NotYourWiFi"; //Replace with your WiFi ssid
+const char* password = "bananana"; //Replace with your WiFi password
 
 const char* host = "coveralls.io";
 const int httpsPort = 443;
@@ -144,7 +144,7 @@ void loop() {
   Serial.println("==========");
   Serial.println(percentage);
 
-  changeLights(percentage);
+  changeLights(0);
   
   Serial.println("==========");
   Serial.println("closing connection");
