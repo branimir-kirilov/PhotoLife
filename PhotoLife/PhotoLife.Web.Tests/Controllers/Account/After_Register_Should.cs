@@ -86,9 +86,11 @@ namespace PhotoLife.Web.Tests.Controllers.Account
                  .Returns(user);
 
             var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
-            var mockedCloudinary = new Mock<Cloudinary>();
 
-            var model = new RegisterViewModel(mockedCloudinary.Object)
+            var fakeAcc = new CloudinaryDotNet.Account("sdfsdfsd", "sdfsdfsdf", "sdfsdfsdf");
+            var mockedCloudinary = new Cloudinary(fakeAcc);
+
+            var model = new RegisterViewModel(mockedCloudinary)
             {
                 Email = email,
                 Name = name,
@@ -130,9 +132,11 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             mockedFactory.Setup(f => f.CreateUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
                  .Returns(user);
             var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
-            var mockedCloudinary = new Mock<Cloudinary>();
 
-            var model = new RegisterViewModel(mockedCloudinary.Object)
+            var fakeAcc = new CloudinaryDotNet.Account("sdfsdfsd", "sdfsdfsdf", "sdfsdfsdf");
+            var mockedCloudinary = new Cloudinary(fakeAcc);
+
+            var model = new RegisterViewModel(mockedCloudinary)
             {
                 Email = email,
                 Name = name,
@@ -176,9 +180,11 @@ namespace PhotoLife.Web.Tests.Controllers.Account
                  .Returns(user);
 
             var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
-            var mockedCloudinary = new Mock<Cloudinary>();
 
-            var model = new RegisterViewModel(mockedCloudinary.Object)
+            var fakeAcc = new CloudinaryDotNet.Account("sdfsdfsd", "sdfsdfsdf", "sdfsdfsdf");
+            var mockedCloudinary = new Cloudinary(fakeAcc);
+
+            var model = new RegisterViewModel(mockedCloudinary)
             {
                 Email = email,
                 Name = name,
@@ -222,9 +228,11 @@ namespace PhotoLife.Web.Tests.Controllers.Account
                  .Returns(user);
 
             var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
-            var mockedCloudinary = new Mock<Cloudinary>();
 
-            var model = new RegisterViewModel(mockedCloudinary.Object)
+            var fakeAcc = new CloudinaryDotNet.Account("sdfsdfsd", "sdfsdfsdf", "sdfsdfsdf");
+            var mockedCloudinary = new Cloudinary(fakeAcc);
+
+            var model = new RegisterViewModel(mockedCloudinary)
             {
                 Email = email,
                 Name = name,
@@ -268,9 +276,11 @@ namespace PhotoLife.Web.Tests.Controllers.Account
                  .Returns(user);
 
             var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
-            var mockedCloudinary = new Mock<Cloudinary>();
 
-            var model = new RegisterViewModel(mockedCloudinary.Object)
+            var fakeAcc = new CloudinaryDotNet.Account("sdfsdfsd", "sdfsdfsdf", "sdfsdfsdf");
+            var mockedCloudinary = new Cloudinary(fakeAcc);
+
+            var model = new RegisterViewModel(mockedCloudinary)
             {
                 Email = email,
                 Name = name,
@@ -315,9 +325,11 @@ namespace PhotoLife.Web.Tests.Controllers.Account
                  .Returns(user);
 
             var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
-            var mockedCloudinary = new Mock<Cloudinary>();
 
-            var model = new RegisterViewModel(mockedCloudinary.Object)
+            var fakeAcc = new CloudinaryDotNet.Account("sdfsdfsd", "sdfsdfsdf", "sdfsdfsdf");
+            var mockedCloudinary = new Cloudinary(fakeAcc);
+
+            var model = new RegisterViewModel(mockedCloudinary)
             {
                 Email = email,
                 Name = name,
