@@ -1,25 +1,8 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using CloudinaryDotNet;
 
-namespace PhotoLife.Models
+namespace PhotoLife.Models.Account
 {
-    public class LoginViewModel
-    {
-        [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
-
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
-
-        [Display(Name = "Remember me?")]
-        public bool RememberMe { get; set; }
-    }
-
     public class RegisterViewModel
     {
         public RegisterViewModel(Cloudinary cloudinary)
@@ -37,7 +20,7 @@ namespace PhotoLife.Models
         [Display(Name = "Username")]
         [StringLength(60, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         public string UserName { get; set; }
-        
+
         [Display(Name = "Name")]
         [StringLength(60, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         public string Name { get; set; }

@@ -7,6 +7,7 @@ using PhotoLife.Authentication.Providers;
 using PhotoLife.Controllers;
 using PhotoLife.Factories;
 using PhotoLife.Models;
+using PhotoLife.Models.Account;
 
 namespace PhotoLife.Web.Tests.Controllers.Account
 {
