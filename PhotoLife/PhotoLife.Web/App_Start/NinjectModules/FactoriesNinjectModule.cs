@@ -13,6 +13,8 @@ namespace PhotoLife.App_Start.NinjectModules
             this.Bind<INewsFactory>().ToFactory().InSingletonScope();
             this.Bind<IPostFactory>().ToFactory().InSingletonScope();
             this.Bind<ICategoryFactory>().ToFactory().InSingletonScope();
+
+            this.Bind<IViewModelFactory>().ToFactory().InSingletonScope();
         }
     }
 }
