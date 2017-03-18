@@ -44,6 +44,11 @@ namespace PhotoLife.Models
         public string Name { get; set; }
 
         [Required]
+        [Display(Name = "Name")]
+        [StringLength(60, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        public string UserName { get; set; }
+
+        [Required]
         [Display(Name = "Description")]
         [StringLength(350, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         public string Description { get; set; }

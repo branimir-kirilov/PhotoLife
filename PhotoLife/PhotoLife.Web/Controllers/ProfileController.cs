@@ -12,20 +12,29 @@ namespace PhotoLife.Controllers
         private readonly IUserService UserSerivce;
         private readonly IViewModelFactory ViewModelFactory;
 
-        public ProfileController(IAuthenticationProvider authProvider, IUserService userService)
+        public ProfileController(
+            IAuthenticationProvider authProvider,
+            IUserService userService, 
+            IViewModelFactory viewModelFactory)
         {
             if (authProvider == null)
             {
-                throw new ArgumentNullException(nameof(AuthenticationProvider));
+                throw new ArgumentNullException(nameof(this.AuthenticationProvider));
             }
 
             if (userService == null)
             {
-                throw new ArgumentNullException(nameof(UserSerivce));
+                throw new ArgumentNullException(nameof(this.UserSerivce));
+            }
+
+            if (viewModelFactory == null)
+            {
+                throw new ArgumentNullException(nameof(this.ViewModelFactory));
             }
 
             this.AuthenticationProvider = authProvider;
             this.UserSerivce = userService;
+            this.ViewModelFactory = viewModelFactory;
         }
 
         // GET: Profile

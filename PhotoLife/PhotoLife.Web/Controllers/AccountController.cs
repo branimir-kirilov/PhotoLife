@@ -88,7 +88,7 @@ namespace PhotoLife.Controllers
             if (ModelState.IsValid)
             {
                 var user = this.userFactory.CreateUser(
-                    model.Email,
+                    model.UserName,
                     model.Email,
                     model.Name,
                     model.Description,
