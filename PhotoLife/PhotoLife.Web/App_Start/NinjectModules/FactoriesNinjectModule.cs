@@ -17,14 +17,15 @@ namespace PhotoLife.App_Start.NinjectModules
             this.Bind<ICategoryFactory>().ToFactory().InSingletonScope();
 
             this.Bind<IViewModelFactory>().ToFactory().InSingletonScope();
+            this.Bind<ICloudinaryFactory>().ToFactory().InSingletonScope();
 
             this.Bind<Cloudinary>()
-                .ToMethod(this.Cloudinary)
-                .NamedLikeFactoryMethod((ICloudinaryFactory f) => f.Cloudinary());
+                .ToMethod(this.GetCloudinary)
+                .NamedLikeFactoryMethod((ICloudinaryFactory f) => f.GetCloudinary());
 
         }
 
-        private Cloudinary Cloudinary(IContext args)
+        private Cloudinary GetCloudinary(IContext args)
         {
             var acc = new Account(
             Properties.Settings.Default.CloudName,

@@ -10,6 +10,11 @@ namespace PhotoLife.Models.Account
             this.Cloudinary = cloudinary;
         }
 
+        public RegisterViewModel()
+        {
+
+        }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

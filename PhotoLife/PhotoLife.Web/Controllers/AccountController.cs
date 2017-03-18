@@ -84,7 +84,7 @@ namespace PhotoLife.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            var cloudinary = this.cloudinaryFactory.Cloudinary();
+            var cloudinary = this.cloudinaryFactory.GetCloudinary();
 
             return View(new RegisterViewModel(cloudinary));
         }
