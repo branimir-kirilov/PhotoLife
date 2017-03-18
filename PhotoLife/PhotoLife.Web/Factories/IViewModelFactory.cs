@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PhotoLife.Models;
 
 namespace PhotoLife.Factories
 {
-    interface IViewModelFactory
+    public interface IViewModelFactory
     {
+        ProfileViewModel CreateUserProfileViewModel(User user);
     }
 }
