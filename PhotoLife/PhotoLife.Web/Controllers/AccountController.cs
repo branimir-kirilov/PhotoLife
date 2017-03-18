@@ -16,8 +16,12 @@ namespace PhotoLife.Controllers
         //private ApplicationUserManager _userManager;
         private readonly IAuthenticationProvider authenticationProvider;
         private readonly IUserFactory userFactory;
+        private readonly ICloudinaryFactory cloudinaryFactory;
 
-        public AccountController(IAuthenticationProvider authProvider, IUserFactory userFactory)
+        public AccountController(
+            IAuthenticationProvider authProvider, 
+            IUserFactory userFactory, 
+            ICloudinaryFactory cloudinaryFactory)
         {
             if (authProvider == null)
             {
@@ -29,8 +33,14 @@ namespace PhotoLife.Controllers
                 throw new ArgumentNullException(nameof(userFactory));
             }
 
+            if (cloudinaryFactory == null)
+            {
+                throw new ArgumentNullException(nameof(cloudinaryFactory));
+            }
+
             this.authenticationProvider = authProvider;
             this.userFactory = userFactory;
+            this.cloudinaryFactory = cloudinaryFactory;
         }
 
         //
@@ -75,7 +85,9 @@ namespace PhotoLife.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View(new RegisterViewModel());
+            var cloudinary = this.cloudinaryFactory.Cloudinary();
+
+            return View(new RegisterViewModel(cloudinary));
         }
 
         //

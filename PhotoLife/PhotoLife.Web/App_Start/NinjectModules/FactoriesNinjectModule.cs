@@ -1,4 +1,6 @@
-﻿using Ninject.Extensions.Factory;
+﻿using CloudinaryDotNet;
+using Ninject.Activation;
+using Ninject.Extensions.Factory;
 using Ninject.Modules;
 using PhotoLife.Factories;
 
@@ -15,6 +17,21 @@ namespace PhotoLife.App_Start.NinjectModules
             this.Bind<ICategoryFactory>().ToFactory().InSingletonScope();
 
             this.Bind<IViewModelFactory>().ToFactory().InSingletonScope();
+
+            this.Bind<Cloudinary>()
+                .ToMethod(this.Cloudinary)
+                .NamedLikeFactoryMethod((ICloudinaryFactory f) => f.Cloudinary());
+
+        }
+
+        private Cloudinary Cloudinary(IContext args)
+        {
+            var acc = new Account(
+            Properties.Settings.Default.CloudName,
+            Properties.Settings.Default.CloudinaryApiKey,
+            Properties.Settings.Default.CloudinaryApiSecret);
+
+            return new Cloudinary(acc);
         }
     }
 }

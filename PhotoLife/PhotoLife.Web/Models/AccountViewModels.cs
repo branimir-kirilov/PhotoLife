@@ -22,15 +22,9 @@ namespace PhotoLife.Models
 
     public class RegisterViewModel
     {
-        public RegisterViewModel()
+        public RegisterViewModel(Cloudinary cloudinary)
         {
-            //Configuring cloudinary account
-            Account account = new Account(
-               Properties.Settings.Default.CloudName,
-               Properties.Settings.Default.CloudinaryApiKey,
-               Properties.Settings.Default.CloudinaryApiSecret);
-
-            this.Cloudinary = new Cloudinary(account);
+            this.Cloudinary = cloudinary;
         }
 
         [Required]

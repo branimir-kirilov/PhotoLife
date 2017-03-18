@@ -4,6 +4,6 @@ namespace PhotoLife.Factories
 {
     public interface ICloudinaryFactory
     {
-        Cloudinary GetCloudinary();
+        Cloudinary Cloudinary();
     }
 }
