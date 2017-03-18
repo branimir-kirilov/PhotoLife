@@ -24,6 +24,7 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             //Arrange
             var mockedProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IUserFactory>();
+            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
 
             var loginViewModel = new LoginViewModel()
             {
@@ -32,7 +33,7 @@ namespace PhotoLife.Web.Tests.Controllers.Account
                 RememberMe = rememberMe
             };
 
-            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinaryFactory.Object);
 
             //Act
             controller.Login(loginViewModel, returnUrl);
@@ -60,6 +61,7 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             //Arrange
             var mockedProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IUserFactory>();
+            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
 
             var loginViewModel = new LoginViewModel()
             {
@@ -68,9 +70,8 @@ namespace PhotoLife.Web.Tests.Controllers.Account
                 RememberMe = rememberMe
             };
 
-            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
-            controller.ModelState.AddModelError("key", "error");
-
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinaryFactory.Object);
+           
             //Act
             var res = controller.Login(loginViewModel, returnUrl) as ViewResult;
 
@@ -90,6 +91,7 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             //Arrange
             var mockedProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IUserFactory>();
+            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
 
             var loginViewModel = new LoginViewModel()
             {
@@ -98,7 +100,7 @@ namespace PhotoLife.Web.Tests.Controllers.Account
                 RememberMe = rememberMe
             };
 
-            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinaryFactory.Object);
 
             //Act
             var result = controller.Login(loginViewModel, returnUrl) as RedirectResult;
@@ -126,6 +128,8 @@ namespace PhotoLife.Web.Tests.Controllers.Account
 
             var mockedFactory = new Mock<IUserFactory>();
 
+            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
+
             var loginViewModel = new LoginViewModel()
             {
                 Email = email,
@@ -133,7 +137,7 @@ namespace PhotoLife.Web.Tests.Controllers.Account
                 RememberMe = rememberMe
             };
 
-            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinaryFactory.Object);
 
             //Act
             var result = controller.Login(loginViewModel, returnUrl) as RedirectResult;
@@ -160,6 +164,7 @@ namespace PhotoLife.Web.Tests.Controllers.Account
                 .Returns(SignInStatus.LockedOut);
 
             var mockedFactory = new Mock<IUserFactory>();
+            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
 
             var loginViewModel = new LoginViewModel()
             {
@@ -168,7 +173,7 @@ namespace PhotoLife.Web.Tests.Controllers.Account
                 RememberMe = rememberMe
             };
 
-            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinaryFactory.Object);
 
             //Act
             var result = controller.Login(loginViewModel, returnUrl) as ViewResult;
@@ -196,6 +201,8 @@ namespace PhotoLife.Web.Tests.Controllers.Account
 
             var mockedFactory = new Mock<IUserFactory>();
 
+            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
+
             var loginViewModel = new LoginViewModel()
             {
                 Email = email,
@@ -203,7 +210,7 @@ namespace PhotoLife.Web.Tests.Controllers.Account
                 RememberMe = rememberMe
             };
 
-            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinaryFactory.Object);
 
             //Act
             controller.Login(loginViewModel, returnUrl);
@@ -231,6 +238,8 @@ namespace PhotoLife.Web.Tests.Controllers.Account
 
             var mockedFactory = new Mock<IUserFactory>();
 
+            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
+
             var loginViewModel = new LoginViewModel()
             {
                 Email = email,
@@ -238,7 +247,7 @@ namespace PhotoLife.Web.Tests.Controllers.Account
                 RememberMe = rememberMe
             };
 
-            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinaryFactory.Object);
 
             //Act
             var res = controller.Login(loginViewModel, returnUrl) as ViewResult;

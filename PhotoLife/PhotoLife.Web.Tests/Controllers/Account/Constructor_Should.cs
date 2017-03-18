@@ -16,9 +16,9 @@ namespace PhotoLife.Web.Tests.Controllers.Account
         {
             //Arrange
             var mockedFactory = new Mock<IUserFactory>();
-
+            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
             //Act & Assert 
-            Assert.Throws<ArgumentNullException>(() => new AccountController(null, mockedFactory.Object));
+            Assert.Throws<ArgumentNullException>(() => new AccountController(null, mockedFactory.Object, mockedCloudinaryFactory.Object));
 
         }
 
@@ -27,9 +27,10 @@ namespace PhotoLife.Web.Tests.Controllers.Account
         {
             //Arrange
             var mockedProvider = new Mock<IAuthenticationProvider>();
+            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
 
             //Act & Assert 
-            Assert.Throws<ArgumentNullException>(() => new AccountController(mockedProvider.Object, null));
+            Assert.Throws<ArgumentNullException>(() => new AccountController(mockedProvider.Object, null, mockedCloudinaryFactory.Object));
 
         }
 
@@ -39,9 +40,11 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             //Arrange
             var mockedProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IUserFactory>();
+            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
+
 
             //Act & Assert 
-            Assert.DoesNotThrow(() => new AccountController(mockedProvider.Object, mockedFactory.Object));
+            Assert.DoesNotThrow(() => new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinaryFactory.Object));
 
         }
 
@@ -52,9 +55,10 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             //Arrange
             var mockedProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IUserFactory>();
+            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
 
             //Act 
-            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinaryFactory.Object);
 
             //Assert
             Assert.IsNotNull(controller);
@@ -66,9 +70,10 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             //Arrange
             var mockedProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IUserFactory>();
+            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
 
             //Act 
-            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinaryFactory.Object);
 
             //Assert
             Assert.IsInstanceOf<Controller>(controller);

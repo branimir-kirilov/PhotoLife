@@ -16,8 +16,9 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             //Arrange
             var mockedProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IUserFactory>();
+            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
 
-            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
+             var controller = new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinaryFactory.Object);
           
             //Act
             controller.LogOff();
@@ -32,8 +33,9 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             //Arrange
             var mockedProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IUserFactory>();
+            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
 
-            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinaryFactory.Object);
 
             //Act
             var res = controller.LogOff();
@@ -48,8 +50,9 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             //Arrange
             var mockedProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IUserFactory>();
+            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
 
-            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object);
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinaryFactory.Object);
 
             //Act
             var res = controller.LogOff();
