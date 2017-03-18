@@ -71,7 +71,8 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             };
 
             var controller = new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinaryFactory.Object);
-           
+            controller.ModelState.AddModelError("key", "error");
+
             //Act
             var res = controller.Login(loginViewModel, returnUrl) as ViewResult;
 
