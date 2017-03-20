@@ -65,7 +65,7 @@ namespace PhotoLife.Controllers
 
             returnUrl = string.IsNullOrEmpty(returnUrl) ? "/Home/Index" : returnUrl;
             
-            var result = authenticationProvider.SignInWithPassword(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = authenticationProvider.SignInWithPassword(model.Username, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:

@@ -13,11 +13,11 @@ namespace PhotoLife.Web.Tests.Controllers.Account
     [TestFixture]
     public class After_Login_Should
     {
-        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", true, "/home")]
-        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", false, "/home")]
+        [TestCase("fakUsername@fakUsernameService.fakeDomain", "fakePassword", true, "/home")]
+        [TestCase("fakUsername@fakUsernameService.fakeDomain", "fakePassword", false, "/home")]
 
         public void _Call_Provider_SignInWithPassword_ModelState_IsValid(
-           string email,
+           string username,
            string password,
            bool rememberMe,
            string returnUrl)
@@ -29,7 +29,7 @@ namespace PhotoLife.Web.Tests.Controllers.Account
 
             var loginViewModel = new LoginViewModel()
             {
-                Email = email,
+                Username = username,
                 Password = password,
                 RememberMe = rememberMe
             };
@@ -43,18 +43,18 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             mockedProvider.Verify(
                 p => p
                 .SignInWithPassword(
-                    email,
+                    username,
                     password,
                     rememberMe,
                     It.IsAny<bool>()),
                 Times.Once);
         }
 
-        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", true, "/home")]
-        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", false, "/home")]
+        [TestCase("fakUsername@fakUsernameService.fakeDomain", "fakePassword", true, "/home")]
+        [TestCase("fakUsername@fakUsernameService.fakeDomain", "fakePassword", false, "/home")]
 
         public void _Return_ViewWithModel_If_ModelState_NotValid(
-            string email,
+            string username,
             string password,
             bool rememberMe,
             string returnUrl)
@@ -66,7 +66,7 @@ namespace PhotoLife.Web.Tests.Controllers.Account
 
             var loginViewModel = new LoginViewModel()
             {
-                Email = email,
+                Username = username,
                 Password = password,
                 RememberMe = rememberMe
             };
@@ -81,11 +81,11 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             Assert.AreSame(loginViewModel, res.Model);
         }
 
-        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", true, "/home")]
-        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", false, "/home")]
+        [TestCase("fakUsername@fakUsernameService.fakeDomain", "fakePassword", true, "/home")]
+        [TestCase("fakUsername@fakUsernameService.fakeDomain", "fakePassword", false, "/home")]
 
         public void _Return_RedirectResult_WithCorrect_Url_WhenProvider_ReturnsSuccess(
-          string email,
+          string username,
           string password,
           bool rememberMe,
           string returnUrl)
@@ -97,7 +97,7 @@ namespace PhotoLife.Web.Tests.Controllers.Account
 
             var loginViewModel = new LoginViewModel()
             {
-                Email = email,
+                Username = username,
                 Password = password,
                 RememberMe = rememberMe
             };
@@ -111,11 +111,11 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             Assert.AreEqual(returnUrl, result.Url);
         }
 
-        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", true, null)]
-        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", false, null)]
+        [TestCase("fakUsername@fakUsernameService.fakeDomain", "fakePassword", true, null)]
+        [TestCase("fakUsername@fakUsernameService.fakeDomain", "fakePassword", false, null)]
 
         public void _Return_RedirectResult_Home_WhenProvider_Returns_EmptyReturnUrl(
-         string email,
+         string username,
          string password,
          bool rememberMe,
          string returnUrl)
@@ -134,7 +134,7 @@ namespace PhotoLife.Web.Tests.Controllers.Account
 
             var loginViewModel = new LoginViewModel()
             {
-                Email = email,
+                Username = username,
                 Password = password,
                 RememberMe = rememberMe
             };
@@ -148,11 +148,11 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             Assert.AreEqual("/Home/Index", result.Url);
         }
 
-        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", true, null)]
-        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", false, null)]
+        [TestCase("fakUsername@fakUsernameService.fakeDomain", "fakePassword", true, null)]
+        [TestCase("fakUsername@fakUsernameService.fakeDomain", "fakePassword", false, null)]
 
         public void _Return_LockoutView_WhenProvider_ReturnLockedOutStatus(
-        string email,
+        string username,
         string password,
         bool rememberMe,
         string returnUrl)
@@ -170,7 +170,7 @@ namespace PhotoLife.Web.Tests.Controllers.Account
 
             var loginViewModel = new LoginViewModel()
             {
-                Email = email,
+                Username = username,
                 Password = password,
                 RememberMe = rememberMe
             };
@@ -184,11 +184,11 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             Assert.AreEqual("Lockout", result.ViewName);
         }
 
-        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", true, null)]
-        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", false, null)]
+        [TestCase("fakUsername@fakUsernameService.fakeDomain", "fakePassword", true, null)]
+        [TestCase("fakUsername@fakUsernameService.fakeDomain", "fakePassword", false, null)]
 
         public void _Set_ModelState_NotValid_WhenProvider_ReturnsFail(
-        string email,
+        string username,
         string password,
         bool rememberMe,
         string returnUrl)
@@ -207,7 +207,7 @@ namespace PhotoLife.Web.Tests.Controllers.Account
 
             var loginViewModel = new LoginViewModel()
             {
-                Email = email,
+                Username = username,
                 Password = password,
                 RememberMe = rememberMe
             };
@@ -221,11 +221,11 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             Assert.IsFalse(controller.ModelState.IsValid);
         }
 
-        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", true, null)]
-        [TestCase("fakeMail@fakeMailService.fakeDomain", "fakePassword", false, null)]
+        [TestCase("fakUsername@fakUsernameService.fakeDomain", "fakePassword", true, null)]
+        [TestCase("fakUsername@fakUsernameService.fakeDomain", "fakePassword", false, null)]
 
         public void _Return_ViewWithModel_WhenProvider_ReturnsFail(
-        string email,
+        string username,
         string password,
         bool rememberMe,
         string returnUrl)
@@ -244,7 +244,7 @@ namespace PhotoLife.Web.Tests.Controllers.Account
 
             var loginViewModel = new LoginViewModel()
             {
-                Email = email,
+                Username = username,
                 Password = password,
                 RememberMe = rememberMe
             };
