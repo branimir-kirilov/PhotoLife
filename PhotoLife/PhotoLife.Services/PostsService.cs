@@ -9,13 +9,13 @@ using PhotoLife.Services.Contracts;
 
 namespace PhotoLife.Services
 {
-    public class PostsService: IPostService
+    public class PostsService : IPostService
     {
         private readonly IRepository<Post> postsRepository;
         private readonly IUnitOfWork unitOfWork;
 
         public PostsService(
-            IRepository<Post> postsRepository, 
+            IRepository<Post> postsRepository,
             IUnitOfWork unitOfWork)
         {
             if (postsRepository == null)
@@ -36,6 +36,16 @@ namespace PhotoLife.Services
             return this.postsRepository.GetById(id);
         }
 
+        public IEnumerable<Post> GetTopPosts(int countOfPosts)
+        {
+            var res =
+                this.postsRepository.GetAll(
+                    (Post post) => true, 
+                    (Post post) => post.Votes, true)
+                    .Take(countOfPosts);
+
+            return res;
+        }
 
     }
 }
