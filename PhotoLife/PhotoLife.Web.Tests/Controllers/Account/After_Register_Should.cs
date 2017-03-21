@@ -151,7 +151,7 @@ namespace PhotoLife.Web.Tests.Controllers.Account
         }
 
         [TestCase("fakeMail@fakeService.fakeDomain", "branimir", "fakeDescription", "fakePassword", "fakeUrl")]
-        public void _Return__WhenIdentityResult_NotSuccess(
+        public void _Return_WhenIdentityResult_NotSuccess(
             string email,
             string name,
             string description,
