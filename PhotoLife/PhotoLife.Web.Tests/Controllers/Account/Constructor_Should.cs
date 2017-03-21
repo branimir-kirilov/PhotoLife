@@ -41,6 +41,17 @@ namespace PhotoLife.Web.Tests.Controllers.Account
         }
 
         [Test]
+        public void _Throw_ArgumentNullException_IfCloudinary_IsNull()
+        {
+            //Arrange
+            var mockedProvider = new Mock<IAuthenticationProvider>();
+            var mockedFactory = new Mock<IUserFactory>();
+            
+            //Act & Assert 
+            Assert.Throws<ArgumentNullException>(() => new AccountController(mockedProvider.Object, mockedFactory.Object, null));
+        }
+
+        [Test]
         public void _NotThrow_IfEveryting_PassedCorrectly()
         {
             //Arrange
