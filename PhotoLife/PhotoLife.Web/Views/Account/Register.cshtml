@@ -82,13 +82,9 @@
 }
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render(
+    "~/bundles/jqueryval",
+    "~/bundles/cloudinary")
 
-
-    <script type="text/javascript" src="~/Scripts/jquery.ui.widget.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.iframe-transport.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.fileupload.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.cloudinary.js"></script>
     <script type="text/javascript" src="~/Scripts/Cloudinary/register.cloudinary.config.js"></script>
-
 }

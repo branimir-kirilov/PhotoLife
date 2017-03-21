@@ -22,6 +22,12 @@ namespace PhotoLife
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
+            bundles.Add(new ScriptBundle("~/bundles/cloudinary").Include(
+                "~/Scripts/jquery.ui.widget.js",
+                "~/Scripts/jquery.iframe-transport.js",
+                "~/Scripts/jquery.fileupload.js",
+                "~/Scripts/jquery.cloudinary.js"
+                ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
