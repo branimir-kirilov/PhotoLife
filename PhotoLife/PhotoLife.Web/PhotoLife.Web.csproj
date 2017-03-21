@@ -351,6 +351,10 @@
       <Project>{49792F7F-EE1F-46AC-A388-7B97011DBB16}</Project>
       <Name>PhotoLife.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PhotoLife.Providers\PhotoLife.Providers.csproj">
+      <Project>{CBF9DB5B-0EB4-4E71-B639-DCE6DE901FA4}</Project>
+      <Name>PhotoLife.Providers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PhotoLife.Services\PhotoLife.Services.csproj">
       <Project>{6041536D-03A2-4175-BD96-E25340CFD59D}</Project>
       <Name>PhotoLife.Services</Name>

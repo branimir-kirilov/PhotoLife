@@ -2,9 +2,7 @@
 using System.Web.Mvc;
 using CloudinaryDotNet;
 using PhotoLife.Authentication.Providers;
-using PhotoLife.Factories;
 using PhotoLife.Models.Post;
-using PhotoLife.Providers.Contracts;
 using PhotoLife.Services.Contracts;
 
 namespace PhotoLife.Controllers
@@ -35,7 +33,7 @@ namespace PhotoLife.Controllers
             {
                 throw new ArgumentNullException(nameof(cloudinary));
             }
-            
+
             this.authenticationProvider = authenticationProvider;
             this.postService = postService;
             this.cloudinary = cloudinary;
@@ -58,11 +56,12 @@ namespace PhotoLife.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+                var userId = this.authenticationProvider.CurrentUserId;
 
-             
-                
+                this.postService.CreatePost(userId, model.Title, model.Description, model.ProfilePicUrl, model.Category);
             }
+
+            return RedirectToAction("All", "Post");
         }
     }
 }
