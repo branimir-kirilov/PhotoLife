@@ -231,6 +231,7 @@
     <Compile Include="App_Start\NinjectModules\AuthenticationNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\DataNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\FactoriesNinjectModule.cs" />
+    <Compile Include="App_Start\NinjectModules\ProvidersNinjectModule.cs" />
     <Compile Include="App_Start\NinjectModules\ServicesNinjectModule.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />

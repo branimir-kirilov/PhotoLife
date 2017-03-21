@@ -67,6 +67,7 @@ namespace PhotoLife.App_Start
             kernel.Load(new DataNinjectModule());
             kernel.Load(new FactoriesNinjectModule());
             kernel.Load(new ServicesNinjectModule());
+            kernel.Load(new ProvidersNinjectModule());
         }        
     }
 }
