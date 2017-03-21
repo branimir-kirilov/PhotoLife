@@ -34,16 +34,16 @@ namespace PhotoLife.Services
             return this.postsRepository.GetById(id);
         }
 
-        public IEnumerable<Post> GetTopPosts(int countOfPosts)
-        {
-            var res =
-                this.postsRepository.GetAll(
-                    (Post post) => true, 
-                    (Post post) => post.Votes, true)
-                    .Take(countOfPosts);
+        //public IEnumerable<Post> GetTopPosts(int countOfPosts)
+        //{
+        //    var res =
+        //        this.postsRepository.GetAll.SelectMany(
+        //            (Post post) => true, 
+        //            (Post post) => post.Votes, true)
+        //            .Take(countOfPosts);
 
-            return res;
-        }
+        //    return res;
+        //}
 
     }
 }

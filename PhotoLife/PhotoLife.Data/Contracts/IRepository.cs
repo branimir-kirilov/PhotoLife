@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using System.Linq;
 
 namespace PhotoLife.Data.Contracts
 {
@@ -8,14 +6,7 @@ namespace PhotoLife.Data.Contracts
          where T : class
     {
         T GetById(object id);
-
-        IEnumerable<T> Entities { get; }
-
-        IEnumerable<T> GetAll(Expression<Func<T, bool>> filterExpression);
-
-        IEnumerable<T> GetAll<T1>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression, bool isAscending);
-
-        IEnumerable<T2> GetAll<T1, T2>(Expression<Func<T, bool>> filterExpression, Expression<Func<T, T1>> sortExpression, Expression<Func<T, T2>> selectExpression);
+        IQueryable<T> GetAll { get; }
 
         void Add(T entity);
 

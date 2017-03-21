@@ -35,15 +35,15 @@ namespace PhotoLife.Services
             return this.newsRepository.GetById(id);
         }
 
-        public IEnumerable<News> GetTopPosts(int countOfPosts)
-        {
-            var res =
-                this.newsRepository.GetAll(
-                    (News news) => true,
-                    (News news) => news.Views, true)
-                    .Take(countOfPosts);
+        //public IEnumerable<News> GetTopPosts(int countOfPosts)
+        //{
+        //    var res =
+        //        this.newsRepository.GetAll(
+        //            (News news) => true,
+        //            (News news) => news.Views, true)
+        //            .Take(countOfPosts);
 
-            return res;
-        }
+        //    return res;
+        //}
     }
 }

@@ -50,7 +50,7 @@ namespace PhotoLife.Data.Tests.GenericRepository.Tests
             var repository = new GenericRepository<MockedGenericRepositoryType>(mockedDbContext.Object);
 
             //Act
-            repository.GetAll();
+            var res = repository.GetAll;
 
             //Assert
             mockedDbContext.Verify(mdb => mdb.DbSet<MockedGenericRepositoryType>(), Times.Once);
@@ -69,7 +69,7 @@ namespace PhotoLife.Data.Tests.GenericRepository.Tests
             var repository = new GenericRepository<MockedGenericRepositoryType>(mockedDbContext.Object);
 
             //Act
-            var result = repository.GetAll();
+            var result = repository.GetAll;
 
             //Assert
             CollectionAssert.AreEqual(data, result);
@@ -101,7 +101,7 @@ namespace PhotoLife.Data.Tests.GenericRepository.Tests
             var actual = data.Where(sortingExpression);
 
             //Act
-            var result = repository.GetAll(sortingExpression);
+            var result = repository.GetAll;
 
             //Assert
             Assert.AreEqual(result, actual);
@@ -138,7 +138,7 @@ namespace PhotoLife.Data.Tests.GenericRepository.Tests
                 .OrderBy(orderExpression);
 
             //Act
-            var result = repository.GetAll(sortingExpression, orderExpression, true);
+            var result = repository.GetAll;
 
             //Assert
             Assert.AreEqual(result, actual);
@@ -179,7 +179,7 @@ namespace PhotoLife.Data.Tests.GenericRepository.Tests
                 .Select(selectExpression);
 
             //Act
-            var result = repository.GetAll(sortingExpression, orderExpression, selectExpression);
+            var result = repository.GetAll;
 
             //Assert
             Assert.AreEqual(result, actual);

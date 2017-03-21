@@ -36,9 +36,7 @@ namespace PhotoLife.Services
 
         public User GetUserByUsername(string username)
         {
-            return this.userRepository
-                .GetAll(u => u.UserName.Equals(username))
-                .FirstOrDefault();
+            return this.userRepository.GetAll.FirstOrDefault(u => u.UserName.Equals(username));
         }
 
         public void EditUser(string id, string username, string name, string description, string profilePicUrl)
