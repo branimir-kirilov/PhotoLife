@@ -5,6 +5,15 @@ namespace PhotoLife.Models.Post
 {
     public class AddPostViewModel
     {
+        public AddPostViewModel(Cloudinary cloudinary)
+        {
+            this.Cloudinary = cloudinary;
+        }
+
+        public AddPostViewModel()
+        {
+        }
+
         [Required]
         [Display(Name = "Title")]
         [StringLength(50, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 2)]
