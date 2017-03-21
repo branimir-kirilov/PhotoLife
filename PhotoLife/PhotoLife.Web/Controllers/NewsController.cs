@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace PhotoLife.Controllers
 {
-    public class PostController : Controller
+    public class NewsController : Controller
     {
-        // GET: AddPost
+        // GET: News
         public ActionResult Add()
         {
             return View();
