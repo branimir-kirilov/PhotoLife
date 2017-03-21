@@ -1,14 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace PhotoLife.Controllers
 {
     public class PostController : Controller
     {
-        // GET: AddPost
+        // Get: All
+        public ActionResult All()
+        {
+            return View();
+        }
+
+        // Post: Add
+        [Authorize]
+        [HttpPost]
         public ActionResult Add()
         {
             return View();

@@ -318,6 +318,8 @@
     <Content Include="Views\Profile\UserProfile.cshtml" />
     <Content Include="Views\Post\Add.cshtml" />
     <Content Include="Views\News\Add.cshtml" />
+    <Content Include="Views\Post\All.cshtml" />
+    <Content Include="Views\News\All.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

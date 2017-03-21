@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Activities.Statements
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -22,11 +23,19 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("News", "All", "News")</li>
+                    <li>@Html.ActionLink("Posts", "All", "Post")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Add Post", "Add", "Post")</li>
-                    <li>@Html.ActionLink("Add News", "Add", "News")</li>
-                   </ul>
+                    @if (HttpContext.Current.GetOwinContext().Authentication.User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Upload", "Add", "Post")</li>
+                    }
+                    @if (HttpContext.Current.GetOwinContext().Authentication.User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Add News", "Add", "News")</li>
+                    }
+                    </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

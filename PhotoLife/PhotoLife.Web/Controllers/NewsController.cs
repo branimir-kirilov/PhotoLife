@@ -1,14 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace PhotoLife.Controllers
 {
     public class NewsController : Controller
     {
-        // GET: News
+        // Get: All
+        public ActionResult All()
+        {
+            return View();
+        }
+
+        // Post: News
+        [Authorize(Roles="Administrators")]
+        [HttpPost]
         public ActionResult Add()
         {
             return View();
