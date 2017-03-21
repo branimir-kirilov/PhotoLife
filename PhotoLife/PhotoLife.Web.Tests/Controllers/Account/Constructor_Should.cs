@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using CloudinaryDotNet;
 using Moq;
 using NUnit.Framework;
 using PhotoLife.Authentication.Providers;
@@ -16,9 +17,12 @@ namespace PhotoLife.Web.Tests.Controllers.Account
         {
             //Arrange
             var mockedFactory = new Mock<IUserFactory>();
-            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
+
+            var fakeAcc = new CloudinaryDotNet.Account("sdfsdfsd", "sdfsdfsdf", "sdfsdfsdf");
+            var mockedCloudinary = new Mock<Cloudinary>(fakeAcc);
+
             //Act & Assert 
-            Assert.Throws<ArgumentNullException>(() => new AccountController(null, mockedFactory.Object, mockedCloudinaryFactory.Object));
+            Assert.Throws<ArgumentNullException>(() => new AccountController(null, mockedFactory.Object, mockedCloudinary.Object));
 
         }
 
@@ -27,10 +31,12 @@ namespace PhotoLife.Web.Tests.Controllers.Account
         {
             //Arrange
             var mockedProvider = new Mock<IAuthenticationProvider>();
-            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
+
+            var fakeAcc = new CloudinaryDotNet.Account("sdfsdfsd", "sdfsdfsdf", "sdfsdfsdf");
+            var mockedCloudinary = new Mock<Cloudinary>(fakeAcc);
 
             //Act & Assert 
-            Assert.Throws<ArgumentNullException>(() => new AccountController(mockedProvider.Object, null, mockedCloudinaryFactory.Object));
+            Assert.Throws<ArgumentNullException>(() => new AccountController(mockedProvider.Object, null, mockedCloudinary.Object));
 
         }
 
@@ -40,11 +46,12 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             //Arrange
             var mockedProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IUserFactory>();
-            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
 
+            var fakeAcc = new CloudinaryDotNet.Account("sdfsdfsd", "sdfsdfsdf", "sdfsdfsdf");
+            var mockedCloudinary = new Mock<Cloudinary>(fakeAcc);
 
             //Act & Assert 
-            Assert.DoesNotThrow(() => new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinaryFactory.Object));
+            Assert.DoesNotThrow(() => new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinary.Object));
 
         }
 
@@ -55,10 +62,12 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             //Arrange
             var mockedProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IUserFactory>();
-            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
+
+            var fakeAcc = new CloudinaryDotNet.Account("sdfsdfsd", "sdfsdfsdf", "sdfsdfsdf");
+            var mockedCloudinary = new Mock<Cloudinary>(fakeAcc);
 
             //Act 
-            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinaryFactory.Object);
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinary.Object);
 
             //Assert
             Assert.IsNotNull(controller);
@@ -70,10 +79,12 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             //Arrange
             var mockedProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IUserFactory>();
-            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
+
+            var fakeAcc = new CloudinaryDotNet.Account("sdfsdfsd", "sdfsdfsdf", "sdfsdfsdf");
+            var mockedCloudinary = new Mock<Cloudinary>(fakeAcc);
 
             //Act 
-            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinaryFactory.Object);
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinary.Object);
 
             //Assert
             Assert.IsInstanceOf<Controller>(controller);

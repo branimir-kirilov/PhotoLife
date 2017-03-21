@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using CloudinaryDotNet;
 using Moq;
 using NUnit.Framework;
 using PhotoLife.Authentication.Providers;
@@ -16,10 +17,11 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             //Arrange
             var mockedProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IUserFactory>();
-            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
 
+            var fakeAcc = new CloudinaryDotNet.Account("sdfsdfsd", "sdfsdfsdf", "sdfsdfsdf");
+            var mockedCloudinary = new Mock<Cloudinary>(fakeAcc);
 
-            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinaryFactory.Object);
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinary.Object);
 
             //Act
             var result = controller.Register();
@@ -34,10 +36,11 @@ namespace PhotoLife.Web.Tests.Controllers.Account
             //Arrange
             var mockedProvider = new Mock<IAuthenticationProvider>();
             var mockedFactory = new Mock<IUserFactory>();
-            var mockedCloudinaryFactory = new Mock<ICloudinaryFactory>();
 
+            var fakeAcc = new CloudinaryDotNet.Account("sdfsdfsd", "sdfsdfsdf", "sdfsdfsdf");
+            var mockedCloudinary = new Mock<Cloudinary>(fakeAcc);
 
-            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinaryFactory.Object);
+            var controller = new AccountController(mockedProvider.Object, mockedFactory.Object, mockedCloudinary.Object);
 
             //Act
             var result = controller.Register();
