@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using PhotoLife.Data.Contracts;
+using PhotoLife.Factories;
 using PhotoLife.Models;
+using PhotoLife.Providers.Contracts;
 using PhotoLife.Services.Contracts;
 
 namespace PhotoLife.Services
@@ -10,11 +12,18 @@ namespace PhotoLife.Services
     public class PostsService : IPostService
     {
         private readonly IRepository<Post> postsRepository;
+        private readonly IUserService userService;
         private readonly IUnitOfWork unitOfWork;
+        private readonly IPostFactory postFactory;
+
+        private readonly IDateTimeProvider datetimeProvider;
 
         public PostsService(
             IRepository<Post> postsRepository,
-            IUnitOfWork unitOfWork)
+            IUserService userService,
+            IUnitOfWork unitOfWork,
+            IPostFactory postFactory,
+            IDateTimeProvider dateTimeProvider)
         {
             if (postsRepository == null)
             {
@@ -26,8 +35,27 @@ namespace PhotoLife.Services
                 throw new ArgumentNullException("unitOfWorks");
             }
 
+            if (userService == null)
+            {
+                throw new ArgumentNullException("userService");
+            }
+
+            if (postFactory == null)
+            {
+                throw new ArgumentNullException("postFactory");
+            }
+
+            if (dateTimeProvider == null)
+            {
+                throw new ArgumentNullException("datetimeProvider");
+            }
+
             this.postsRepository = postsRepository;
+            this.userService = userService;
             this.unitOfWork = unitOfWork;
+            this.postFactory = postFactory;
+
+            this.datetimeProvider = dateTimeProvider;
         }
         public Post GetPostById(string id)
         {
@@ -55,6 +83,19 @@ namespace PhotoLife.Services
             return res;
         }
 
+        public Post CreatePost(string userId, string title, string description, string profilePicUrl, Category category)
+        {
+            var user = this.userService.GetUserById(userId);
+
+            var datePublished = this.datetimeProvider.GetCurrentDate();
+
+            var post = this.postFactory.CreatePost(title, description, profilePicUrl, user, category, datePublished);
+
+            this.postsRepository.Add(post);
+            this.unitOfWork.Commit();
+
+            return post;
+        }
 
         public void EditPost(object id, string title, string description, Category category)
         {

@@ -8,7 +8,7 @@ namespace PhotoLife.Factories
         Post CreatePost(string title,
             string description,
             string imageUrl,
-            object authorId,
+            User author,
             Category category,
             DateTime datePublished);
     }
