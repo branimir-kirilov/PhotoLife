@@ -33,6 +33,13 @@ namespace PhotoLife.Services
         {
             return this.postsRepository.GetById(id);
         }
+        
+        public IEnumerable<Post> GetAll()
+        {
+            var res = this.postsRepository.GetAll.ToList();
+
+            return res;
+        }
 
         public IEnumerable<Post> GetTopPosts(int topCount)
         {
@@ -48,12 +55,6 @@ namespace PhotoLife.Services
             return res;
         }
 
-        public IEnumerable<Post> GetAllPosts()
-        {
-            var res = this.postsRepository.GetAll.ToList();
-
-            return res;
-        }
 
         public void EditPost(object id, string title, string description, Category category)
         {
