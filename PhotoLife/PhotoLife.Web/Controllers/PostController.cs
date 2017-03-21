@@ -12,7 +12,6 @@ namespace PhotoLife.Controllers
 
         // Post: Add
         [Authorize]
-        [HttpPost]
         public ActionResult Add()
         {
             return View();

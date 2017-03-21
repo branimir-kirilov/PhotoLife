@@ -9,6 +9,8 @@ namespace PhotoLife.App_Start.NinjectModules
         public override void Load()
         {
             this.Bind<IUserService>().To<UserService>();
+            this.Bind<IPostService>().To<PostsService>();
+            this.Bind<INewsService>().To<NewsService>();
         }
     }
 }
