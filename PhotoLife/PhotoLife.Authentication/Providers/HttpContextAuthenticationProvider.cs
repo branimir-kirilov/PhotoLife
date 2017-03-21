@@ -1,25 +1,37 @@
-﻿using System.Web;
+﻿using System;
 using PhotoLife.Authentication.ApplicationManagers;
 using PhotoLife.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using PhotoLife.Providers.Contracts;
 
 namespace PhotoLife.Authentication.Providers
 {
     public class HttpContextAuthenticationProvider : IAuthenticationProvider
     {
+        private readonly IHttpContextProvider httpContextProvider;
+
+        public HttpContextAuthenticationProvider(IHttpContextProvider httpContextProvider)
+        {
+            if (httpContextProvider == null)
+            {
+                throw new ArgumentNullException(nameof(httpContextProvider));
+            }
+
+            this.httpContextProvider = httpContextProvider;
+        }
         protected ApplicationSignInManager SignInManager
         {
             get
             {
-                return HttpContext.Current.GetOwinContext().GetUserManager<ApplicationSignInManager>();
+                return this.httpContextProvider.GetUserManager<ApplicationSignInManager>();
             }
         }
         protected ApplicationUserManager UserManager
         {
             get
             {
-                return HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return this.httpContextProvider.GetUserManager<ApplicationUserManager>();
             }
         }
 
@@ -27,7 +39,7 @@ namespace PhotoLife.Authentication.Providers
         {
             get
             {
-                return HttpContext.Current.User.Identity.IsAuthenticated;
+                return this.httpContextProvider.CurrentIdentity.IsAuthenticated;
             }
         }
 
@@ -35,7 +47,7 @@ namespace PhotoLife.Authentication.Providers
         {
             get
             {
-                return HttpContext.Current.User.Identity.GetUserId();
+                return this.httpContextProvider.CurrentIdentity.GetUserId();
             }
         }
 
@@ -58,7 +70,7 @@ namespace PhotoLife.Authentication.Providers
 
         public void SignOut()
         {
-            HttpContext.Current.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            this.httpContextProvider.CurrentOwinContext.Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
     }
 }
