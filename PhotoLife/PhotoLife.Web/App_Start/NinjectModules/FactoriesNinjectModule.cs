@@ -10,21 +10,23 @@ namespace PhotoLife.App_Start.NinjectModules
     {
         public override void Load()
         {
+            //Models factories
             this.Bind<ICommentFactory>().ToFactory().InSingletonScope();
             this.Bind<IUserFactory>().ToFactory().InSingletonScope();
             this.Bind<INewsFactory>().ToFactory().InSingletonScope();
             this.Bind<IPostFactory>().ToFactory().InSingletonScope();
             this.Bind<ICategoryFactory>().ToFactory().InSingletonScope();
 
+            //View models
             this.Bind<IViewModelFactory>().ToFactory().InSingletonScope();
-            this.Bind<ICloudinaryFactory>().ToFactory().InSingletonScope();
 
+            //External services
             this.Bind<Cloudinary>()
-                .ToMethod(this.GetCloudinary)
-                .NamedLikeFactoryMethod((ICloudinaryFactory f) => f.GetCloudinary());
+                .ToMethod(this.GetCloudinary);
 
         }
 
+        //Configuring Cloudinary Account
         private Cloudinary GetCloudinary(IContext args)
         {
             var acc = new Account(

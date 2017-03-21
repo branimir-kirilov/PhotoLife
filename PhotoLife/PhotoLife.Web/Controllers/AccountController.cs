@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using CloudinaryDotNet;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using PhotoLife.Authentication.Providers;
@@ -15,12 +16,12 @@ namespace PhotoLife.Controllers
         //private ApplicationUserManager _userManager;
         private readonly IAuthenticationProvider authenticationProvider;
         private readonly IUserFactory userFactory;
-        private readonly ICloudinaryFactory cloudinaryFactory;
+        private readonly Cloudinary cloudinary;
 
         public AccountController(
             IAuthenticationProvider authProvider, 
             IUserFactory userFactory, 
-            ICloudinaryFactory cloudinaryFactory)
+            Cloudinary cloudinary)
         {
             if (authProvider == null)
             {
@@ -32,14 +33,14 @@ namespace PhotoLife.Controllers
                 throw new ArgumentNullException(nameof(userFactory));
             }
 
-            if (cloudinaryFactory == null)
+            if (cloudinary == null)
             {
-                throw new ArgumentNullException(nameof(cloudinaryFactory));
+                throw new ArgumentNullException(nameof(cloudinary));
             }
 
             this.authenticationProvider = authProvider;
             this.userFactory = userFactory;
-            this.cloudinaryFactory = cloudinaryFactory;
+            this.cloudinary = cloudinary;
         }
 
         //
@@ -84,9 +85,7 @@ namespace PhotoLife.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            var cloudinary = this.cloudinaryFactory.GetCloudinary();
-
-            return View(new RegisterViewModel(cloudinary));
+            return View(new RegisterViewModel(this.cloudinary));
         }
 
         //
