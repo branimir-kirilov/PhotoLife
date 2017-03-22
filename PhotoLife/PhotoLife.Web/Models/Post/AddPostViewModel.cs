@@ -26,7 +26,7 @@ namespace PhotoLife.ViewModels.Post
         [StringLength(350, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 0)]
         public string Description { get; set; }
 
-        public string ProfilePicUrl { get; set; }
+        public string PictureUrl { get; set; }
         public CategoryEnum Category { get; set; }
         
         public Cloudinary Cloudinary { get; set; } 
