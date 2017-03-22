@@ -15,7 +15,7 @@ namespace PhotoLife.Authentication.Providers
         {
             if (httpContextProvider == null)
             {
-                throw new ArgumentNullException(nameof(httpContextProvider));
+                throw new ArgumentNullException("httpContextProvider");
             }
 
             this.httpContextProvider = httpContextProvider;
