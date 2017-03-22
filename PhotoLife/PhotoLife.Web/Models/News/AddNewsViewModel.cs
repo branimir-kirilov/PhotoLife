@@ -27,6 +27,7 @@ namespace PhotoLife.ViewModels.News
         public string Text { get; set; }
 
         public string CoverPicture { get; set; }
+
         public CategoryEnum Category { get; set; }
 
         public Cloudinary Cloudinary { get; set; }

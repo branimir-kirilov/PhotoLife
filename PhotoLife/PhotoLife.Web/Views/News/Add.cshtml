@@ -19,7 +19,16 @@
         </div>
     </div>
 
-    @(Html.Kendo().EditorFor(m => m.Text))
+    @(Html.Kendo().EditorFor(m => m.Text)
+        .Tag("news-editor")
+        .Tools(tools => tools
+                .Clear()
+                .Bold().Italic().Underline().Strikethrough()
+                .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+                .CreateLink().Unlink()
+                .InsertImage()
+                .TableEditing()
+                .FontColor().BackColor()))
 
     <div class="form-group">
         @Html.LabelFor(m => m.Category, new { @class = "col-md-2 control-label" })
@@ -39,7 +48,7 @@
     </div>
 
     <div class="upload-box col-md-12">
-        @Html.Label("Upload Profile Pic", new { @class = "col-md-5" })
+        @Html.Label("Upload cover photo", new { @class = "col-md-5" })
         <form>
             @Model.Cloudinary.Api.BuildUploadForm("image_id", "auto",
                 new SortedDictionary<string, object>() { },
