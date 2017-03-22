@@ -54,14 +54,14 @@ namespace PhotoLife.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Administrators")]
+       // [Authorize(Roles = "Administrators")]
         public ActionResult Add()
         {
             return View(this.viewModelFactory.CreateAddNewsViewModel(this.cloudinary));
         }
 
         // Post: News
-        [Authorize(Roles = "Administrators")]
+        //[Authorize(Roles = "Administrators")]
         [HttpPost]
         public ActionResult Add(AddNewsViewModel model)
         {

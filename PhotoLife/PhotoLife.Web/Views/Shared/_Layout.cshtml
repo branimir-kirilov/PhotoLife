@@ -31,11 +31,12 @@
                     {
                         <li>@Html.ActionLink("Upload", "Add", "Post")</li>
                     }
+
+                    <li>@Html.ActionLink("Add News", "Add", "News")</li>
                     @if (HttpContext.Current.GetOwinContext().Authentication.User.IsInRole("Admin"))
                     {
-                        <li>@Html.ActionLink("Add News", "Add", "News")</li>
                     }
-                    </ul>
+                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
