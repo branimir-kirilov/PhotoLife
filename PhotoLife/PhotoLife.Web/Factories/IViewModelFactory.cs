@@ -9,7 +9,6 @@ namespace PhotoLife.Factories
     {
         ProfileViewModel CreateUserProfileViewModel(User user);
         AddPostViewModel CreateAddPostViewModel(Cloudinary cloudinary);
-
         AddNewsViewModel CreateAddNewsViewModel(Cloudinary cloudinary);
     }
 }
