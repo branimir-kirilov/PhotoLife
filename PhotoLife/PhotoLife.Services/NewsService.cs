@@ -55,10 +55,9 @@ namespace PhotoLife.Services
 
             return res;
         }
-
         
 
-        public void EditPost(object id, string title, string text, string imageUrl, Category category)
+        public void EditNews(object id, string title, string text, string imageUrl, Category category)
         {
             var news = this.newsRepository.GetById(id);
 

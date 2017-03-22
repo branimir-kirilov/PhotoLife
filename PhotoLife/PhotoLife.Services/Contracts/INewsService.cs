@@ -9,5 +9,6 @@ namespace PhotoLife.Services.Contracts
         IEnumerable<News> GetAll();
         IEnumerable<News> GetTopNews(int topCount);
         IEnumerable<News> GetTopByComments(int topCount);
+        void EditNews(object id, string title, string text, string imageUrl, Category category);
     }
 }

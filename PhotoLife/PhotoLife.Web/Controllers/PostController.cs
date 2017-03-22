@@ -38,6 +38,7 @@ namespace PhotoLife.Controllers
             this.postService = postService;
             this.cloudinary = cloudinary;
         }
+
         // Get: All
         [AllowAnonymous]
         public ActionResult All()
@@ -45,7 +46,7 @@ namespace PhotoLife.Controllers
             return View();
         }
 
-        // Post: Add
+        // Get: Add
         [Authorize]
         public ActionResult Add()
         {
