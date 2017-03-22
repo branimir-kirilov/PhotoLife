@@ -46,7 +46,7 @@ namespace PhotoLife.Controllers
         }
 
         // Post: Add
-        [AllowAnonymous]
+        [Authorize]
         public ActionResult Add()
         {
             return View(new AddPostViewModel(this.cloudinary));
