@@ -4,7 +4,7 @@ using CloudinaryDotNet;
 using PhotoLife.Authentication.Providers;
 using PhotoLife.Factories;
 using PhotoLife.Services.Contracts;
-using PhotoLife.Models.News;
+using PhotoLife.ViewModels.News;
 
 namespace PhotoLife.Controllers
 {

@@ -1,6 +1,6 @@
 ﻿using CloudinaryDotNet;
 using PhotoLife.Models;
-using PhotoLife.Models.News;
+using PhotoLife.ViewModels.News;
 using PhotoLife.ViewModels.Post;
 
 namespace PhotoLife.Factories

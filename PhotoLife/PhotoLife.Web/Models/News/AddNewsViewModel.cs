@@ -2,7 +2,7 @@
 using CloudinaryDotNet;
 using PhotoLife.Models.Enums;
 
-namespace PhotoLife.Models.News
+namespace PhotoLife.ViewModels.News
 {
     public class AddNewsViewModel
     {
@@ -22,7 +22,7 @@ namespace PhotoLife.Models.News
 
         [Required]
         [Display(Name = "Text")]
-        [StringLength(350, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 0)]
+        [StringLength(1500, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 250)]
         public string Text { get; set; }
 
         public string CoverPicture { get; set; }
