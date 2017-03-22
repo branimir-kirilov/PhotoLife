@@ -12,7 +12,7 @@ namespace PhotoLife.Controllers
     {
         private readonly IAuthenticationProvider authenticationProvider;
         private readonly IPostService postService;
-        private readonly IViewModelFactory viewModelFActory;
+        private readonly IViewModelFactory viewModelFactory;
 
         private readonly Cloudinary cloudinary;
 
@@ -32,7 +32,7 @@ namespace PhotoLife.Controllers
                 throw new ArgumentNullException(nameof(postService));
             }
 
-            if (viewModelFActory == null)
+            if (viewModelFactory == null)
             {
                 throw new ArgumentNullException(nameof(viewModelFactory));
             }
@@ -44,7 +44,7 @@ namespace PhotoLife.Controllers
 
             this.authenticationProvider = authenticationProvider;
             this.postService = postService;
-            this.viewModelFActory = viewModelFactory;
+            this.viewModelFactory = viewModelFactory;
             this.cloudinary = cloudinary;
         }
 
@@ -59,7 +59,7 @@ namespace PhotoLife.Controllers
         [Authorize]
         public ActionResult Add()
         {
-            return View(this.viewModelFActory.CreateAddPostViewModel(this.cloudinary));
+            return View(this.viewModelFactory.CreateAddPostViewModel(this.cloudinary));
         }
 
         [Authorize]
