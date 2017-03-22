@@ -4,6 +4,7 @@ using System.Linq;
 using PhotoLife.Data.Contracts;
 using PhotoLife.Factories;
 using PhotoLife.Models;
+using PhotoLife.Models.Enums;
 using PhotoLife.Providers.Contracts;
 using PhotoLife.Services.Contracts;
 
@@ -15,6 +16,7 @@ namespace PhotoLife.Services
         private readonly IUserService userService;
         private readonly IUnitOfWork unitOfWork;
         private readonly IPostFactory postFactory;
+        private readonly ICategoryFactory categoryFactory;
 
         private readonly IDateTimeProvider datetimeProvider;
 
@@ -23,6 +25,7 @@ namespace PhotoLife.Services
             IUserService userService,
             IUnitOfWork unitOfWork,
             IPostFactory postFactory,
+            ICategoryFactory categoryFactory,
             IDateTimeProvider dateTimeProvider)
         {
             if (postsRepository == null)
@@ -45,6 +48,11 @@ namespace PhotoLife.Services
                 throw new ArgumentNullException("postFactory");
             }
 
+            if (categoryFactory == null)
+            {
+                throw new ArgumentNullException("categoryFactory");
+            }
+
             if (dateTimeProvider == null)
             {
                 throw new ArgumentNullException("datetimeProvider");
@@ -54,6 +62,7 @@ namespace PhotoLife.Services
             this.userService = userService;
             this.unitOfWork = unitOfWork;
             this.postFactory = postFactory;
+            this.categoryFactory = categoryFactory;
 
             this.datetimeProvider = dateTimeProvider;
         }
@@ -83,11 +92,13 @@ namespace PhotoLife.Services
             return res;
         }
 
-        public Post CreatePost(string userId, string title, string description, string profilePicUrl, Category category)
+        public Post CreatePost(string userId, string title, string description, string profilePicUrl, CategoryEnum categoryEnum)
         {
             var user = this.userService.GetUserById(userId);
 
             var datePublished = this.datetimeProvider.GetCurrentDate();
+
+            Category category = this.categoryFactory.CreateCategory(categoryEnum);
 
             var post = this.postFactory.CreatePost(title, description, profilePicUrl, user, category, datePublished);
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using PhotoLife.Models;
+using PhotoLife.Models.Enums;
 
 namespace PhotoLife.Services.Contracts
 {
@@ -9,7 +10,7 @@ namespace PhotoLife.Services.Contracts
         IEnumerable<Post> GetAll();
         IEnumerable<Post> GetTopPosts(int topCount);
         IEnumerable<Post> GetTopByComments(int topCount);
-        Post CreatePost(string userId, string title, string description, string profilePicUrl, Category category);
+        Post CreatePost(string userId, string title, string description, string profilePicUrl, CategoryEnum category);
         void EditPost(object id, string title, string description, Category category);
     }
 }

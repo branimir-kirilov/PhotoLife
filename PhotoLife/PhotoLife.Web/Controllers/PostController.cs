@@ -2,8 +2,8 @@
 using System.Web.Mvc;
 using CloudinaryDotNet;
 using PhotoLife.Authentication.Providers;
-using PhotoLife.Models.Post;
 using PhotoLife.Services.Contracts;
+using PhotoLife.ViewModels.Post;
 
 namespace PhotoLife.Controllers
 {
@@ -52,6 +52,8 @@ namespace PhotoLife.Controllers
             return View(new AddPostViewModel(this.cloudinary));
         }
 
+        [Authorize]
+        [HttpPost]
         public ActionResult Add(AddPostViewModel model)
         {
             if (ModelState.IsValid)

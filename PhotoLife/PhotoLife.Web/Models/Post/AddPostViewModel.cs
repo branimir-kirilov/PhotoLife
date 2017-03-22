@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using CloudinaryDotNet;
+using PhotoLife.Models;
+using PhotoLife.Models.Enums;
 
-namespace PhotoLife.Models.Post
+namespace PhotoLife.ViewModels.Post
 {
     public class AddPostViewModel
     {
@@ -25,7 +27,7 @@ namespace PhotoLife.Models.Post
         public string Description { get; set; }
 
         public string ProfilePicUrl { get; set; }
-        public Category Category { get; set; }
+        public CategoryEnum Category { get; set; }
         
         public Cloudinary Cloudinary { get; set; } 
 
