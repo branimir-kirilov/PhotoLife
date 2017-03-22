@@ -67,5 +67,10 @@ namespace PhotoLife.Controllers
         {
             return View();
         }
+
+        public ActionResult ImageBrowser()
+        {
+            return View();
+        }
     }
 }

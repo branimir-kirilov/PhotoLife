@@ -5,25 +5,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Add News</h2>
+<h3>Hello, @(this.User.Identity.Name)</h3>
 
 @using (Html.BeginForm("Add", "News", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.ValidationSummary("", new { @class = "text-danger" })
-    
+
+
     <div class="form-group">
         @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
         </div>
     </div>
-    
-    <div class="form-group">
-        @Html.LabelFor(m => m.Text, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextAreaFor(m => m.Text, new { @class = "form-control" })
-        </div>
-    </div>
+
+    @(Html.Kendo().EditorFor(m => m.Text))
 
     <div class="form-group">
         @Html.LabelFor(m => m.Category, new { @class = "col-md-2 control-label" })

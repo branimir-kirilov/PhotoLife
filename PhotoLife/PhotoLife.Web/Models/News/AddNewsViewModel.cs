@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 using CloudinaryDotNet;
 using PhotoLife.Models.Enums;
 
@@ -21,8 +22,8 @@ namespace PhotoLife.ViewModels.News
         public string Title { get; set; }
 
         [Required]
-        [Display(Name = "Text")]
-        [StringLength(1500, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 250)]
+        [DataType(DataType.Html)]
+        [AllowHtml]
         public string Text { get; set; }
 
         public string CoverPicture { get; set; }
