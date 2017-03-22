@@ -65,12 +65,15 @@ namespace PhotoLife.Controllers
         [HttpPost]
         public ActionResult Add(AddNewsViewModel model)
         {
-            return View();
-        }
+            if (ModelState.IsValid)
+            {
+                var userId = this.authenticationProvider.CurrentUserId;
 
-        public ActionResult ImageBrowser()
-        {
-            return View();
+                this.newsService.CreateNews(userId, model.Title, model.Text, model.CoverPicture, model.Category);
+            }
+
+            return RedirectToAction("All", "News");
         }
+        
     }
 }

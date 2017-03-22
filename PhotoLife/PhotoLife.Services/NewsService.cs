@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using PhotoLife.Data.Contracts;
+using PhotoLife.Factories;
 using PhotoLife.Models;
+using PhotoLife.Models.Enums;
+using PhotoLife.Providers.Contracts;
 using PhotoLife.Services.Contracts;
 
 namespace PhotoLife.Services
@@ -10,11 +13,20 @@ namespace PhotoLife.Services
     public class NewsService : INewsService
     {
         private readonly IRepository<News> newsRepository;
+        private readonly IUserService userService;
         private readonly IUnitOfWork unitOfWork;
+        private readonly INewsFactory newsFactory;
+        private readonly ICategoryFactory categoryFactory;
+
+        private readonly IDateTimeProvider dateTimeProvider;
 
         public NewsService(
             IRepository<News> newsRepository,
-            IUnitOfWork unitOfWork)
+            IUserService userService,
+            IUnitOfWork unitOfWork, 
+            INewsFactory newsFactory,
+            ICategoryFactory categoryFactory,
+            IDateTimeProvider dateTimeProvider)
         {
             if (newsRepository == null)
             {
@@ -26,8 +38,32 @@ namespace PhotoLife.Services
                 throw new ArgumentNullException("unitOfWorks");
             }
 
+            if (newsFactory == null)
+            {
+                throw new ArgumentNullException("newsFactory");
+            }
+
+            if (categoryFactory == null)
+            {
+                throw new ArgumentNullException("categoryFactory");
+            }
+
+            if (dateTimeProvider == null)
+            {
+                throw new ArgumentNullException("dateTimeProvider");
+            }
+
+            if (userService == null)
+            {
+                throw new ArgumentNullException("userService");
+            }
+
             this.newsRepository = newsRepository;
             this.unitOfWork = unitOfWork;
+            this.userService = userService;
+            this.newsFactory = newsFactory;
+            this.categoryFactory = categoryFactory;
+            this.dateTimeProvider = dateTimeProvider;
         }
 
         public News GetNewsById(string id)
@@ -55,7 +91,23 @@ namespace PhotoLife.Services
 
             return res;
         }
-        
+
+        public News CreateNews(string userId, string title, string text, string coverPicture, CategoryEnum categoryEnum)
+        {
+            var user = this.userService.GetUserById(userId);
+
+            var datePublished = this.dateTimeProvider.GetCurrentDate();
+
+            Category category = this.categoryFactory.CreateCategory(categoryEnum);
+
+            var news = this.newsFactory.CreateNews(title, text, coverPicture, user, category, datePublished);
+
+            this.newsRepository.Add(news);
+            this.unitOfWork.Commit();
+
+            return news;
+        }
+
 
         public void EditNews(object id, string title, string text, string imageUrl, Category category)
         {
