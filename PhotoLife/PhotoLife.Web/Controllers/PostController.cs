@@ -75,7 +75,8 @@ namespace PhotoLife.Controllers
                 return RedirectToAction("PostDetails", "Post", new { postId = post.PostId});
             }
 
-            return RedirectToAction("All", "Post");
+            model.Cloudinary = this.cloudinary;
+            return this.View(model);
         }
 
         [AllowAnonymous]
