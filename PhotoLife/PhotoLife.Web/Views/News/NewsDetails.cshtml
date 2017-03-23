@@ -46,7 +46,9 @@
     </dl>
 </div>
 
+<div>
 @Html.Raw(HttpUtility.HtmlDecode(Model.Text))
+</div>
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

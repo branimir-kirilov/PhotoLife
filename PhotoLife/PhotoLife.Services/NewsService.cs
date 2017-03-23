@@ -16,7 +16,7 @@ namespace PhotoLife.Services
         private readonly IUserService userService;
         private readonly IUnitOfWork unitOfWork;
         private readonly INewsFactory newsFactory;
-        private readonly ICategoryFactory categoryFactory;
+        private readonly ICategoryService categoryService;
 
         private readonly IDateTimeProvider dateTimeProvider;
 
@@ -25,7 +25,7 @@ namespace PhotoLife.Services
             IUserService userService,
             IUnitOfWork unitOfWork, 
             INewsFactory newsFactory,
-            ICategoryFactory categoryFactory,
+            ICategoryService categoryService,
             IDateTimeProvider dateTimeProvider)
         {
             if (newsRepository == null)
@@ -43,7 +43,7 @@ namespace PhotoLife.Services
                 throw new ArgumentNullException("newsFactory");
             }
 
-            if (categoryFactory == null)
+            if (categoryService == null)
             {
                 throw new ArgumentNullException("categoryFactory");
             }
@@ -62,7 +62,7 @@ namespace PhotoLife.Services
             this.unitOfWork = unitOfWork;
             this.userService = userService;
             this.newsFactory = newsFactory;
-            this.categoryFactory = categoryFactory;
+            this.categoryService = categoryService;
             this.dateTimeProvider = dateTimeProvider;
         }
 
@@ -98,7 +98,7 @@ namespace PhotoLife.Services
 
             var datePublished = this.dateTimeProvider.GetCurrentDate();
 
-            Category category = this.categoryFactory.CreateCategory(categoryEnum);
+            Category category = this.categoryService.GetCategoryByName(categoryEnum);
 
             var news = this.newsFactory.CreateNews(title, text, coverPicture, user, category, datePublished);
 
