@@ -114,7 +114,7 @@ namespace PhotoLife.Services
             var news = this.newsRepository.GetById(id);
             Category category = this.categoryService.GetCategoryByName(categoryEnum);
 
-            if (news != null)
+            if (news != null && category != null)
             {
                 news.Title = title;
                 news.Text = text;

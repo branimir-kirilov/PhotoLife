@@ -80,14 +80,17 @@ namespace PhotoLife.Services.Tests.NewsServiceTests
         {
             //Arrange
             var news = new News();
-
+            var category = new Category();
             var mockedNewsRepository = new Mock<IRepository<News>>();
             mockedNewsRepository.Setup(r => r.GetById(It.IsAny<int>())).Returns(news);
 
             var mockedUserService = new Mock<IUserService>();
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             var mockedNewsFactory = new Mock<INewsFactory>();
+
             var mockedCategoryService = new Mock<ICategoryService>();
+            mockedCategoryService.Setup(m => m.GetCategoryByName(It.IsAny<CategoryEnum>())).Returns(category);
+
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
 
             var newsService = new NewsService(
@@ -112,6 +115,7 @@ namespace PhotoLife.Services.Tests.NewsServiceTests
         {
             //Arrange
             var news = new News();
+            var category = new Category();
 
             var mockedNewsRepository = new Mock<IRepository<News>>();
             mockedNewsRepository.Setup(r => r.GetById(It.IsAny<int>())).Returns(news);
@@ -119,7 +123,10 @@ namespace PhotoLife.Services.Tests.NewsServiceTests
             var mockedUserService = new Mock<IUserService>();
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             var mockedNewsFactory = new Mock<INewsFactory>();
+
             var mockedCategoryService = new Mock<ICategoryService>();
+            mockedCategoryService.Setup(m => m.GetCategoryByName(It.IsAny<CategoryEnum>())).Returns(category);
+
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
 
             var newsService = new NewsService(

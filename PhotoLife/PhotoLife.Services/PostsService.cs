@@ -16,7 +16,7 @@ namespace PhotoLife.Services
         private readonly IUserService userService;
         private readonly IUnitOfWork unitOfWork;
         private readonly IPostFactory postFactory;
-        private readonly ICategoryFactory categoryFactory;
+        private readonly ICategoryService categoryService;
 
         private readonly IDateTimeProvider datetimeProvider;
 
@@ -25,7 +25,7 @@ namespace PhotoLife.Services
             IUserService userService,
             IUnitOfWork unitOfWork,
             IPostFactory postFactory,
-            ICategoryFactory categoryFactory,
+            ICategoryService categoryService,
             IDateTimeProvider dateTimeProvider)
         {
             if (postsRepository == null)
@@ -48,7 +48,7 @@ namespace PhotoLife.Services
                 throw new ArgumentNullException("postFactory");
             }
 
-            if (categoryFactory == null)
+            if (categoryService == null)
             {
                 throw new ArgumentNullException("categoryFactory");
             }
@@ -62,7 +62,7 @@ namespace PhotoLife.Services
             this.userService = userService;
             this.unitOfWork = unitOfWork;
             this.postFactory = postFactory;
-            this.categoryFactory = categoryFactory;
+            this.categoryService = categoryService;
 
             this.datetimeProvider = dateTimeProvider;
         }
@@ -98,7 +98,7 @@ namespace PhotoLife.Services
 
             var datePublished = this.datetimeProvider.GetCurrentDate();
 
-            Category category = this.categoryFactory.CreateCategory(categoryEnum);
+            Category category = this.categoryService.GetCategoryByName(categoryEnum);
 
             var post = this.postFactory.CreatePost(title, description, profilePicUrl, user, category, datePublished);
 
@@ -108,11 +108,12 @@ namespace PhotoLife.Services
             return post;
         }
 
-        public void EditPost(object id, string title, string description, Category category)
+        public void EditPost(int id, string title, string description, CategoryEnum categoryEnum)
         {
             var post = this.postsRepository.GetById(id);
-
-            if (post != null)
+            var category = this.categoryService.GetCategoryByName(categoryEnum);
+            
+            if (post != null && category != null)
             {
                 post.Title = title;
                 post.Description = description;
