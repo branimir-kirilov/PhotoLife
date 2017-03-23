@@ -47,7 +47,7 @@ namespace PhotoLife.Models
         public virtual User Author { get; set; }
 
         [ForeignKey("CategoryId")]
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
         public int CategoryId { get; set; }
 

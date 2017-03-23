@@ -6,7 +6,7 @@ namespace PhotoLife.Services.Contracts
 {
     public interface INewsService
     {
-        News GetNewsById(string id);
+        News GetNewsById(int id);
         IEnumerable<News> GetAll();
         IEnumerable<News> GetTopNews(int topCount);
         IEnumerable<News> GetTopByComments(int topCount);

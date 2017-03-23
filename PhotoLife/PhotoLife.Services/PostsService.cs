@@ -66,7 +66,7 @@ namespace PhotoLife.Services
 
             this.datetimeProvider = dateTimeProvider;
         }
-        public Post GetPostById(string id)
+        public Post GetPostById(int id)
         {
             return this.postsRepository.GetById(id);
         }

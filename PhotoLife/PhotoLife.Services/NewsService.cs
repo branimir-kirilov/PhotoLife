@@ -66,7 +66,7 @@ namespace PhotoLife.Services
             this.dateTimeProvider = dateTimeProvider;
         }
 
-        public News GetNewsById(string id)
+        public News GetNewsById(int id)
         {
             return this.newsRepository.GetById(id);
         }

@@ -70,14 +70,16 @@ namespace PhotoLife.Controllers
             {
                 var userId = this.authenticationProvider.CurrentUserId;
 
-                this.postService.CreatePost(userId, model.Title, model.Description, model.PictureUrl, model.Category);
+                var post = this.postService.CreatePost(userId, model.Title, model.Description, model.PictureUrl, model.Category);
+
+                return RedirectToAction("PostDetails", "Post", new { postId = post.PostId});
             }
 
             return RedirectToAction("All", "Post");
         }
 
         [AllowAnonymous]
-        public ActionResult PostDetails(string postId)
+        public ActionResult PostDetails(int postId)
         {
             var post = this.postService.GetPostById(postId);
 

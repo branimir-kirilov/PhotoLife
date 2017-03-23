@@ -6,7 +6,7 @@ namespace PhotoLife.Services.Contracts
 {
     public interface IPostService
     {
-        Post GetPostById(string id);
+        Post GetPostById(int id);
         IEnumerable<Post> GetAll();
         IEnumerable<Post> GetTopPosts(int topCount);
         IEnumerable<Post> GetTopByComments(int topCount);
