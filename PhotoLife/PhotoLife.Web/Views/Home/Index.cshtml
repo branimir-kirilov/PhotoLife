@@ -26,12 +26,21 @@
                 urlSplit = url.Insert(49, "c_fill,h_300,w_300/");
             }
 
+              var length = 150;
+            if (news.Text.Length < 150)
+            {
+                length = news.Text.Length - 1;
+            }
+
             <div class="col-sm-4">
                 <img class="img-circle img-responsive img-center" src="@urlSplit" alt="">
                 <h2>@news.Title</h2>
-                <p>@news.ImageUrl</p>
-                <p>@urlSplit</p>
-                <p>These marketing boxes are a great place to put some information. These can contain summaries of what the company does, promotional information, or anything else that is relevant to the company. These will usually be below-the-fold.</p>
+                
+                <h5><strong>Views: </strong> @news.Views.ToString() </h5>
+                <h5><strong>Category: </strong> @news.Category.Name.ToString()</h5>
+                <h5><strong>Published: </strong> @news.DatePublished.ToShortDateString()</h5>
+                <h5><strong>Author: </strong> @news.Author.UserName</h5>
+
             </div>
         }
     </div>
