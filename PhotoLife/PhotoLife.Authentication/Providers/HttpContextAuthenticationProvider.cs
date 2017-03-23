@@ -10,15 +10,24 @@ namespace PhotoLife.Authentication.Providers
     public class HttpContextAuthenticationProvider : IAuthenticationProvider
     {
         private readonly IHttpContextProvider httpContextProvider;
+        private readonly IDateTimeProvider dateTimeProvider;
 
-        public HttpContextAuthenticationProvider(IHttpContextProvider httpContextProvider)
+        public HttpContextAuthenticationProvider(
+            IHttpContextProvider httpContextProvider,
+            IDateTimeProvider dateTimeProvider)
         {
             if (httpContextProvider == null)
             {
                 throw new ArgumentNullException("httpContextProvider");
             }
 
+            if (dateTimeProvider == null)
+            {
+                throw new ArgumentNullException("dateTimeProvider");
+            }
+
             this.httpContextProvider = httpContextProvider;
+            this.dateTimeProvider = dateTimeProvider;
         }
         protected ApplicationSignInManager SignInManager
         {

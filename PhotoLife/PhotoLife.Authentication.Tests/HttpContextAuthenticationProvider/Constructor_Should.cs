@@ -11,20 +11,35 @@ namespace PhotoLife.Authentication.Tests.HttpContextAuthenticationProvider
         [Test]
         public void _Throw_ArgumentNullException_WhenIHttpContextProvider_IsNull()
         {
-            //Arrange & Act & Assert
+            //Arrange
+            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
+           
+            //Act & Assert
             Assert.Throws<ArgumentNullException>(
-                () => new Providers.HttpContextAuthenticationProvider(null));
+                () => new Providers.HttpContextAuthenticationProvider(null, mockedDateTimeProvider.Object));
         }
 
         [Test]
-        public void _NotThrow_ArgumentNullException_WhenIHttpContextProvider_IsCorrect()
+        public void _Throw_ArgumentNullException_WhenIDateTimeProvider_IsNull()
+        {
+            //Arrange
+            var mockedHttpContextProvider = new Mock<IHttpContextProvider>();
+            
+            //Act & Assert
+            Assert.Throws<ArgumentNullException>(
+                () => new Providers.HttpContextAuthenticationProvider(mockedHttpContextProvider.Object, null));
+        }
+
+        [Test]
+        public void _NotThrow_ArgumentNullException_WhenEverything_IsCorrect()
         {
             //Arrange 
             var mockedProvider = new Mock<IHttpContextProvider>();
+            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
 
             //Act & Assert
             Assert.DoesNotThrow(
-                () => new Providers.HttpContextAuthenticationProvider(mockedProvider.Object));
+                () => new Providers.HttpContextAuthenticationProvider(mockedProvider.Object, mockedDateTimeProvider.Object));
         }
 
         [Test]
@@ -32,9 +47,11 @@ namespace PhotoLife.Authentication.Tests.HttpContextAuthenticationProvider
         {
             //Arrange 
             var mockedProvider = new Mock<IHttpContextProvider>();
+            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
+
 
             //Act
-            var provider = new Providers.HttpContextAuthenticationProvider(mockedProvider.Object);
+            var provider = new Providers.HttpContextAuthenticationProvider(mockedProvider.Object, mockedDateTimeProvider.Object);
 
             //Assert
             Assert.IsNotNull(provider);
@@ -45,9 +62,10 @@ namespace PhotoLife.Authentication.Tests.HttpContextAuthenticationProvider
         {
             //Arrange 
             var mockedProvider = new Mock<IHttpContextProvider>();
+            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
 
             //Act
-            var provider = new Providers.HttpContextAuthenticationProvider(mockedProvider.Object);
+            var provider = new Providers.HttpContextAuthenticationProvider(mockedProvider.Object, mockedDateTimeProvider.Object);
 
             //Assert
             Assert.IsInstanceOf<Providers.HttpContextAuthenticationProvider>(provider);
