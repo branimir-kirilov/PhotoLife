@@ -18,7 +18,11 @@ namespace PhotoLife
                 url: "Profile/Details/{username}",
                 defaults: new { controller = "Profile", action = "UserProfile" });
 
-
+            routes.MapRoute(
+                name: "PostDetails",
+                url: "Post/Details/{postId}",
+                defaults: new {controller = "Post", action = "PostDetails"});
+            
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

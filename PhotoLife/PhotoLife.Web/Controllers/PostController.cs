@@ -75,5 +75,12 @@ namespace PhotoLife.Controllers
 
             return RedirectToAction("All", "Post");
         }
+
+        [AllowAnonymous]
+        public ActionResult PostDetails(string postId)
+        {
+
+            return View();
+        }
     }
 }
