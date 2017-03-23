@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="NewsServiceTests\Constructor_Should.cs" />
     <Compile Include="NewsServiceTests\CreateNews_Should.cs" />
+    <Compile Include="NewsServiceTests\EditNews_Should.cs" />
     <Compile Include="NewsServiceTests\GetNewsById_Should.cs" />
     <Compile Include="NewsServiceTests\GetTopByComments_Should.cs" />
     <Compile Include="NewsServiceTests\GetTopNews_Should.cs" />

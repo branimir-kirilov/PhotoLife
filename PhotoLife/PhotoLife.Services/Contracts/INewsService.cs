@@ -11,6 +11,6 @@ namespace PhotoLife.Services.Contracts
         IEnumerable<News> GetTopNews(int topCount);
         IEnumerable<News> GetTopByComments(int topCount);
         News CreateNews(string userId, string title, string text, string coverPicture, CategoryEnum category);
-        void EditNews(object id, string title, string text, string imageUrl, Category category);
+        void EditNews(int id, string title, string text, string imageUrl, CategoryEnum categoryEnum);
     }
 }

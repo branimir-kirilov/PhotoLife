@@ -109,9 +109,10 @@ namespace PhotoLife.Services
         }
 
 
-        public void EditNews(object id, string title, string text, string imageUrl, Category category)
+        public void EditNews(int id, string title, string text, string imageUrl, CategoryEnum categoryEnum)
         {
             var news = this.newsRepository.GetById(id);
+            Category category = this.categoryService.GetCategoryByName(categoryEnum);
 
             if (news != null)
             {
