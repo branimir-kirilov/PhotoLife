@@ -18,15 +18,7 @@
         <dd>
             @Html.DisplayFor(model => model.Title)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Text)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Text)
-        </dd>
-
+        
         <dt>
             @Html.DisplayNameFor(model => model.ImageUrl)
         </dt>
@@ -53,6 +45,9 @@
 
     </dl>
 </div>
+
+@Html.Raw(HttpUtility.HtmlDecode(Model.Text))
+
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
