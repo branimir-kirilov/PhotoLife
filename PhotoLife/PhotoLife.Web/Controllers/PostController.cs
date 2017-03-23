@@ -79,8 +79,12 @@ namespace PhotoLife.Controllers
         [AllowAnonymous]
         public ActionResult PostDetails(string postId)
         {
+            var post = this.postService.GetPostById(postId);
 
-            return View();
+            var postModel = this.viewModelFactory.CreatePostDetailsViewModel(post);
+
+            return View(postModel);
         }
+        
     }
 }

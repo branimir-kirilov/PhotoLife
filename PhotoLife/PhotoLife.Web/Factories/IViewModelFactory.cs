@@ -7,8 +7,14 @@ namespace PhotoLife.Factories
 {
     public interface IViewModelFactory
     {
+        //Profile
         ProfileViewModel CreateUserProfileViewModel(User user);
+
+        //Post
         AddPostViewModel CreateAddPostViewModel(Cloudinary cloudinary);
+        PostDetailsViewModel CreatePostDetailsViewModel(Post post);
+        
+        //News
         AddNewsViewModel CreateAddNewsViewModel(Cloudinary cloudinary);
     }
 }

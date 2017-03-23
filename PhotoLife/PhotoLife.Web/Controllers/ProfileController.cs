@@ -41,9 +41,7 @@ namespace PhotoLife.Controllers
         public ActionResult UserProfile(string username)
         {
             var user = this.UserSerivce.GetUserByUsername(username);
-
-            var id = this.AuthenticationProvider.CurrentUserId;
-
+            
             var model = this.ViewModelFactory.CreateUserProfileViewModel(user);
 
             return this.View(model);
