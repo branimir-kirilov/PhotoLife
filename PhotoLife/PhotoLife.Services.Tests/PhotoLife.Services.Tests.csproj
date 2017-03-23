@@ -86,6 +86,7 @@
     <Compile Include="NewsServiceTests\GetTopByComments_Should.cs" />
     <Compile Include="NewsServiceTests\GetTopNews_Should.cs" />
     <Compile Include="NewsServiceTests\Get_All_Should.cs" />
+    <Compile Include="PostsServiceTests\Constructor_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserServiceTests\Constructor_Should.cs" />
     <Compile Include="UserServiceTests\EditUser_Should.cs" />
@@ -118,9 +119,7 @@
       <Name>PhotoLife.Services</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PostsServiceTests\" />
-  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
