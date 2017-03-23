@@ -11,6 +11,6 @@ build:
   verbosity: minimal  
 
 after_test: 
-  - PhotoLife\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -filter:"+[*]*" -target:"PhotoLife\packages\NUnit.ConsoleRunner.3.6.1\tools\nunit3-console.exe" -targetargs:"/domain:single  PhotoLife\PhotoLife.Data.Tests\bin\Debug\PhotoLife.Data.Tests.dll PhotoLife\PhotoLife.Services.Tests\bin\Debug\PhotoLife.Services.Tests.dll PhotoLife\PhotoLife.Web.Tests\bin\Debug\PhotoLife.Web.Tests.dll PhotoLife\PhotoLife.Models.Tests\bin\Debug\PhotoLife.Models.Tests.dll" -output:coverage.xml
+  - PhotoLife\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -filter:"+[*]*" -target:"PhotoLife\packages\NUnit.ConsoleRunner.3.6.1\tools\nunit3-console.exe" -targetargs:"/domain:single  PhotoLife\PhotoLife.Data.Tests\bin\Debug\PhotoLife.Data.Tests.dll PhotoLife\PhotoLife.Services.Tests\bin\Debug\PhotoLife.Services.Tests.dll PhotoLife\PhotoLife.Web.Tests\bin\Debug\PhotoLife.Web.Tests.dll PhotoLife\PhotoLife.Models.Tests\bin\Debug\PhotoLife.Models.Tests.dll PhotoLife\PhotoLife.Authentication.Tests\bin\Debug\PhotoLife.Authentication.Tests.dll" -output:coverage.xml
 
   - PhotoLife\packages\coveralls.io.1.3.4\tools\coveralls.net.exe --opencover coverage.xml
