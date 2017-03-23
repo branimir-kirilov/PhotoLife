@@ -87,6 +87,7 @@
     <Compile Include="NewsServiceTests\GetTopNews_Should.cs" />
     <Compile Include="NewsServiceTests\Get_All_Should.cs" />
     <Compile Include="PostsServiceTests\Constructor_Should.cs" />
+    <Compile Include="PostsServiceTests\GetAll_Should.cs" />
     <Compile Include="PostsServiceTests\GetPostById_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserServiceTests\Constructor_Should.cs" />
