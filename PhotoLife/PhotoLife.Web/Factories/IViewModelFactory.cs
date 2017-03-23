@@ -1,5 +1,7 @@
-﻿using CloudinaryDotNet;
+﻿using System.Collections.Generic;
+using CloudinaryDotNet;
 using PhotoLife.Models;
+using PhotoLife.Models.Home;
 using PhotoLife.ViewModels.News;
 using PhotoLife.ViewModels.Post;
 
@@ -7,6 +9,9 @@ namespace PhotoLife.Factories
 {
     public interface IViewModelFactory
     {
+        //Home
+        HomeViewModel CreateHomeViewModel(IEnumerable<News> topNews);
+
         //Profile
         ProfileViewModel CreateUserProfileViewModel(User user);
 

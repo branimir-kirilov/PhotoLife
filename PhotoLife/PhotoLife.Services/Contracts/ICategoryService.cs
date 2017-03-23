@@ -6,6 +6,7 @@ namespace PhotoLife.Services.Contracts
 {
     public interface ICategoryService
     {
+        Category CreateCategory(CategoryEnum categoryEnum);
         Category GetCategoryByName(CategoryEnum categoryEnum);
         IEnumerable<Category> GetAll();
     }
