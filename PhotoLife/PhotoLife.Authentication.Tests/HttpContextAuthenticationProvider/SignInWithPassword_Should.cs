@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Moq;
 using NUnit.Framework;
@@ -9,44 +10,11 @@ using PhotoLife.Providers.Contracts;
 namespace PhotoLife.Authentication.Tests.HttpContextAuthenticationProvider
 {
     [TestFixture]
-    public class RegisterAndLoginUser_Should
+    public class SignInWithPassword_Should
     {
-        [TestCase("fakePassword", true, true)]
-        [TestCase("fakePassword", false, false)]
-        [TestCase("fakePassword", true, false)]
-        [TestCase("fakePassword", false, true)]
-        public void _Call_UserManager_Create_Method(string password, bool isPersistant, bool rememberMe)
-        {
-            //Arrange
-            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
-
-            var mockedUserStore = new Mock<IUserStore<User>>();
-
-            var mockedUserManager = new Mock<ApplicationUserManager>(mockedUserStore.Object);
-            mockedUserManager.Setup(man => man.CreateAsync(It.IsAny<User>(), It.IsAny<string>()))
-                .ReturnsAsync(new IdentityResult());
-
-            var mockedHttpContextProvider = new Mock<IHttpContextProvider>();
-            mockedHttpContextProvider.Setup(p => p.GetUserManager<ApplicationUserManager>())
-                .Returns(mockedUserManager.Object);
-
-            var provider = new Providers.HttpContextAuthenticationProvider(mockedHttpContextProvider.Object, mockedDateTimeProvider.Object);
-
-            var user = new User();
-
-            //Act
-            provider.RegisterAndLoginUser(user, password, isPersistant, rememberMe);
-
-            //Assert
-            mockedUserManager.Verify(m => m.CreateAsync(user, password), Times.Once);
-        }
-
-
-        [TestCase("fakePassword", true, true)]
-        [TestCase("fakePassword", false, false)]
-        [TestCase("fakePassword", true, false)]
-        [TestCase("fakePassword", false, true)]
-        public void _Call_SignInManager_SignIn_Method(string password, bool isPersistant, bool rememberMe)
+        [TestCase("fakeusername", "fakePassword", true, false)]
+        [TestCase("fakeusername", "fakePassword", false, false)]
+        public void _Call_SignInManager_PasswordSignIn(string username, string password, bool rememberMe, bool shouldLockout)
         {
             //Arrange
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
@@ -70,36 +38,32 @@ namespace PhotoLife.Authentication.Tests.HttpContextAuthenticationProvider
 
             var provider = new Providers.HttpContextAuthenticationProvider(mockedHttpContextProvider.Object, mockedDateTimeProvider.Object);
 
-            var user = new User();
-
             //Act
-            provider.RegisterAndLoginUser(user, password, isPersistant, rememberMe);
+            provider.SignInWithPassword(username, password, rememberMe, shouldLockout);
 
             //Assert
-            mockedSignInManager.Verify(m => m.SignInAsync(user, isPersistant, rememberMe), Times.Once);
+            mockedSignInManager.Verify(m => m.PasswordSignInAsync(username, password, rememberMe, shouldLockout), Times.Once);
+
         }
 
-        [TestCase("fakePassword", true, true)]
-        [TestCase("fakePassword", false, false)]
-        [TestCase("fakePassword", true, false)]
-        [TestCase("fakePassword", false, true)]
-        public void _Return_IdentityResult(string password, bool isPersistant, bool rememberMe)
+        [TestCase("fakeusername", "fakePassword", true, false, SignInStatus.Success)]
+        [TestCase("fakeusername", "fakePassword", true, false, SignInStatus.Failure)]
+        [TestCase("fakeusername", "fakePassword", true, false, SignInStatus.LockedOut)]
+        [TestCase("fakeusername", "fakePassword", true, false, SignInStatus.RequiresVerification)]
+        public void _ReturnCorrectly_(string username, string password, bool rememberMe, bool shouldLockout, SignInStatus signInStatus)
         {
             //Arrange
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
 
-            var expected = new IdentityResult();
-
             var mockedUserStore = new Mock<IUserStore<User>>();
             var mockedUserManager = new Mock<ApplicationUserManager>(mockedUserStore.Object);
-            mockedUserManager.Setup(man => man.CreateAsync(It.IsAny<User>(), It.IsAny<string>()))
-                .ReturnsAsync(expected);
-
 
             var mockedAuthenticationManager = new Mock<IAuthenticationManager>();
             var mockedSignInManager = new Mock<ApplicationSignInManager>(
                 mockedUserManager.Object,
                 mockedAuthenticationManager.Object);
+
+            mockedSignInManager.Setup(m => m.PasswordSignInAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<bool>())).ReturnsAsync(signInStatus);
 
             var mockedHttpContextProvider = new Mock<IHttpContextProvider>();
             mockedHttpContextProvider.Setup(p => p.GetUserManager<ApplicationUserManager>())
@@ -109,14 +73,11 @@ namespace PhotoLife.Authentication.Tests.HttpContextAuthenticationProvider
 
             var provider = new Providers.HttpContextAuthenticationProvider(mockedHttpContextProvider.Object, mockedDateTimeProvider.Object);
 
-            var user = new User();
-
             //Act
-            var result = provider.RegisterAndLoginUser(user, password, isPersistant, rememberMe);
+            var result = provider.SignInWithPassword(username, password, rememberMe, shouldLockout);
 
             //Assert
-            Assert.AreSame(expected, result);
-
+            Assert.AreEqual(signInStatus, result);
         }
     }
 }
