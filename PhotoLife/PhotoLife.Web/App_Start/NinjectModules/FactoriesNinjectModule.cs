@@ -20,7 +20,7 @@ namespace PhotoLife.App_Start.NinjectModules
             //View models
             this.Bind<IViewModelFactory>().ToFactory().InSingletonScope();
 
-            //External services
+            //Cloudinary service
             this.Bind<Cloudinary>()
                 .ToMethod(this.GetCloudinary);
 
