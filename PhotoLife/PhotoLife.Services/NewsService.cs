@@ -80,14 +80,14 @@ namespace PhotoLife.Services
 
         public IEnumerable<News> GetTopNews(int topCount)
         {
-            var res = this.newsRepository.GetAll.OrderBy(u => u.Views).Take(topCount);
+            var res = this.newsRepository.GetAll.OrderBy(u => u.Views).Take(topCount).ToList();
 
             return res;
         }
 
         public IEnumerable<News> GetTopByComments(int topCount)
         {
-            var res = this.newsRepository.GetAll.OrderBy(u => u.Comments.Count).Take(topCount);
+            var res = this.newsRepository.GetAll.OrderBy(u => u.Comments.Count).Take(topCount).ToList();
 
             return res;
         }
