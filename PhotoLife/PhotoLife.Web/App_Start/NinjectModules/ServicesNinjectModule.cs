@@ -11,6 +11,7 @@ namespace PhotoLife.App_Start.NinjectModules
             this.Bind<IUserService>().To<UserService>();
             this.Bind<IPostService>().To<PostsService>();
             this.Bind<INewsService>().To<NewsService>();
+            this.Bind<ICategoryService>().To<CategoryService>();
         }
     }
 }
