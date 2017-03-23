@@ -98,7 +98,8 @@ namespace PhotoLife.Services
 
             var datePublished = this.dateTimeProvider.GetCurrentDate();
 
-            Category category = this.categoryService.GetCategoryByName(categoryEnum);
+            Category category = this.categoryService.GetCategoryByName(categoryEnum) ??
+                                this.categoryService.CreateCategory(categoryEnum);
 
             var news = this.newsFactory.CreateNews(title, text, coverPicture, user, category, datePublished);
 

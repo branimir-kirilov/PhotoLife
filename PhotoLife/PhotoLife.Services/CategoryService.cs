@@ -48,7 +48,7 @@ namespace PhotoLife.Services
         }
         public Category GetCategoryByName(CategoryEnum categoryEnum)
         {
-            return this.categoryRepository.GetAll.FirstOrDefault(c => c.Name.Equals(categoryEnum));
+            return this.categoryRepository.GetAll.FirstOrDefault(c => c.Name == categoryEnum);
         }
 
         public IEnumerable<Category> GetAll()
