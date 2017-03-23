@@ -135,5 +135,53 @@ namespace PhotoLife.Services.Tests.NewsServiceTests
                 mockedCategoryService.Object,
                 null));
         }
+
+        [Test]
+        public void _NotThrow_ArgumentNullException_When_EverythingCorrect()
+        {
+            //Arrange
+            var mockedNewsRepository = new Mock<IRepository<News>>();
+            var mockedUserService = new Mock<IUserService>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
+            var mockedNewsFactory = new Mock<INewsFactory>();
+            var mockedCategoryService = new Mock<ICategoryService>();
+            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
+
+            //Act
+            var result = new NewsService(
+                  mockedNewsRepository.Object,
+                  mockedUserService.Object,
+                  mockedUnitOfWork.Object,
+                  mockedNewsFactory.Object,
+                  mockedCategoryService.Object,
+                  mockedDateTimeProvider.Object);
+
+            //Assert
+            Assert.IsNotNull(result);
+        }
+
+        [Test]
+        public void _Initializes_CorrectInstance_WhenEverything_PassedCorrectly()
+        {
+            //Arrange
+            var mockedNewsRepository = new Mock<IRepository<News>>();
+            var mockedUserService = new Mock<IUserService>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
+            var mockedNewsFactory = new Mock<INewsFactory>();
+            var mockedCategoryService = new Mock<ICategoryService>();
+            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
+
+            //Act
+            var result = new NewsService(
+                  mockedNewsRepository.Object,
+                  mockedUserService.Object,
+                  mockedUnitOfWork.Object,
+                  mockedNewsFactory.Object,
+                  mockedCategoryService.Object,
+                  mockedDateTimeProvider.Object);
+
+            //Assert
+            Assert.IsInstanceOf<INewsService>(result);
+        }
     }
 }
