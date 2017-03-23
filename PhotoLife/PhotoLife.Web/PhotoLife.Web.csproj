@@ -252,6 +252,7 @@
     <Compile Include="Models\Account\LoginViewModel.cs" />
     <Compile Include="Models\Account\RegisterViewModel.cs" />
     <Compile Include="Models\News\AddNewsViewModel.cs" />
+    <Compile Include="Models\News\NewsDetailsViewModel.cs" />
     <Compile Include="Models\Post\AddPostViewModel.cs" />
     <Compile Include="Models\Post\PostDetailsViewModel.cs" />
     <Compile Include="Models\Profile\ProfileViewModel.cs" />
@@ -1971,6 +1972,7 @@
     <Content Include="Scripts\kendo\messages\kendo.messages.zh-HK.min.js.map" />
     <Content Include="Scripts\kendo\messages\kendo.messages.zh-TW.min.js.map" />
     <Content Include="Views\Post\PostDetails.cshtml" />
+    <Content Include="Views\News\NewsDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

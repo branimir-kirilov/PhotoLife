@@ -27,13 +27,7 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ImageUrl)
-        </dd>
+        <img src="@Model.ImageUrl" alt="image" />
 
         <dt>
             @Html.DisplayNameFor(model => model.DatePublished)

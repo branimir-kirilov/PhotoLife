@@ -74,6 +74,15 @@ namespace PhotoLife.Controllers
 
             return RedirectToAction("All", "News");
         }
-        
+
+        [AllowAnonymous]
+        public ActionResult NewsDetails(int newsId)
+        {
+            var news = this.newsService.GetNewsById(newsId);
+
+            var newsModel = this.viewModelFactory.CreateNewsDetailsViewModel(news);
+
+            return View(newsModel);
+        }
     }
 }
