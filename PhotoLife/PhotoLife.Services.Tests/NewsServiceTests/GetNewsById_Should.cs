@@ -27,7 +27,7 @@ namespace PhotoLife.Services.Tests.NewsServiceTests
             var mockedNewsFactory = new Mock<INewsFactory>();
             var mockedCategoryService = new Mock<ICategoryService>();
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
-            
+
             var newsService = new NewsService(
                   mockedNewsRepository.Object,
                   mockedUserService.Object,
@@ -72,6 +72,37 @@ namespace PhotoLife.Services.Tests.NewsServiceTests
 
             //Assert
             Assert.AreSame(mockedNews.Object, res);
+        }
+
+        [TestCase(1)]
+        [TestCase(101)]
+        public void _Return_Correct_Instance(int id)
+        {
+            //Arrange
+            var mockedNews = new Mock<News>();
+
+            var mockedNewsRepository = new Mock<IRepository<News>>();
+            mockedNewsRepository.Setup(r => r.GetById(It.IsAny<object>())).Returns(mockedNews.Object);
+
+            var mockedUserService = new Mock<IUserService>();
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
+            var mockedNewsFactory = new Mock<INewsFactory>();
+            var mockedCategoryService = new Mock<ICategoryService>();
+            var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
+
+            var newsService = new NewsService(
+                  mockedNewsRepository.Object,
+                  mockedUserService.Object,
+                  mockedUnitOfWork.Object,
+                  mockedNewsFactory.Object,
+                  mockedCategoryService.Object,
+                  mockedDateTimeProvider.Object);
+
+            //Act
+            var res = newsService.GetNewsById(id);
+
+            //Assert
+            Assert.IsInstanceOf<News>(res);
         }
     }
 }
