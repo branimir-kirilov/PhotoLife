@@ -22,7 +22,12 @@ namespace PhotoLife
                 name: "PostDetails",
                 url: "Post/Details/{postId}",
                 defaults: new {controller = "Post", action = "PostDetails"});
-            
+
+            routes.MapRoute(
+                name: "NewsDetails",
+                url: "News/Details/{newsId}",
+                defaults: new { controller = "News", action = "NewsDetails" });
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

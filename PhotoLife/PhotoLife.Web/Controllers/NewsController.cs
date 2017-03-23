@@ -69,10 +69,14 @@ namespace PhotoLife.Controllers
             {
                 var userId = this.authenticationProvider.CurrentUserId;
 
-                this.newsService.CreateNews(userId, model.Title, model.Text, model.CoverPicture, model.Category);
+                var news = this.newsService.CreateNews(userId, model.Title, model.Text, model.CoverPicture, model.Category);
+
+
+                return RedirectToAction("NewsDetails", "News", new { newsId = news.NewsId});
             }
 
-            return RedirectToAction("All", "News");
+            model.Cloudinary = this.cloudinary;
+            return View(model);
         }
 
         [AllowAnonymous]
