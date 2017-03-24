@@ -79,6 +79,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CategoryServiceTests\Constructor_Should.cs" />
     <Compile Include="NewsServiceTests\Constructor_Should.cs" />
     <Compile Include="NewsServiceTests\CreateNews_Should.cs" />
     <Compile Include="NewsServiceTests\EditNews_Should.cs" />
