@@ -21,7 +21,7 @@ namespace PhotoLife.Services.Tests.CategoryServiceTests
             //Act
             var categoryService = new CategoryService(mockedCategoryRepository.Object, mockedUnitOfWork.Object, mockedCategoryFactory.Object);
 
-            //Assert & Assert
+            //Assert
             Assert.IsNotNull(categoryService);
         }
 
