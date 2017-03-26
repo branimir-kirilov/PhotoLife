@@ -50,11 +50,11 @@ namespace PhotoLife.Services.Tests.PostsServiceTests
             //Arrange
             var mockedPostCollection = new List<Post>()
             {
-                new Mock<Post>() { }.Object,
-                new Mock<Post>() { }.Object
+                new Post() { },
+                new Post() { }
             }.AsQueryable();
 
-            var expectedCollection = mockedPostCollection.OrderBy(m => m.Votes).Take(topCount).ToList();
+            var expectedCollection = mockedPostCollection.OrderBy(m => m.Votes.Count).Take(topCount).ToList();
 
             var mockedPostRepository = new Mock<IRepository<Post>>();
             mockedPostRepository.Setup(m => m.GetAll).Returns(mockedPostCollection);
