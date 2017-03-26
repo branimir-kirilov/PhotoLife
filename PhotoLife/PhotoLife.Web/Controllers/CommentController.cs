@@ -39,7 +39,7 @@ namespace PhotoLife.Controllers
 
             this.commentService.AddCommentToPost(model.Content, model.CommentedItemId, userId);
 
-            return this.RedirectToAction("PostDetails", "Post", new { id = model.CommentedItemId, page = -1 });
+            return this.RedirectToAction("Details", "Post", new { id = model.CommentedItemId});
         }
 
         [Authorize]
@@ -50,8 +50,8 @@ namespace PhotoLife.Controllers
             var userId = this.authProvider.CurrentUserId;
 
             this.commentService.AddCommentToNews(model.Content, model.CommentedItemId, userId);
-
-            return this.RedirectToAction("NewsDetails", "News", new { id = model.CommentedItemId, page = -1 });
+            
+            return this.RedirectToRoute("News/Details", new {id = model.CommentedItemId} );
         }
     }
 }

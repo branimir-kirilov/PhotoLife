@@ -79,7 +79,7 @@ namespace PhotoLife.Controllers
 
                 var post = this.postService.CreatePost(userId, model.Title, model.Description, model.PictureUrl, model.Category);
 
-                return RedirectToAction("PostDetails", "Post", new { postId = post.PostId});
+                return RedirectToAction("Details", "Post", new { postId = post.PostId});
             }
 
             model.Cloudinary = this.cloudinary;
@@ -87,7 +87,7 @@ namespace PhotoLife.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult PostDetails(int postId)
+        public ActionResult Details(int postId)
         {
             var post = this.postService.GetPostById(postId);
 
