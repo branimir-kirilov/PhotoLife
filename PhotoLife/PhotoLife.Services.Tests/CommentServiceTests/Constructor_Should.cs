@@ -36,7 +36,6 @@ namespace PhotoLife.Services.Tests.CommentServiceTests
 
             //Assert
             Assert.IsNotNull(commentService);
-
         }
 
         [Test]
