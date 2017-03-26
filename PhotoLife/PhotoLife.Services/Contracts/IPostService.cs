@@ -12,5 +12,6 @@ namespace PhotoLife.Services.Contracts
         IEnumerable<Post> GetTopByComments(int topCount);
         Post CreatePost(string userId, string title, string description, string profilePicUrl, CategoryEnum category);
         void EditPost(int id, string title, string description, CategoryEnum categoryEnum);
+        void AddComment(int postId, Comment comment);
     }
 }

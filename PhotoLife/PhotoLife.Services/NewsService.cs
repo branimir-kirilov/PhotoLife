@@ -126,5 +126,17 @@ namespace PhotoLife.Services
                 this.unitOfWork.Commit();
             }
         }
+
+        public void AddComment(int newsId, Comment comment)
+        {
+            var news = this.newsRepository.GetById(newsId);
+
+            if (news != null)
+            {
+                news.Comments.Add(comment);
+
+                this.unitOfWork.Commit();
+            }
+        }
     }
 }
