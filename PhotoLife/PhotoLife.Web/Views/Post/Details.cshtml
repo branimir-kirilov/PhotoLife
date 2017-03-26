@@ -44,11 +44,12 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Votes)
+            @Html.Partial("~/Views/Vote/Vote.cshtml", Model.Votes.Count())
         </dd>
 
     </dl>
 </div>
+
 
 @if (HttpContext.Current.GetOwinContext().Authentication.User.Identity.IsAuthenticated)
 {
@@ -72,6 +73,6 @@
     @Html.ActionLink("Back to List", "Index")*@
 </p>
 
-@*@section scripts{
+@section scripts{
     @Scripts.Render("~/bundles/jquery-unobtrusive")
-}*@
+}
