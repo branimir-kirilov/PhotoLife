@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using PhotoLife.Models;
 
 namespace PhotoLife.ViewModels.Post
 {
@@ -25,6 +26,6 @@ namespace PhotoLife.ViewModels.Post
         public string Title { get; set; }
         public string ImageUrl { get; set; }
         public DateTime DatePublished { get; set; }
-        public int Votes { get; set; }
+        public IEnumerable<Vote> Votes { get; set; }
     }
 }

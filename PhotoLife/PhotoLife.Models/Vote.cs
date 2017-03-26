@@ -26,7 +26,7 @@ namespace PhotoLife.Models
 
         public int PostId { get; set; }
 
-        [ForeignKey("LogId")]
+        [ForeignKey("PostId")]
         public virtual Post Post { get; set; }
     }
 }

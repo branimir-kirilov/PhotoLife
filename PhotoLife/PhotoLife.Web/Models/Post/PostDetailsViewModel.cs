@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using PagedList;
+using PhotoLife.Models;
 using PhotoLife.Models.Enums;
 
 namespace PhotoLife.ViewModels.Post
@@ -27,7 +29,7 @@ namespace PhotoLife.ViewModels.Post
         public string Description { get; set; }
         public string ImageUrl { get; set; }
         public DateTime DatePublished { get; set; }
-        public int Votes { get; set; }
+        public IEnumerable<Vote> Votes { get; set; }
         public CategoryEnum Category { get; set; }
     }
 }

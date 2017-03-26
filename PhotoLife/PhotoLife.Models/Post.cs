@@ -14,6 +14,7 @@ namespace PhotoLife.Models
 
         public Post()
         {
+            this.Votes = new HashSet<Vote>();
             this.comments = new HashSet<Comment>();
         }
 
@@ -31,13 +32,12 @@ namespace PhotoLife.Models
             this.Author = author;
             this.Category = category;
             this.DatePublished = datePublished;
-            this.Votes = 0;
         }
 
         [Key]
         public int PostId { get; set; }
 
-        public int Votes { get; set; }
+        public virtual ICollection<Vote> Votes { get; set; }
 
         public DateTime DatePublished { get; set; }
 
