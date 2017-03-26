@@ -30,11 +30,11 @@ namespace PhotoLife.Controllers
         }
         
         [HttpPost]
-        public ActionResult Vote(int logId, int currentVoteCount)
+        public ActionResult Vote(int postId, int currentVoteCount)
         {
             var userId = this.authenticationProvider.CurrentUserId;
 
-            var rating = this.voteService.Vote(logId, userId);
+            var rating = this.voteService.Vote(postId, userId);
 
             if (rating < 0)
             {
