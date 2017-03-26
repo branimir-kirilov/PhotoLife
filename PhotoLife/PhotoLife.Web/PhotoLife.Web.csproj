@@ -1988,7 +1988,7 @@
     <Content Include="Scripts\kendo\messages\kendo.messages.zh-HK.min.js.map" />
     <Content Include="Scripts\kendo\messages\kendo.messages.zh-TW.min.js.map" />
     <Content Include="Views\Post\Details.cshtml" />
-    <Content Include="Views\News\NewsDetails.cshtml" />
+    <Content Include="Views\News\Details.cshtml" />
     <Content Include="Views\Shared\_PagedPostListPartial.cshtml" />
     <Content Include="Views\Shared\_PostListPartial.cshtml" />
     <Content Include="Views\Shared\_ShortPostPartial.cshtml" />

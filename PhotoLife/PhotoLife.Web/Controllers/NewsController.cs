@@ -80,7 +80,7 @@ namespace PhotoLife.Controllers
                 var news = this.newsService.CreateNews(userId, model.Title, model.Text, model.CoverPicture, model.Category);
 
 
-                return RedirectToAction("NewsDetails", "News", new { newsId = news.NewsId});
+                return RedirectToAction("Details", "News", new { newsId = news.NewsId});
             }
 
             model.Cloudinary = this.cloudinary;
@@ -88,7 +88,7 @@ namespace PhotoLife.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult NewsDetails(int newsId)
+        public ActionResult Details(int newsId)
         {
             var news = this.newsService.GetNewsById(newsId);
 
