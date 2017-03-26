@@ -28,8 +28,7 @@ namespace PhotoLife.Controllers
             this.voteService = voteService;
             this.authenticationProvider = authenticationProvider;
         }
-
-        [Authorize]
+        
         [HttpPost]
         public ActionResult Vote(int logId, int currentVoteCount)
         {

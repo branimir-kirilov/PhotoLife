@@ -54,7 +54,7 @@
 {
    @Ajax.ActionLink(" ",
                     "Vote",
-                    new { controller = "Vote", logId = Model.Id, currentVoteCount = Model.Votes.Count() },
+                    new { controller = "Vote", postId = Model.Id, currentVoteCount = Model.Votes.Count() },
                     new AjaxOptions
                     {
                         UpdateTargetId = "rating",
