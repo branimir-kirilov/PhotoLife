@@ -1,4 +1,5 @@
 ﻿using System;
+using PagedList;
 using PhotoLife.Models.Enums;
 
 namespace PhotoLife.ViewModels.Post
