@@ -103,9 +103,17 @@ namespace PhotoLife.Services
             this.newsService.AddComment(newsId, comment);
         }
 
-        public void EditComment(string content, int commentedId, string userId)
+        public void EditComment(string content, int commentId)
         {
-            throw new NotImplementedException();
+            var comment = this.commentRepository.GetById(commentId);
+
+            if (comment != null)
+            {
+                comment.Text = content;
+
+                this.commentRepository.Update(comment);
+                this.unitOfWork.Commit();
+            }
         }
     }
 }
