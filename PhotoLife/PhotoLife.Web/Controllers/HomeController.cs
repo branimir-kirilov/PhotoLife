@@ -8,8 +8,11 @@ namespace PhotoLife.Controllers
     public class HomeController : Controller
     {
         private readonly INewsService newsService;
+        private readonly IPostService postService;
+
         private readonly IViewModelFactory viewModelFactory;
-        public HomeController(INewsService newsService, IViewModelFactory viewModelFactory)
+
+        public HomeController(INewsService newsService, IPostService postService, IViewModelFactory viewModelFactory)
         {
             if (newsService == null)
             {
@@ -21,8 +24,15 @@ namespace PhotoLife.Controllers
                 throw new ArgumentNullException("viewModelFactory");
             }
 
+            if (postService == null)
+            {
+                throw new ArgumentNullException("postsService");
+            }
+
             this.newsService = newsService;
+            this.postService = postService;
             this.viewModelFactory = viewModelFactory;
+
         }
 
         [AllowAnonymous]
@@ -30,7 +40,8 @@ namespace PhotoLife.Controllers
         {
             int topCount = 3;
             var topNews = this.newsService.GetTopNews(topCount);
-            var model = this.viewModelFactory.CreateHomeViewModel(topNews);
+            var topPosts = this.postService.GetTopPosts(topCount);
+            var model = this.viewModelFactory.CreateHomeViewModel(topNews, topPosts);
 
             return View(model);
         }

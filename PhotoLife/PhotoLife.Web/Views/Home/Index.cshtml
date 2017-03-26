@@ -43,10 +43,42 @@
                 </div>
             }
         </div>
+        
+
+        <h1>Top User Posts</h1>
+
+        <hr />
+
+        <div class="row">
+            @foreach (var post in Model.TopPosts)
+            {
+                var url = post.ImageUrl;
+                var urlSplit = "";
+
+                if (url != null)
+                {
+                    urlSplit = url.Insert(49, "c_fill,h_300,w_300/");
+                }
+
+                var length = 150;
+                if (post.Description.Length < 150)
+                {
+                    length = post.Description.Length - 1;
+                }
+
+                <div class="col-sm-4">
+                    <img class="img-circle img-responsive img-center" src="@urlSplit" alt="">
+                    <h2>@post.Title</h2>
+
+                    <h5><strong>Views: </strong> @post.Votes.ToString() </h5>
+                    <h5><strong>Category: </strong> @post.Category.Name.ToString()</h5>
+                    <h5><strong>Published: </strong> @post.DatePublished.ToShortDateString()</h5>
+                    <h5><strong>Author: </strong> @post.Author.UserName</h5>
+
+                </div>
+            }
+        </div>
     </div>
 
-    <h1>Top User Posts</h1>
-
-    <hr />
 
 </div>

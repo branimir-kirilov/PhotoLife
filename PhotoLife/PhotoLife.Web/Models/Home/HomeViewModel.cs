@@ -4,9 +4,10 @@ namespace PhotoLife.Models.Home
 {
     public class HomeViewModel
     {
-        public HomeViewModel(IEnumerable<News> topNews)
+        public HomeViewModel(IEnumerable<News> topNews, IEnumerable<Post> topPosts)
         {
             this.TopNews = topNews;
+            this.TopPosts = topPosts;
         }
 
         public HomeViewModel()
@@ -15,5 +16,6 @@ namespace PhotoLife.Models.Home
         }
 
         public IEnumerable<News> TopNews { get; set; }
+        public IEnumerable<Post> TopPosts { get; set; }
     }
 }

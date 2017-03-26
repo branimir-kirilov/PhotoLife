@@ -10,7 +10,7 @@ namespace PhotoLife.Factories
     public interface IViewModelFactory
     {
         //Home
-        HomeViewModel CreateHomeViewModel(IEnumerable<News> topNews);
+        HomeViewModel CreateHomeViewModel(IEnumerable<News> topNews, IEnumerable<Post> topPosts);
 
         //Profile
         ProfileViewModel CreateUserProfileViewModel(User user);
