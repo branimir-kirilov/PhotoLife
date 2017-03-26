@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using CloudinaryDotNet;
+using PagedList;
 using PhotoLife.Authentication.Providers;
 using PhotoLife.Factories;
 using PhotoLife.Services.Contracts;
@@ -48,10 +50,16 @@ namespace PhotoLife.Controllers
 
             this.cloudinary = cloudinary;
         }
+        
         // Get: All
-        public ActionResult All()
+        [AllowAnonymous]
+        [OutputCache(Duration = 60 * 5, VaryByParam = "page")]
+        public ActionResult All(int count = 5, int page = 1)
         {
-            return View();
+            var news = this.newsService.GetAll().Select(n => this.viewModelFactory.CreateShortNewsViewModel(n));
+            var model = news.ToPagedList(page, count);
+
+            return this.PartialView("_PagedNewsListPartial", model);
         }
 
         // [Authorize(Roles = "Administrators")]

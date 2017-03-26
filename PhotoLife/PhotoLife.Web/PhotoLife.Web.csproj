@@ -263,6 +263,7 @@
     <Compile Include="Models\Home\HomeViewModel.cs" />
     <Compile Include="Models\News\AddNewsViewModel.cs" />
     <Compile Include="Models\News\NewsDetailsViewModel.cs" />
+    <Compile Include="Models\News\ShortNewsViewModel.cs" />
     <Compile Include="Models\Post\AddPostViewModel.cs" />
     <Compile Include="Models\Post\PostDetailsViewModel.cs" />
     <Compile Include="Models\Post\ShortPostViewModel.cs" />
@@ -1986,9 +1987,12 @@
     <Content Include="Scripts\kendo\messages\kendo.messages.zh-TW.min.js.map" />
     <Content Include="Views\Post\PostDetails.cshtml" />
     <Content Include="Views\News\NewsDetails.cshtml" />
-    <Content Include="Views\Shared\_PagedListPartial.cshtml" />
+    <Content Include="Views\Shared\_PagedPostListPartial.cshtml" />
     <Content Include="Views\Shared\_PostListPartial.cshtml" />
     <Content Include="Views\Shared\_ShortPostPartial.cshtml" />
+    <Content Include="Views\Shared\_PagedNewsListPartial.cshtml" />
+    <Content Include="Views\Shared\_NewsListPartial.cshtml" />
+    <Content Include="Views\Shared\_ShortNewsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

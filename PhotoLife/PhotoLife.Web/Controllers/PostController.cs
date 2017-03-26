@@ -59,7 +59,7 @@ namespace PhotoLife.Controllers
             var posts = this.postService.GetAll().Select(p => this.viewModelFactory.CreateShortPostViewModel(p));
             var model = posts.ToPagedList(page, count);
 
-            return this.PartialView("_PagedListPartial", model);
+            return this.PartialView("_PagedPostListPartial", model);
         }
 
         // Get: Add
