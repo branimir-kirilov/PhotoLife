@@ -13,6 +13,7 @@ namespace PhotoLife.App_Start.NinjectModules
             this.Bind<INewsService>().To<NewsService>();
             this.Bind<ICategoryService>().To<CategoryService>();
             this.Bind<ICommentService>().To<CommentService>();
+            this.Bind<IVotingService>().To<VotingService>();
         }
     }
 }

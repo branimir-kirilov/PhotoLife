@@ -52,6 +52,16 @@
 
 @if (HttpContext.Current.GetOwinContext().Authentication.User.Identity.IsAuthenticated)
 {
+   @Ajax.ActionLink(" ",
+                    "Vote",
+                    new { controller = "Vote", logId = Model.Id, currentVoteCount = Model.Votes.Count() },
+                    new AjaxOptions
+                    {
+                        UpdateTargetId = "rating",
+                        InsertionMode = InsertionMode.Replace,
+                        HttpMethod = "POST"
+                    }, new { @class = "glyphicon glyphicon-thumbs-up pull-right btn-lg", id = "rating-btn" })
+ 
     <div id="comment-form">
         @Html.Partial("_CommentPost", new CommentViewModel { CommentedItemId = Model.Id })
     </div>

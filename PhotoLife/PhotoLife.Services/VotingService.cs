@@ -10,7 +10,7 @@ using PhotoLife.Services.Contracts;
 
 namespace PhotoLife.Services
 {
-    public class VotingService
+    public class VotingService : IVotingService
     {
         private readonly IRepository<Vote> voteRepository;
         private readonly IUnitOfWork unitOfWork;
