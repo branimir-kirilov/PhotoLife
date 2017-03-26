@@ -58,7 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryService.cs" />
+    <Compile Include="CommentService.cs" />
     <Compile Include="Contracts\ICategoryService.cs" />
+    <Compile Include="Contracts\ICommentService.cs" />
     <Compile Include="Contracts\INewsService.cs" />
     <Compile Include="Contracts\IPostService.cs" />
     <Compile Include="Contracts\IUserService.cs" />

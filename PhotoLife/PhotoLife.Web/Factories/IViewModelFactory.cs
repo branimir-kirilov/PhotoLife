@@ -24,6 +24,6 @@ namespace PhotoLife.Factories
         AddNewsViewModel CreateAddNewsViewModel(Cloudinary cloudinary);
         NewsDetailsViewModel CreateNewsDetailsViewModel(News news);
         ShortNewsViewModel CreateShortNewsViewModel(News news);
-;
+
     }
 }
