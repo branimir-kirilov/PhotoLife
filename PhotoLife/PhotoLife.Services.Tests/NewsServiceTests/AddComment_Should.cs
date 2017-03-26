@@ -46,10 +46,15 @@ namespace PhotoLife.Services.Tests.NewsServiceTests
         }
 
         [TestCase(7)]
+        [TestCase(9)]
         public void _Call_UnitOfWorkCommit_GetById(int id)
         {
             //Arrange
+            var news = new News();
+
             var mockedNewsRepository = new Mock<IRepository<News>>();
+            mockedNewsRepository.Setup(r => r.GetById(It.IsAny<int>())).Returns(news);
+
             var mockedUserService = new Mock<IUserService>();
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             var mockedNewsFactory = new Mock<INewsFactory>();

@@ -49,10 +49,14 @@ namespace PhotoLife.Services.Tests.PostsServiceTests
         [TestCase(7)]
         [TestCase(9)]
 
-        public void _Call_UnitOfWorkCommit_GetById(int id)
+        public void _Call_UnitOfWork_Commit(int id)
         {
             //Arrange
+            var post = new Post();
+
             var mockedPostRepository = new Mock<IRepository<Post>>();
+            mockedPostRepository.Setup(r => r.GetById(It.IsAny<int>())).Returns(post);
+
             var mockedUserService = new Mock<IUserService>();
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             var mockedPostFactory = new Mock<IPostFactory>();
