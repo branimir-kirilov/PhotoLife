@@ -254,6 +254,7 @@
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\VoteController.cs" />
     <Compile Include="Factories\ICloudinaryFactory.cs" />
     <Compile Include="Factories\IViewModelFactory.cs" />
     <Compile Include="Global.asax.cs">
@@ -2000,6 +2001,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Vote\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
