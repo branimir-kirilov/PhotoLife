@@ -1,4 +1,5 @@
-﻿@model PhotoLife.ViewModels.News.NewsDetailsViewModel
+﻿@using PhotoLife.ViewModels.Comment
+@model PhotoLife.ViewModels.News.NewsDetailsViewModel
 
 @{
     ViewBag.Title = "NewsDetails";
@@ -49,6 +50,13 @@
 <div>
 @Html.Raw(HttpUtility.HtmlDecode(Model.Text))
 </div>
+
+@if (HttpContext.Current.GetOwinContext().Authentication.User.Identity.IsAuthenticated)
+{
+    <div id="comment-form">
+        @Html.Partial("_CommentNews", new CommentViewModel { CommentedItemId = Model.Id })
+    </div>
+}
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

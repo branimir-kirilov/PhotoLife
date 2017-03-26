@@ -88,7 +88,7 @@ namespace PhotoLife.Services
 
             var comment = this.commentFactory.CreateComment(user, date, content);
 
-            this.postsService.AddComment(postId, comment);
+            this.newsService.AddComment(postId, comment);
 
         }
 
@@ -100,7 +100,7 @@ namespace PhotoLife.Services
 
             var comment = this.commentFactory.CreateComment(user, date, content);
 
-            this.newsService.AddComment(newsId, comment);
+            this.postsService.AddComment(newsId, comment);
         }
 
         public void EditComment(string content, int commentId)

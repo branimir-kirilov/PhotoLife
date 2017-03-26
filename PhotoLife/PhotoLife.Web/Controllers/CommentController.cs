@@ -50,8 +50,8 @@ namespace PhotoLife.Controllers
             var userId = this.authProvider.CurrentUserId;
 
             this.commentService.AddCommentToNews(model.Content, model.CommentedItemId, userId);
-            
-            return this.RedirectToRoute("News/Details", new {id = model.CommentedItemId} );
+
+            return this.RedirectToAction("Details", "News", new { id = model.CommentedItemId });
         }
     }
 }
