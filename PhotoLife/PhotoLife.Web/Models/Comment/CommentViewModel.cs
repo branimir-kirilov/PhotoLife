@@ -6,6 +6,6 @@ namespace PhotoLife.ViewModels.Comment
     {
         public string Content { get; set; }
 
-        public int LogId { get; set; }
+        public int CommentedItemId { get; set; }
     }
 }

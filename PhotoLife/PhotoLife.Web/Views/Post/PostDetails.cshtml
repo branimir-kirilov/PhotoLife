@@ -1,4 +1,5 @@
-﻿@model PhotoLife.ViewModels.Post.PostDetailsViewModel
+﻿@using PhotoLife.ViewModels.Comment
+@model PhotoLife.ViewModels.Post.PostDetailsViewModel
 
 @{
     ViewBag.Title = "PostDetails";
@@ -47,6 +48,14 @@
 
     </dl>
 </div>
+
+@if (HttpContext.Current.GetOwinContext().Authentication.User.Identity.IsAuthenticated)
+{
+    <div id="comment-form">
+        @Html.Partial("_CommentPost", new CommentViewModel { CommentedItemId = Model.Id })
+    </div>
+}
+
 <p>
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")*@

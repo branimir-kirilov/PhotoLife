@@ -1,0 +1,10 @@
+﻿@model PhotoLife.ViewModels.Comment.CommentViewModel
+
+@using (Html.BeginForm("CommentPost", "Comment", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.TextAreaFor(m => m.Content, new { @class = "form-control", rows = 5 });
+    @Html.HiddenFor(m => m.CommentedItemId)
+    @Html.ValidationSummary()
+    <input type="submit" class="btn btn-primary" id="submit" value="Submit" />
+}
