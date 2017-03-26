@@ -43,7 +43,6 @@ namespace PhotoLife.Services.Tests.CommentServiceTests
         public void _Throws_ArgumentNullException_WhenPostService_IsNull()
         {
             //Arrange
-            var mockedPostService = new Mock<IPostService>();
             var mockedNewsService = new Mock<INewsService>();
             var mockedUserService = new Mock<IUserService>();
             var mockedCommentFactory = new Mock<ICommentFactory>();
@@ -53,7 +52,7 @@ namespace PhotoLife.Services.Tests.CommentServiceTests
 
             //Act and Assert
             Assert.Throws<ArgumentNullException>(() => new CommentService(
-                mockedPostService.Object,
+                null,
                 mockedNewsService.Object,
                 mockedCommentFactory.Object,
                 mockedUserService.Object,
