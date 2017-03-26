@@ -1,0 +1,24 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<PhotoLife.ViewModels.Post.ShortPostViewModel>
+
+@{
+    ViewBag.Title = "_PagedListPartial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="list">
+    @Html.Partial("_PostListPartial", Model)
+
+    <div class="pages total">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("All", "Post",
+        new { page = page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+            new AjaxOptions()
+            {
+                HttpMethod = "GET",
+                UpdateTargetId = "list",
+                InsertionMode = InsertionMode.Replace
+            }))
+    </div>
+</div>

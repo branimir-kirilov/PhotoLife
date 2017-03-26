@@ -18,6 +18,7 @@ namespace PhotoLife.Factories
         //Post
         AddPostViewModel CreateAddPostViewModel(Cloudinary cloudinary);
         PostDetailsViewModel CreatePostDetailsViewModel(Post post);
+        ShortPostViewModel CreateShortPostViewModel(Post post);
         
         //News
         AddNewsViewModel CreateAddNewsViewModel(Cloudinary cloudinary);

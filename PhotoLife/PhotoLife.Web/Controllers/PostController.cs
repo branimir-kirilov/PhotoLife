@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using CloudinaryDotNet;
+using PagedList;
 using PhotoLife.Authentication.Providers;
 using PhotoLife.Factories;
 using PhotoLife.Services.Contracts;
@@ -50,9 +52,14 @@ namespace PhotoLife.Controllers
 
         // Get: All
         [AllowAnonymous]
-        public ActionResult All()
+        [OutputCache(Duration = 60 * 5, VaryByParam = "page")]
+        public ActionResult All(int count = 3, int page = 1)
         {
-            return View();
+
+            var posts = this.postService.GetAll().Select(p => this.viewModelFactory.CreateShortPostViewModel(p));
+            var model = posts.ToPagedList(page, count);
+
+            return this.PartialView("_PagedListPartial", model);
         }
 
         // Get: Add

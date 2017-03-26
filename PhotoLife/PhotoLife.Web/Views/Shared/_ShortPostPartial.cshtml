@@ -1,0 +1,14 @@
+﻿@model PhotoLife.ViewModels.Post.ShortPostViewModel
+
+<div class="well">
+    <h2 class="media-heading">
+        @Html.ActionLink(Model.Title, "PostDetails", new { controller = "Post", id = Model.Id })
+    </h2>
+    <ul class="list-inline list-unstyled">
+        <li><span><i class="glyphicon glyphicon-calendar"></i> @string.Format("{0:D} at {0:HH:mm}", Model.DatePublished)</span></li>
+        <li>|</li>
+        <li>
+            <span class="glyphicon glyphicon-star"></span> Rating: @Model.Votes
+        </li>
+    </ul>
+</div>
