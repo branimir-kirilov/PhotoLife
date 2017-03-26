@@ -91,6 +91,7 @@
     <Compile Include="NewsServiceTests\GetTopByComments_Should.cs" />
     <Compile Include="NewsServiceTests\GetTopNews_Should.cs" />
     <Compile Include="NewsServiceTests\Get_All_Should.cs" />
+    <Compile Include="PostsServiceTests\AddComment_Should.cs" />
     <Compile Include="PostsServiceTests\Constructor_Should.cs" />
     <Compile Include="PostsServiceTests\CreatePost_Should.cs" />
     <Compile Include="PostsServiceTests\EditPost_Should.cs" />
