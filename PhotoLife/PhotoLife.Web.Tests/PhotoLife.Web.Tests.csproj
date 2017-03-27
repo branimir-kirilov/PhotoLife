@@ -146,6 +146,7 @@
     <Compile Include="Controllers\Account\Login_Should.cs" />
     <Compile Include="Controllers\Account\LogOff_Should.cs" />
     <Compile Include="Controllers\Account\Register_Should.cs" />
+    <Compile Include="Controllers\Post\ConstructorShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +165,10 @@
     <ProjectReference Include="..\PhotoLife.Models\PhotoLife.Models.csproj">
       <Project>{49792F7F-EE1F-46AC-A388-7B97011DBB16}</Project>
       <Name>PhotoLife.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PhotoLife.Services\PhotoLife.Services.csproj">
+      <Project>{6041536D-03A2-4175-BD96-E25340CFD59D}</Project>
+      <Name>PhotoLife.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\PhotoLife.Web\PhotoLife.Web.csproj">
       <Project>{60E193C5-6677-40FB-9C7D-A1C7EB559CE0}</Project>
