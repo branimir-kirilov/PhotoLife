@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using CloudinaryDotNet;
 using Moq;
 using NUnit.Framework;
@@ -16,7 +11,7 @@ using PhotoLife.ViewModels.Post;
 namespace PhotoLife.Web.Tests.Controllers.Post
 {
     [TestFixture]
-    public class AddShould
+    public class Add_Should
     {
         [TestCase("fake", "fake", "fake")]
         public void _Call_ViewModelFactory(string cloud, string apiKey, string apiSecret)
