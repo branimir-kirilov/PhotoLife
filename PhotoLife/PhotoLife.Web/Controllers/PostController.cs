@@ -52,7 +52,6 @@ namespace PhotoLife.Controllers
 
         // Get: All
         [AllowAnonymous]
-        [OutputCache(Duration = 60 * 5, VaryByParam = "page")]
         public ActionResult All(int count = 3, int page = 1)
         {
 

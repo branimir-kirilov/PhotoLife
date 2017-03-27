@@ -98,7 +98,8 @@ namespace PhotoLife.Services
 
             var datePublished = this.datetimeProvider.GetCurrentDate();
 
-            Category category = this.categoryService.GetCategoryByName(categoryEnum);
+            Category category = this.categoryService.GetCategoryByName(categoryEnum) ??
+                        this.categoryService.CreateCategory(categoryEnum);
 
             var post = this.postFactory.CreatePost(title, description, profilePicUrl, user, category, datePublished);
 
