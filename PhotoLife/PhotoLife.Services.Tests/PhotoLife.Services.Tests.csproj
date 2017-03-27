@@ -86,6 +86,7 @@
     <Compile Include="CommentServiceTests\AddCommentToNews_Should.cs" />
     <Compile Include="CommentServiceTests\AddCommentToPostShould.cs" />
     <Compile Include="CommentServiceTests\Constructor_Should.cs" />
+    <Compile Include="CommentServiceTests\EditComment_Should.cs" />
     <Compile Include="NewsServiceTests\AddComment_Should.cs" />
     <Compile Include="NewsServiceTests\Constructor_Should.cs" />
     <Compile Include="NewsServiceTests\CreateNews_Should.cs" />
