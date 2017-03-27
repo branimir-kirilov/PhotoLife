@@ -146,7 +146,7 @@
     <Compile Include="Controllers\Account\Login_Should.cs" />
     <Compile Include="Controllers\Account\LogOff_Should.cs" />
     <Compile Include="Controllers\Account\Register_Should.cs" />
-    <Compile Include="Controllers\Post\AddShould.cs" />
+    <Compile Include="Controllers\Post\Add_Should.cs" />
     <Compile Include="Controllers\Post\All_Should.cs" />
     <Compile Include="Controllers\Post\ConstructorShould.cs" />
     <Compile Include="Controllers\Post\Details_Should.cs" />
