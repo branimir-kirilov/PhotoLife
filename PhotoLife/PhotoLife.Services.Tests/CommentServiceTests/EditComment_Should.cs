@@ -80,17 +80,21 @@ namespace PhotoLife.Services.Tests.CommentServiceTests
             //Assert
             mockedRepository.Verify(r => r.Update(comment), Times.Once);
         }
-
         [TestCase("content", 7)]
         [TestCase("contenzxfsdfsdft", 9)]
-        public void _Call_UnitOfWork_Commit(string content, int commentId)
+        public void _Call_UnitOfWork_Commit_IfCommentNotNull(string content, int commentId)
         {
             //Arrange
+            var comment = new Comment();
+
             var mockedPostService = new Mock<IPostService>();
             var mockedNewsService = new Mock<INewsService>();
             var mockedUserService = new Mock<IUserService>();
             var mockedCommentFactory = new Mock<ICommentFactory>();
+
             var mockedRepository = new Mock<IRepository<Comment>>();
+            mockedRepository.Setup(r => r.GetById(It.IsAny<int>())).Returns(comment);
+
             var mockedUnitOfWork = new Mock<IUnitOfWork>();
             var mockedDateTimeProvider = new Mock<IDateTimeProvider>();
 
@@ -110,5 +114,6 @@ namespace PhotoLife.Services.Tests.CommentServiceTests
             //Assert
             mockedUnitOfWork.Verify(r => r.Commit(), Times.Once);
         }
+
     }
 }
