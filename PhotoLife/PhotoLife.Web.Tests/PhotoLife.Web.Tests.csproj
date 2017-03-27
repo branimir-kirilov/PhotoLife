@@ -149,6 +149,7 @@
     <Compile Include="Controllers\Post\AddShould.cs" />
     <Compile Include="Controllers\Post\All_Should.cs" />
     <Compile Include="Controllers\Post\ConstructorShould.cs" />
+    <Compile Include="Controllers\Post\Details_Should.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

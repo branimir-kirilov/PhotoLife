@@ -63,5 +63,6 @@ namespace PhotoLife.Web.Tests.Controllers.Post
             //Assert
             Assert.AreEqual(model, res.Model);
         }
+
     }
 }
