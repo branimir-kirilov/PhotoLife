@@ -84,6 +84,7 @@
     <Compile Include="CategoryServiceTests\GetAll_Should.cs" />
     <Compile Include="CategoryServiceTests\GetCategoryByName_Should.cs" />
     <Compile Include="CommentServiceTests\AddCommentToNews_Should.cs" />
+    <Compile Include="CommentServiceTests\AddCommentToPostShould.cs" />
     <Compile Include="CommentServiceTests\Constructor_Should.cs" />
     <Compile Include="NewsServiceTests\AddComment_Should.cs" />
     <Compile Include="NewsServiceTests\Constructor_Should.cs" />
