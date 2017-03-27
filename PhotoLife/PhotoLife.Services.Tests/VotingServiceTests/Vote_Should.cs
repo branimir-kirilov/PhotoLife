@@ -178,5 +178,42 @@ namespace PhotoLife.Services.Tests.VotingServiceTests
             //Assert
             mockedUnitOfWork.Verify(r => r.Commit(), Times.Once);
         }
+
+        [TestCase(7, "userId1")]
+        [TestCase(9, "userId123423#$")]
+        public void _Return_Correctly(int postId, string userId)
+        {
+            //Arrange
+            var vote = new Vote();
+            var votes = new List<Vote>()
+            {
+                vote
+            }.AsQueryable();
+
+            var post = new Post();
+
+            var mockedRepository = new Mock<IRepository<Vote>>();
+            mockedRepository.Setup(r => r.GetAll).Returns(votes);
+
+            var mockedUnitOfWork = new Mock<IUnitOfWork>();
+
+            var mockedVoteFactory = new Mock<IVoteFactory>();
+            mockedVoteFactory.Setup(v => v.CreateVote(It.IsAny<int>(), It.IsAny<string>())).Returns(vote);
+
+            var mockedPostService = new Mock<IPostService>();
+            mockedPostService.Setup(p => p.GetPostById(It.IsAny<int>())).Returns(post);
+
+            var voteService = new VotingService(
+                mockedRepository.Object,
+                mockedUnitOfWork.Object,
+                mockedVoteFactory.Object,
+                mockedPostService.Object);
+
+            //Act
+            var res = voteService.Vote(postId, userId);
+
+            //Assert
+            Assert.AreEqual(post.Comments.Count, res);
+        }
     }
 }
