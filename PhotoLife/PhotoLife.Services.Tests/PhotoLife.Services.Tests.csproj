@@ -108,6 +108,7 @@
     <Compile Include="UserServiceTests\EditUser_Should.cs" />
     <Compile Include="UserServiceTests\GetById_Should.cs" />
     <Compile Include="UserServiceTests\GetByUsername_Should.cs" />
+    <Compile Include="VotingServiceTests\Constructor_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

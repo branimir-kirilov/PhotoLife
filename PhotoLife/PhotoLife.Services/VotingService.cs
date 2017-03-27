@@ -47,24 +47,24 @@ namespace PhotoLife.Services
 
         public int Vote(int postId, string userId)
         {
-            var userVoteOnLog = this.voteRepository
+            var userVote = this.voteRepository
                 .GetAll
                 .FirstOrDefault(v => v.PostId.Equals(postId) && v.UserId.Equals(userId));
 
-            var notVoted = (userVoteOnLog == null);
+            var notVoted = (userVote == null);
 
             if (notVoted)
             {
-                var log = this.postService.GetPostById(postId);
+                var post = this.postService.GetPostById(postId);
 
-                if (log != null)
+                if (post != null)
                 {
                     var vote = this.voteFactory.CreateVote(postId, userId);
 
                     this.voteRepository.Add(vote);
                     this.unitOfWork.Commit();
 
-                    return log.Votes.Count;
+                    return post.Votes.Count;
                 }
             }
 
