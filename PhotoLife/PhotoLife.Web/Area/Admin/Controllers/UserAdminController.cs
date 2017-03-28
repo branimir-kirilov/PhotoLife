@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using PhotoLife.Area.Admin.Models;
 using PhotoLife.Authentication.Providers;
 using PhotoLife.Services.Contracts;
 
@@ -29,9 +31,22 @@ namespace PhotoLife.Area.Admin.Controllers
             this.userService = userService;
             this.authProvider = authProvider;
         }
+
         // GET: UserAdmin
-        public ActionResult Index()
+        public ActionResult Index(int page =1, int count = 15)
         {
+            var users = this.userService.GetUsers();
+
+            var model = new List<UserViewModel>();
+
+            foreach (var user in users)
+            {
+                var isAdmin = this.authProvider.IsInRole(user.Id, Constants.AdministratorRoleName);
+                var viewModel = new UserViewModel(user, isAdmin);
+                model.Add(viewModel);
+            }
+
+
             return View();
         }
     }

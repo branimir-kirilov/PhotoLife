@@ -81,5 +81,21 @@ namespace PhotoLife.Authentication.Providers
         {
             this.httpContextProvider.CurrentOwinContext.Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
+
+        public bool IsInRole(string userId, string roleName)
+        {
+            return userId != null && this.UserManager.IsInRole(userId, roleName);
+        }
+
+        public IdentityResult AddToRole(string userId, string roleName)
+        {
+            return this.UserManager.AddToRole(userId, roleName);
+        }
+
+        public IdentityResult RemoveFromRole(string userId, string roleName)
+        {
+            return this.UserManager.RemoveFromRole(userId, roleName);
+        }
+
     }
 }
