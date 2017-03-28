@@ -3,7 +3,8 @@ $(function () {
     if ($.fn.cloudinary_fileupload !== undefined) {
         $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
     }
-
+    
+    $('#submit-btn').hide();
     function prettydump(obj) {
         ret = ""
         $.each(obj, function (key, value) {
@@ -26,6 +27,7 @@ $(function () {
             function (e, data) {
                 $('.status_value').text('Selected Picture');
                 $('.upload-box').hide();
+                $('#submit-btn').show();
 
                 $.post('/Account/UploadDirect', data.result);
                 var info = $('<div class="uploaded_info"/>');

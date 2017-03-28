@@ -39,13 +39,7 @@
     <div class="form-group">
         @Html.HiddenFor(m => m.CoverPicture, new { @class = "col-md-2 control-label", @id = "pic-url" })
     </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Upload" />
-        </div>
-    </div>
-
+    
     <div class="upload-box col-md-12">
         @Html.Label("Upload cover photo", new { @class = "col-md-5" })
         <form>
@@ -61,6 +55,12 @@
     </div>
 
     <div class="uploaded_info_holder">
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Upload" />
+        </div>
     </div>
 }
 
