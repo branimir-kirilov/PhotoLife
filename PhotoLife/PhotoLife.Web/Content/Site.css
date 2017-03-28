@@ -25,6 +25,9 @@
   border: 1px solid gba(100, 100, 100, 0.1);
   margin: 2px;
 }
+.title {
+  font-family: 'Adobe Caslon Pro';
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
   padding-left: 0px;
