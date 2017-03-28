@@ -35,38 +35,38 @@ namespace PhotoLife.Services
         {
             if (postsService == null)
             {
-                throw new ArgumentNullException(nameof(postsService));
+                throw new ArgumentNullException("postsService");
             }
 
             if (newsService == null)
             {
-                throw new ArgumentNullException(nameof(newsService));
+                throw new ArgumentNullException("newsService");
             }
 
 
             if (userService == null)
             {
-                throw new ArgumentNullException(nameof(userService));
+                throw new ArgumentNullException("userService");
             }
 
             if (dateTimeProvider == null)
             {
-                throw new ArgumentNullException(nameof(dateTimeProvider));
+                throw new ArgumentNullException("dateTimeProvider");
             }
 
             if (commentFactory == null)
             {
-                throw new ArgumentNullException(nameof(commentFactory));
+                throw new ArgumentNullException("commentFactory");
             }
 
             if (commentRepository == null)
             {
-                throw new ArgumentNullException(nameof(commentRepository));
+                throw new ArgumentNullException("commentRepository");
             }
 
             if (unitOfWork == null)
             {
-                throw new ArgumentNullException(nameof(unitOfWork));
+                throw new ArgumentNullException("unitOfWork");
             }
 
             this.postsService = postsService;

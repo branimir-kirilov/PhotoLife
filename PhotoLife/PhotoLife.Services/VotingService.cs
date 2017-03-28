@@ -21,22 +21,22 @@ namespace PhotoLife.Services
         {
             if (voteRepository == null)
             {
-                throw new ArgumentNullException(nameof(voteRepository));
+                throw new ArgumentNullException("voteRepository");
             }
 
             if (unitOfWork == null)
             {
-                throw new ArgumentNullException(nameof(unitOfWork));
+                throw new ArgumentNullException("unitOfWork");
             }
 
             if (postService == null)
             {
-                throw new ArgumentNullException(nameof(postService));
+                throw new ArgumentNullException("postService");
             }
 
             if (voteFactory == null)
             {
-                throw new ArgumentNullException(nameof(voteFactory));
+                throw new ArgumentNullException("voteFactory");
             }
 
             this.voteRepository = voteRepository;

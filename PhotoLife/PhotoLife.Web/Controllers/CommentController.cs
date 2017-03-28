@@ -18,12 +18,12 @@ namespace PhotoLife.Controllers
         {
             if (commentService == null)
             {
-                throw new ArgumentNullException(nameof(commentService));
+                throw new ArgumentNullException("commentService");
             }
 
             if (authProvider == null)
             {
-                throw new ArgumentNullException(nameof(authProvider));
+                throw new ArgumentNullException("authProvider");
             }
 
             this.commentService = commentService;
