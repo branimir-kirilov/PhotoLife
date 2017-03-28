@@ -6,6 +6,47 @@
 }
 
 
-<h2>Profile </h2>
-
-<h1>@Model.Email</h1>
+<div class="container">
+    <div class="span3 well">
+        <center>
+            <a href="#aboutModal" data-toggle="modal" data-target="#myModal"><img src="@Model.ProfilePicUrl" name="aboutme" width="140" height="140" class="img-circle"></a>
+            <h3>@Model.Name</h3>
+            <em>Click my pic for more</em>
+        </center>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" id="myModalLabel">More About @Model.Name</h4>
+                </div>
+                <div class="modal-body">
+                    <center>
+                        <img src="@Model.ProfilePicUrl" name="aboutme" width="140" height="140" border="0" class="img-circle"></a>
+                    </center>
+                    <center>
+                        <p class="text-left">
+                            <strong>Contact me here: </strong><br>
+                            @Model.Email
+                        </p>
+                        <br>
+                    </center>
+                    <center>
+                        <p class="text-left">
+                            <strong>Who am I: </strong><br>
+                            @Model.Description
+                        </p>
+                        <br>
+                    </center>
+                </div>
+                <div class="modal-footer">
+                    <center>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">It was nice to meet you!</button>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
