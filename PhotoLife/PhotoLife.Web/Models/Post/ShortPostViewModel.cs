@@ -14,7 +14,8 @@ namespace PhotoLife.ViewModels.Post
             this.Title = post.Title;
             this.ImageUrl = post.ImageUrl;
             this.DatePublished = post.DatePublished;
-            this.Votes = post.Votes;
+            this.VotesCount = post.Votes.Count;
+            this.CommentsCount = post.Comments.Count;
         }
 
         public ShortPostViewModel()
@@ -26,6 +27,7 @@ namespace PhotoLife.ViewModels.Post
         public string Title { get; set; }
         public string ImageUrl { get; set; }
         public DateTime DatePublished { get; set; }
-        public IEnumerable<Vote> Votes { get; set; }
+        public int VotesCount { get; set; }
+        public int CommentsCount { get; set; }
     }
 }
