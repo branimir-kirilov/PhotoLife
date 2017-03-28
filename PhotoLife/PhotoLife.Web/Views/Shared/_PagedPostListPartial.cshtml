@@ -9,7 +9,7 @@
 <div id="list">
     @Html.Partial("_PostListPartial", Model)
 
-    <div class="row pages total">
+    <div class="pages total">
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
         @Html.PagedListPager(Model, page => Url.Action("All", "Post",

@@ -3,57 +3,22 @@
 @model PhotoLife.ViewModels.Post.PostDetailsViewModel
 
 @{
-    ViewBag.Title = "PostDetails";
+    ViewBag.Title = Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>PostDetails</h2>
+<div class="container">
+    <h3 class="title">@Model.Title</h3>
 
-<div>
-    <h4>PostDetailsViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <img src="@Model.ImageUrl" alt="image" />
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DatePublished)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DatePublished)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Votes)
-        </dt>
-
-        <dd>
-            @Html.Partial("~/Views/Vote/Vote.cshtml", Model.Votes.Count())
-        </dd>
-
-    </dl>
+    <div class="well">
+        <img src="@Model.ImageUrl" alt="Alternate Text" class="post-short-pic" />
+        <p class="title"> @Model.Description</p>
+    </div>
 </div>
-
 
 @if (HttpContext.Current.GetOwinContext().Authentication.User.Identity.IsAuthenticated)
 {
-   @Ajax.ActionLink(" ",
+    @Ajax.ActionLink(" ",
                     "Vote",
                     new { controller = "Vote", postId = Model.Id, currentVoteCount = Model.Votes.Count() },
                     new AjaxOptions
@@ -62,16 +27,26 @@
                         InsertionMode = InsertionMode.Replace,
                         HttpMethod = "POST"
                     }, new { @class = "glyphicon glyphicon-thumbs-up pull-right btn-lg", id = "rating-btn" })
- 
+
     <div id="comment-form">
-        @Html.Partial("_CommentPost", new CommentViewModel { CommentedItemId = Model.Id })
+        @Html.Partial("_CommentPost", new AddCommentViewModel { CommentedItemId = Model.Id })
+    </div>
+
+    <div id="comments">
+        @if (Model.Comments.Any())
+        {
+
+            @:Comments:
+            foreach (var comment in Model.Comments)
+            {
+                <div class="media-body">
+                    @Html.Partial("_CommentPartial", comment)
+                </div>
+            }
+
+        }
     </div>
 }
-
-<p>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")*@
-</p>
 
 @section scripts{
     @Scripts.Render("~/bundles/jquery-unobtrusive")

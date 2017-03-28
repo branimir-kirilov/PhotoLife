@@ -4,7 +4,7 @@
     <h3 class="media-heading">
         @Html.ActionLink(Model.Title, "Details", new { controller = "Post", id = Model.Id })
     </h3>
-    <img src="@Model.ImageUrl" alt="Alternate Text" />
+    <img src="@Model.ImageUrl" alt="Alternate Text" class="post-short-pic" />
     <ul class="list-inline list-unstyled">
         <li><span><i class="glyphicon glyphicon-calendar"></i> @string.Format("{0:D} at {0:HH:mm}", Model.DatePublished)</span></li>
         <li>|</li>

@@ -33,7 +33,7 @@ namespace PhotoLife.Controllers
         [Authorize]
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult CommentPost(CommentViewModel model)
+        public ActionResult CommentPost(AddCommentViewModel model)
         {
             var userId = this.authProvider.CurrentUserId;
 
@@ -45,7 +45,7 @@ namespace PhotoLife.Controllers
         [Authorize]
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult CommentNews(CommentViewModel model)
+        public ActionResult CommentNews(AddCommentViewModel model)
         {
             var userId = this.authProvider.CurrentUserId;
 

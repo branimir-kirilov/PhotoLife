@@ -1,0 +1,40 @@
+﻿@model PhotoLife.ViewModels.Comment.CommentViewModel
+
+@{
+    ViewBag.Title = "_CommentPartial";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4 class="media-heading">
+    @if (Model.CanEdit)
+    {
+        <a class="pull-right glyphicon glyphicon-edit btn-lg edit-comment-button"></a>
+    }
+    @Html.ActionLink(@Model.User,
+        "UserProfile",
+        new { controller = "Profile", username = Model.User })
+
+    <small>@string.Format("{0:D} at {0:HH:mm}", Model.Date)</small>
+</h4>
+<span id="@($"comment{Model.CommentId}")">
+    @Html.Raw("<pre>" + Html.Encode(Model.Content) + "</pre>")
+</span>
+@*@if (Model.CanEdit)
+{
+    using (Ajax.BeginForm("Edit", "Comment", null,
+   new AjaxOptions
+   {
+       UpdateTargetId = $"comment{Model.CommentId}",
+       InsertionMode = InsertionMode.Replace,
+       HttpMethod = "POST"
+   }, new { @class = "edit-comment" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.TextAreaFor(m => m.Content, new { cols = "40", rows = "20" })
+        <br />
+        @Html.HiddenFor(m => m.CommentId)
+        <input type="submit" value="Edit" class="btn btn-primary" />
+    }
+}*@
+
