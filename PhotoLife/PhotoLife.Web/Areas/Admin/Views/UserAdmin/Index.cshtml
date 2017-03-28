@@ -1,0 +1,69 @@
+﻿@using System.Web.Mvc.Html
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<PhotoLife.Area.Admin.Models.UserViewModel>
+
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <table class="table">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().IsAdministrator)
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsAdministrator)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "UserProfile", new { controller = "Profile", area = "", username = item.UserName }) |
+                </td>
+                <td>
+                    @if (item.IsAdministrator)
+                {
+                        @Html.ActionLink("Remove Admin", "RemoveAdmin", new { controller = "UserAdmin", userId = item.UserId, page = Model.PageNumber })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Make Admin", "AddAdmin", new { controller = "UserAdmin", userId = item.UserId, page = Model.PageNumber })
+
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div class="pages total">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index", "UserAdmin",
+        new { page = page }))
+    </div>
