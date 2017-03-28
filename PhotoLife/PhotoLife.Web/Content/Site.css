@@ -6,6 +6,10 @@
   background-color: #ffffff;
   color: #000000;
 }
+.container-fluid {
+  margin: 0px;
+  padding: 0px;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
   padding-left: 0px;

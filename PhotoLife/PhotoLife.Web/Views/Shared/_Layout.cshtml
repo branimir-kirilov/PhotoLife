@@ -11,38 +11,40 @@
     @Styles.Render("~/Content/css", "~/Content/kendo/css")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("PhotoLife", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("News", "All", "News")</li>
-                    <li>@Html.ActionLink("Posts", "All", "Post")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("PhotoLife", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("News", "All", "News")</li>
+                <li>@Html.ActionLink("Posts", "All", "Post")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
 
-                    @if (HttpContext.Current.GetOwinContext().Authentication.User.Identity.IsAuthenticated)
-                    {
-                        <li>@Html.ActionLink("Upload", "Add", "Post")</li>
-                    }
+                @if (HttpContext.Current.GetOwinContext().Authentication.User.Identity.IsAuthenticated)
+                {
+                    <li>@Html.ActionLink("Upload", "Add", "Post")</li>
+                }
 
-                    @if (HttpContext.Current.GetOwinContext().Authentication.User.IsInRole("Administrator"))
-                    {
-                        <li>@Html.ActionLink("Add News", "Add", "News")</li>
-                    }
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+                @if (HttpContext.Current.GetOwinContext().Authentication.User.IsInRole("Administrator"))
+                {
+                    <li>@Html.ActionLink("Add News", "Add", "News")</li>
+                }
+            </ul>
+            @Html.Partial("_LoginPartial")
         </div>
     </div>
+</div>
+
+<!--Main body container -->
 <div class="container-fluid body-content">
     <div class="row">
         <div class="col-md-12">
@@ -51,7 +53,7 @@
     </div>
     <hr/>
     <footer class="row">
-        <p class="col-md-12">&copy; @DateTime.Now.Year - PhotoLife, Branimir Kirilov, Telerik Academy Course Project</p>
+        <p class="col-md-11">&copy; @DateTime.Now.Year - PhotoLife, Branimir Kirilov, Telerik Academy Course Project</p>
     </footer>
 </div>
 
