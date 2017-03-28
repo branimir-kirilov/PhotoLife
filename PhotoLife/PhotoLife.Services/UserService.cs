@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using PhotoLife.Data.Contracts;
 using PhotoLife.Models;
@@ -27,6 +28,11 @@ namespace PhotoLife.Services
 
             this.userRepository = userRepository;
             this.unitOfWork = unitOfWork;
+        }
+        public IEnumerable<User> GetUsers()
+        {
+            return this.userRepository.GetAll
+                .ToList();
         }
 
         public User GetUserById(string id)
