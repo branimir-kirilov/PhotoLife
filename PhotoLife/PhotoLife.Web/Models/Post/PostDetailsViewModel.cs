@@ -18,6 +18,7 @@ namespace PhotoLife.ViewModels.Post
             this.Votes = post.Votes;
             this.Category = post.Category.Name;
             this.Comments = post.Comments;
+            this.Author = post.Author.UserName;
         }
 
         public PostDetailsViewModel()
@@ -33,5 +34,6 @@ namespace PhotoLife.ViewModels.Post
         public IEnumerable<Vote> Votes { get; set; }
         public IEnumerable<Models.Comment> Comments { get; set; }
         public CategoryEnum Category { get; set; }
+        public string Author { get; set; }
     }
 }

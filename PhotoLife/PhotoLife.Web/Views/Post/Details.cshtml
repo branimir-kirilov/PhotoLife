@@ -12,44 +12,46 @@
     <h3 class="title">@Model.Title</h3>
 
     <div class="well">
-        <img src="@Model.ImageUrl" alt="Alternate Text" class="post-short-pic" />
+        <span class="glyphicon glyphicon-user"></span> Author: @Html.ActionLink(Model.Author, "UserProfile", new { controller = "Profile", username = Model.Author })
+        <span class="pull-right"><i class="glyphicon glyphicon-calendar"></i> @string.Format("{0:D} at {0:HH:mm}", Model.DatePublished)</span>
+        <img src="@Model.ImageUrl" alt="Alternate Text" class="post-short-pic"/>
         <p class="title"> @Model.Description</p>
+
         <div id="comment-form">
-            @Html.Partial("_CommentPost", new AddCommentViewModel { CommentedItemId = Model.Id })
+            @Html.Partial("_CommentPost", new AddCommentViewModel {CommentedItemId = Model.Id})
         </div>
+
+        
+        @Html.Partial("~/Views/Vote/Vote.cshtml", Model.Votes.Count())
 
         @if (HttpContext.Current.GetOwinContext().Authentication.User.Identity.IsAuthenticated)
         {
             @Ajax.ActionLink(" ",
-                    "Vote",
-                    new { controller = "Vote", postId = Model.Id, currentVoteCount = Model.Votes.Count() },
-                    new AjaxOptions
-                    {
-                        UpdateTargetId = "rating",
-                        InsertionMode = InsertionMode.Replace,
-                        HttpMethod = "POST"
-                    }, new { @class = "glyphicon glyphicon-thumbs-up pull-right btn-lg", id = "rating-btn" })
+                "Vote",
+                new {controller = "Vote", postId = Model.Id, currentVoteCount = Model.Votes.Count()},
+                new AjaxOptions
+                {
+                    UpdateTargetId = "rating",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "POST"
+                }, new {@class = "glyphicon glyphicon-thumbs-up pull-right btn-lg", id = "rating-btn"})
         }
+
+        <div id="comments">
+            @if (Model.Comments.Any())
+            {
+                foreach (var comment in Model.Comments)
+                {
+                    var curr = new CommentViewModel(comment);
+
+                    <div class="media-body">
+                        @Html.Partial("_CommentPartial", curr)
+                    </div>
+                }
+            }
+        </div>
     </div>
 </div>
-
-
-<div id="comments">
-    @if (Model.Comments.Any())
-    {
-        foreach (var comment in Model.Comments)
-        {
-            var curr = new CommentViewModel(comment);
-
-            <div class="media-body">
-                @Html.Partial("_CommentPartial", curr)
-            </div>
-        }
-
-    }
-</div>
-
-
 
 @section scripts{
     @Scripts.Render("~/bundles/jquery-unobtrusive")

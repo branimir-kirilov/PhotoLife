@@ -3,8 +3,8 @@
 @using (Html.BeginForm("CommentNews", "Comment", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    @Html.TextAreaFor(m => m.Content, new { @class = "form-control", rows = 5 });
+    @Html.TextAreaFor(m => m.Content, new { @class = "form-control", rows = 5});
     @Html.HiddenFor(m => m.CommentedItemId)
     @Html.ValidationSummary()
-    <input type="submit" class="btn btn-primary" id="submit" value="Submit" />
+    <input type="submit" class="btn btn-primary" id="submit" value="Comment" />
 }
