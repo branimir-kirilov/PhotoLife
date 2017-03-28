@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using PagedList;
-using PhotoLife.Area.Admin.Models;
+using PhotoLife.Areas.Administration.Models;
 using PhotoLife.Authentication.Providers;
 using PhotoLife.Services.Contracts;
 
-namespace PhotoLife.Area.Admin.Controllers
+namespace PhotoLife.Areas.Administration.Controllers
 {
     [Authorize(Roles = "Administrator")]
-    public class UserAdminController : Controller
+    public class UserAdministrationController : Controller
     {
         private readonly IUserService userService;
         private readonly IAuthenticationProvider authProvider;
 
-        public UserAdminController(IUserService userService, IAuthenticationProvider authProvider)
+        public UserAdministrationController(IUserService userService, IAuthenticationProvider authProvider)
         {
             if (userService == null)
             {

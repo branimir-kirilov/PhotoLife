@@ -1,6 +1,6 @@
 ﻿using PhotoLife.Models;
 
-namespace PhotoLife.Area.Admin.Models
+namespace PhotoLife.Areas.Administration.Models
 {
     public class UserViewModel
     {

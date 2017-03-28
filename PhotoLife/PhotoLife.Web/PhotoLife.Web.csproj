@@ -248,10 +248,10 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
-    <Compile Include="Areas\Admin\Controllers\UserAdminController.cs" />
-    <Compile Include="Areas\Admin\Models\UserViewModel.cs" />
-    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Administration\Controllers\AdministrationController.cs" />
+    <Compile Include="Areas\Administration\Controllers\UserAdministrationController.cs" />
+    <Compile Include="Areas\Administration\Models\UserViewModel.cs" />
+    <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -639,9 +639,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Site.less" />
-    <Content Include="Areas\Admin\Views\Admin\Admin.cshtml" />
-    <Content Include="Areas\Admin\Views\UserAdmin\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Administration\Views\Administration\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\UserAdministration\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\web.config" />
+    <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -2011,7 +2012,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Administration\Views\Shared\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\UserAdmin\" />
   </ItemGroup>
