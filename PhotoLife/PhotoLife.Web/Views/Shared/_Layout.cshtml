@@ -43,13 +43,17 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - PhotoLife, BranimirKirilov, Telerik Academy Course Project</p>
-        </footer>
+<div class="container-fluid body-content">
+    <div class="row">
+        <div class="col-md-12">
+            @RenderBody()
+        </div>
     </div>
+    <hr/>
+    <footer class="row">
+        <p class="col-md-12">&copy; @DateTime.Now.Year - PhotoLife, Branimir Kirilov, Telerik Academy Course Project</p>
+    </footer>
+</div>
 
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

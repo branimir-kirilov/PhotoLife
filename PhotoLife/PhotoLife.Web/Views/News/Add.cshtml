@@ -6,63 +6,64 @@
 }
 
 <h3>Hello, @(this.User.Identity.Name)</h3>
+<div class="span3 well col-md-9">
+    @using (Html.BeginForm("Add", "News", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.ValidationSummary("", new { @class = "text-danger" })
 
-@using (Html.BeginForm("Add", "News", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.ValidationSummary("", new { @class = "text-danger" })
 
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+            </div>
         </div>
-    </div>
 
-    @(Html.Kendo().EditorFor(m => m.Text)
-        .Tools(tools => tools
-                .Clear()
-                .Bold().Italic().Underline().Strikethrough()
-                .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
-                .CreateLink().Unlink()
-                .InsertImage()
-                .TableEditing()
-                .FontColor().BackColor()))
+        @(Html.Kendo().EditorFor(m => m.Text)
+              .Tools(tools => tools
+                  .Clear()
+                  .Bold().Italic().Underline().Strikethrough()
+                  .JustifyLeft().JustifyCenter().JustifyRight().JustifyFull()
+                  .CreateLink().Unlink()
+                  .InsertImage()
+                  .TableEditing()
+                  .FontColor().BackColor().FontSize()))
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.Category, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.EnumDropDownListFor(m => m.Category, new { @class = "form-control" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Category, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(m => m.Category, new { @class = "form-control" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.HiddenFor(m => m.CoverPicture, new { @class = "col-md-2 control-label", @id = "pic-url" })
-    </div>
-    
-    <div class="upload-box col-md-12">
-        @Html.Label("Upload cover photo", new { @class = "col-md-5" })
-        <form>
-            @Model.Cloudinary.Api.BuildUploadForm("image_id", "auto",
-                new SortedDictionary<string, object>() { },
-                null)
-        </form>
-    </div>
-
-     <!-- status box -->
-    <div class="status col-md-5">
-        <span class="status_value"></span>
-    </div>
-
-    <div class="uploaded_info_holder">
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Upload" />
+        <div class="form-group">
+            @Html.HiddenFor(m => m.CoverPicture, new { @class = "col-md-2 control-label", @id = "pic-url" })
         </div>
-    </div>
-}
+
+        <div class="upload-box col-md-12">
+            @Html.Label("Upload cover photo", new { @class = "col-md-5" })
+            <form>
+                @Model.Cloudinary.Api.BuildUploadForm("image_id", "auto",
+                    new SortedDictionary<string, object>() { },
+                    null)
+            </form>
+        </div>
+
+        <!-- status box -->
+        <div class="status col-md-5">
+            <span class="status_value"></span>
+        </div>
+
+        <div class="uploaded_info_holder">
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" id="submit-btn" class="btn btn-default" value="Upload" />
+            </div>
+        </div>
+    }
+</div>
 
 @section Scripts {
     @Scripts.Render(
