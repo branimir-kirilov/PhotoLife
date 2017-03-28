@@ -3,35 +3,79 @@
     padding-bottom: 20px;
     padding-left: 0px;
     padding-right: 0px;
-    background-color:#ffffff;
+    background-color: #ffffff;
     color: #000000;
 }
 
-.container-fluid{
-    margin:0px;
-    padding:0px;
+.container-fluid {
+    margin: 0px;
+    padding: 0px;
 }
 
-.home-page{
+.home-page {
     background-color: rgba(0,0,0,0.0);
 }
 
-.top-news{
+.top-news {
     background-color: rgba(33,33,33,0.1);
-    padding-top:5px;
+    padding-top: 5px;
     border: 1px solid rgba(255,255,255,1);
     margin: 0px;
+    -webkit-transition: all .8s ease-in-out;
+    -moz-transition: all .8s ease-in-out;
+    -o-transition: all .8s ease-in-out;
+    -ms-transition: all .8s ease-in-out;
+    transition: all .8s ease-in-out;
 }
 
-.top-posts{
+.top-news:hover {
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    background-color: rgba(33,33,33,0.2);
+}
+
+.top-posts {
     background-color: rgba(33,33,33,0.1);
-    padding-top:5px;
+    padding-top: 5px;
     border: 1px solid rgba(255,255,255,1);
     margin: 0px;
+    -webkit-transition: all .8s ease-in-out;
+    -moz-transition: all .8s ease-in-out;
+    -o-transition: all .8s ease-in-out;
+    -ms-transition: all .8s ease-in-out;
+    transition: all .8s ease-in-out;
 }
 
-.title{
-    font-family:'Adobe Caslon Pro';
+.top-posts:hover {
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    background-color: rgba(33,33,33,0.2);
+}
+
+.top-posts:hover .img-posts {
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    box-shadow: rgba(55,55,55,0.5) -10px 10px 10px;
+}
+
+.top-news:hover .img-posts {
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    box-shadow: rgba(55,55,55,0.5) -10px 10px 10px;
+}
+
+.title {
+    font-family: 'Adobe Caslon Pro';
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -74,21 +118,21 @@ textarea {
     margin: 0 auto;
 }
 
-.post-short-pic{
+.post-short-pic {
     width: 70vw;
     height: auto;
     max-height: 70vh;
-    max-width:70vw;
+    max-width: 70vw;
     margin: 5px;
     margin-bottom: 15px;
 }
 
-#rating-button{
-    font-size:24px;
+#rating-button {
+    font-size: 24px;
 }
 
-.form-control{
-    width:100%;
-    height:100%;
-    resize:none;
+.form-control {
+    width: 100%;
+    height: 100%;
+    resize: none;
 }
