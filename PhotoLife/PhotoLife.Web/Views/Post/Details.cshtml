@@ -17,6 +17,7 @@
         <img src="@Model.ImageUrl" alt="Alternate Text" class="post-short-pic"/>
         <p class="title"> @Model.Description</p>
 
+
         <div id="comment-form">
             @Html.Partial("_CommentPost", new AddCommentViewModel {CommentedItemId = Model.Id})
         </div>
@@ -70,6 +71,8 @@
         </div>
     </div>
 </div>
+
+<p class="label-enlarge">Click To Enlarge</p>
 
 @section scripts{
     @Scripts.Render("~/bundles/jquery-unobtrusive")
