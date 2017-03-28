@@ -40,7 +40,7 @@
                 </div>
             }
         </div>
-        
+
 
         <h2>Top User Posts</h2>
 
@@ -65,11 +65,23 @@
                     <img class="img-responsive img-center" src="@urlSplit" alt="">
                     <h2>@post.Title</h2>
 
-                    <h5><strong>Views: </strong> @post.Votes.Count.ToString() </h5>
-                    <h5><strong>Category: </strong> @post.Category.Name.ToString()</h5>
-                    <h5><strong>Published: </strong> @post.DatePublished.ToShortDateString()</h5>
-                    <h5><strong>Author: </strong> @post.Author.UserName</h5>
-
+                    <ul class="list-inline list-unstyled">
+                        <li>
+                            <span class="glyphicon glyphicon-thumbs-up"></span> Votes: @post.Votes.Count.ToString()
+                        </li>
+                        <li>
+                            <span class="glyphicon glyphicon-list-alt"></span> Category: @post.Category.Name.ToString()
+                        </li>
+                        <li>
+                            <span class="glyphicon glyphicon-calendar"></span> Published: @post.DatePublished.ToShortDateString()
+                        </li>
+                        <li>
+                            <span class="glyphicon glyphicon-log-in"></span> Author: @post.Author.UserName
+                        </li>
+                        <li>
+                            <span class="glyphicon glyphicon-log-in"></span> @Html.ActionLink("View", "Details", new { controller = "Post", id = post.PostId })
+                        </li>
+                    </ul>
                 </div>
             }
         </div>
