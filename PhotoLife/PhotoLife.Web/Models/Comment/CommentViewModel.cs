@@ -4,19 +4,12 @@ namespace PhotoLife.ViewModels.Comment
 {
     public class CommentViewModel
     {
-        public static Func<Models.Comment, string, bool, CommentViewModel> FromComment
+        public CommentViewModel(Models.Comment comment)
         {
-            get
-            {
-                return (comment, userId, isAdmin) => new CommentViewModel
-                {
-                    Date = comment.DatePublished,
-                    CanEdit = comment.UserId.Equals(userId) || isAdmin,
-                    CommentId = comment.CommentId,
-                    Content = comment.Text,
-                    User = comment.Author.UserName
-                };
-            }
+            this.CommentId = comment.CommentId;
+            this.Date = comment.DatePublished;
+            this.User = comment.Author.UserName;
+            this.Content = comment.Text;
         }
 
         public bool CanEdit { get; set; }

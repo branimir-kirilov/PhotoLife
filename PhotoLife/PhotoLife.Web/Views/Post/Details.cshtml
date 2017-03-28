@@ -1,4 +1,5 @@
-﻿@using PhotoLife.ViewModels.Comment
+﻿@using System.Web.Mvc.Html
+@using PhotoLife.ViewModels.Comment
 
 @model PhotoLife.ViewModels.Post.PostDetailsViewModel
 
@@ -13,12 +14,13 @@
     <div class="well">
         <img src="@Model.ImageUrl" alt="Alternate Text" class="post-short-pic" />
         <p class="title"> @Model.Description</p>
-    </div>
-</div>
+        <div id="comment-form">
+            @Html.Partial("_CommentPost", new AddCommentViewModel { CommentedItemId = Model.Id })
+        </div>
 
-@if (HttpContext.Current.GetOwinContext().Authentication.User.Identity.IsAuthenticated)
-{
-    @Ajax.ActionLink(" ",
+        @if (HttpContext.Current.GetOwinContext().Authentication.User.Identity.IsAuthenticated)
+        {
+            @Ajax.ActionLink(" ",
                     "Vote",
                     new { controller = "Vote", postId = Model.Id, currentVoteCount = Model.Votes.Count() },
                     new AjaxOptions
@@ -27,26 +29,27 @@
                         InsertionMode = InsertionMode.Replace,
                         HttpMethod = "POST"
                     }, new { @class = "glyphicon glyphicon-thumbs-up pull-right btn-lg", id = "rating-btn" })
-
-    <div id="comment-form">
-        @Html.Partial("_CommentPost", new AddCommentViewModel { CommentedItemId = Model.Id })
-    </div>
-
-    <div id="comments">
-        @if (Model.Comments.Any())
-        {
-
-            @:Comments:
-            foreach (var comment in Model.Comments)
-            {
-                <div class="media-body">
-                    @Html.Partial("_CommentPartial", comment)
-                </div>
-            }
-
         }
     </div>
-}
+</div>
+
+
+<div id="comments">
+    @if (Model.Comments.Any())
+    {
+        foreach (var comment in Model.Comments)
+        {
+            var curr = new CommentViewModel(comment);
+
+            <div class="media-body">
+                @Html.Partial("_CommentPartial", curr)
+            </div>
+        }
+
+    }
+</div>
+
+
 
 @section scripts{
     @Scripts.Render("~/bundles/jquery-unobtrusive")
