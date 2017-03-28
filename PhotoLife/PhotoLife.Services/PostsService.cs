@@ -80,7 +80,7 @@ namespace PhotoLife.Services
 
         public IEnumerable<Post> GetTopPosts(int topCount)
         {
-            var res = this.postsRepository.GetAll.OrderBy(u => u.Votes.Count).Take(topCount).ToList();
+            var res = this.postsRepository.GetAll.OrderByDescending(u => u.Votes.Count).Take(topCount).ToList();
 
             return res;
         }
