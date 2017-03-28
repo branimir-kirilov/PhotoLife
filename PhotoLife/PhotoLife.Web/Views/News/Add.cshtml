@@ -39,16 +39,7 @@
         <div class="form-group">
             @Html.HiddenFor(m => m.CoverPicture, new { @class = "col-md-2 control-label", @id = "pic-url" })
         </div>
-
-        <div class="upload-box col-md-12">
-            @Html.Label("Upload cover photo", new { @class = "col-md-5" })
-            <form>
-                @Model.Cloudinary.Api.BuildUploadForm("image_id", "auto",
-                    new SortedDictionary<string, object>() { },
-                    null)
-            </form>
-        </div>
-
+        
         <!-- status box -->
         <div class="status col-md-5">
             <span class="status_value"></span>
@@ -61,6 +52,15 @@
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" id="submit-btn" class="btn btn-default" value="Upload" />
             </div>
+        </div>
+        
+        <div class="upload-box col-md-12">
+            @Html.Label("Upload cover photo", new { @class = "col-md-5" })
+            <form>
+                @Model.Cloudinary.Api.BuildUploadForm("image_id", "auto",
+                    new SortedDictionary<string, object>() { },
+                    null)
+            </form>
         </div>
     }
 </div>
