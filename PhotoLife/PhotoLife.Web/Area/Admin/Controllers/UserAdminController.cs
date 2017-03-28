@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
+using PagedList;
 using PhotoLife.Area.Admin.Models;
 using PhotoLife.Authentication.Providers;
 using PhotoLife.Services.Contracts;
@@ -33,7 +31,7 @@ namespace PhotoLife.Area.Admin.Controllers
         }
 
         // GET: UserAdmin
-        public ActionResult Index(int page =1, int count = 15)
+        public ActionResult Index(int page = 1, int count = 15)
         {
             var users = this.userService.GetUsers();
 
@@ -41,13 +39,26 @@ namespace PhotoLife.Area.Admin.Controllers
 
             foreach (var user in users)
             {
-                var isAdmin = this.authProvider.IsInRole(user.Id, Constants.AdministratorRoleName);
+                var isAdmin = this.authProvider.IsInRole(user.Id, "Administrator");
                 var viewModel = new UserViewModel(user, isAdmin);
                 model.Add(viewModel);
             }
 
+            return this.View(model.ToPagedList(page, count));
+        }
 
-            return View();
+        public ActionResult RemoveAdmin(string userId, int page)
+        {
+            this.authProvider.RemoveFromRole(userId, "Administrator");
+
+            return this.RedirectToAction("Index", new { page = page });
+        }
+
+        public ActionResult AddAdmin(string userId, int page)
+        {
+            this.authProvider.AddToRole(userId, "Administrator");
+
+            return this.RedirectToAction("Index", new { page = page });
         }
     }
 }
