@@ -5,9 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    
+
     @Scripts.Render("~/bundles/modernizr", "~/bundles/jquery", "~/bundles/kendo")
-    
+
     @Styles.Render("~/Content/css", "~/Content/kendo/css")
 </head>
 <body>
@@ -34,9 +34,9 @@
                         <li>@Html.ActionLink("Upload", "Add", "Post")</li>
                     }
 
-                    <li>@Html.ActionLink("Add News", "Add", "News")</li>
-                    @if (HttpContext.Current.GetOwinContext().Authentication.User.IsInRole("Admin"))
+                    @if (HttpContext.Current.GetOwinContext().Authentication.User.IsInRole("Administrator"))
                     {
+                        <li>@Html.ActionLink("Add News", "Add", "News")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

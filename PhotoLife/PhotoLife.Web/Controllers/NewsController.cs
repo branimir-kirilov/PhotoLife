@@ -10,6 +10,7 @@ using PhotoLife.ViewModels.News;
 
 namespace PhotoLife.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class NewsController : Controller
     {
         private readonly IAuthenticationProvider authenticationProvider;

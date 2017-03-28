@@ -643,6 +643,7 @@
     <Content Include="Areas\Administration\Views\UserAdministration\Index.cshtml" />
     <Content Include="Areas\Administration\Views\web.config" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -2012,9 +2013,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\Views\Shared\" />
-    <Folder Include="Views\Admin\" />
-    <Folder Include="Views\UserAdmin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
