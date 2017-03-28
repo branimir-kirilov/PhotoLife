@@ -10,6 +10,18 @@
   margin: 0px;
   padding: 0px;
 }
+.home-page {
+  background-color: rgba(0, 0, 0, 0);
+}
+.top-news {
+  padding-top: 5px;
+  border: 1px solid grey;
+  margin: 2px;
+}
+.top-posts {
+  border: 1px solid grey;
+  margin: 2px;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
   padding-left: 0px;

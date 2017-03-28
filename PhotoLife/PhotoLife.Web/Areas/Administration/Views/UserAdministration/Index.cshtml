@@ -49,11 +49,11 @@
                 <td>
                     @if (item.IsAdministrator)
                 {
-                        @Html.ActionLink("Remove Admin", "RemoveAdmin", new { controller = "UserAdmin", userId = item.UserId, page = Model.PageNumber })
+                        @Html.ActionLink("Remove Admin", "RemoveAdmin", new { controller = "UserAdministration", userId = item.UserId, page = Model.PageNumber })
                     }
                     else
                     {
-                        @Html.ActionLink("Make Admin", "AddAdmin", new { controller = "UserAdmin", userId = item.UserId, page = Model.PageNumber })
+                        @Html.ActionLink("Make Admin", "AddAdmin", new { controller = "UserAdministration", userId = item.UserId, page = Model.PageNumber })
 
                     }
                 </td>
@@ -64,6 +64,6 @@
     <div class="pages total">
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-        @Html.PagedListPager(Model, page => Url.Action("Index", "UserAdmin",
+        @Html.PagedListPager(Model, page => Url.Action("Index", "UserAdministration",
         new { page = page }))
     </div>

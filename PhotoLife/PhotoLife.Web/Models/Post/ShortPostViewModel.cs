@@ -16,6 +16,7 @@ namespace PhotoLife.ViewModels.Post
             this.DatePublished = post.DatePublished;
             this.VotesCount = post.Votes.Count;
             this.CommentsCount = post.Comments.Count;
+            this.Author = post.Author.UserName;
         }
 
         public ShortPostViewModel()
@@ -29,5 +30,6 @@ namespace PhotoLife.ViewModels.Post
         public DateTime DatePublished { get; set; }
         public int VotesCount { get; set; }
         public int CommentsCount { get; set; }
+        public string Author { get; set; }
     }
 }

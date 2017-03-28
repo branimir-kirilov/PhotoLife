@@ -7,10 +7,8 @@
 <!-- Image Background Page Header -->
 <header class="business-header"></header>
 
-<div class="container">
-    <h1>Top Photo News</h1>
-
-    <hr />
+<div class="container home-page">
+    <h2>Top Photo News</h2>
 
     <div class="col-md-12">
         <div class="row">
@@ -30,7 +28,7 @@
                     length = news.Text.Length - 1;
                 }
 
-                <div class="col-sm-4">
+                <div class="col-sm-4  top-news">
                     <img class="img-circle img-responsive img-center" src="@urlSplit" alt="">
                     <h2>@news.Title</h2>
 
@@ -44,9 +42,7 @@
         </div>
         
 
-        <h1>Top User Posts</h1>
-
-        <hr />
+        <h2>Top User Posts</h2>
 
         <div class="row">
             @foreach (var post in Model.TopPosts)
@@ -65,8 +61,8 @@
                     length = post.Description.Length - 1;
                 }
 
-                <div class="col-sm-4">
-                    <img class="img-circle img-responsive img-center" src="@urlSplit" alt="">
+                <div class="col-sm-4 top-posts">
+                    <img class="img-responsive img-center" src="@urlSplit" alt="">
                     <h2>@post.Title</h2>
 
                     <h5><strong>Views: </strong> @post.Votes.Count.ToString() </h5>

@@ -17,6 +17,9 @@
         <li>
             <span class="glyphicon glyphicon-log-in"></span> @Html.ActionLink("View", "Details", new { controller = "Post", id = Model.Id })
         </li>
+        <li>
+            <span class="glyphicon glyphicon-user"></span> Author: @Html.ActionLink(Model.Author, "UserProfile", new { controller = "Profile", username = Model.Author })
+        </li>
 
     </ul>
 </div>
