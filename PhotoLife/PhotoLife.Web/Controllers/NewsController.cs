@@ -80,8 +80,7 @@ namespace PhotoLife.Controllers
                 var userId = this.authenticationProvider.CurrentUserId;
 
                 var news = this.newsService.CreateNews(userId, model.Title, model.Text, model.CoverPicture, model.Category);
-
-
+                
                 return RedirectToAction("Details", "News", new { newsId = news.NewsId});
             }
 
