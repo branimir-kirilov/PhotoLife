@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using PhotoLife.Models.Enums;
 
 namespace PhotoLife.ViewModels.News
@@ -15,6 +16,7 @@ namespace PhotoLife.ViewModels.News
             this.Views = news.Views;
             this.Category = news.Category.Name;
             this.Author = news.Author.UserName;
+            this.Comments = news.Comments;
         }
 
         public NewsDetailsViewModel()
@@ -31,5 +33,6 @@ namespace PhotoLife.ViewModels.News
         public int Views { get; set; }
         public CategoryEnum Category { get; set; }
         public string Author { get; set; }
+        public IEnumerable<Models.Comment> Comments { get; set; }
     }
 }

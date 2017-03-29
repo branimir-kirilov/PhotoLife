@@ -7,19 +7,39 @@
 }
 
 <div class="container">
-    <h2 class="title">@Model.Title</h2>
-    <img src="@Model.ImageUrl" alt="" />
     
-    <p class="glyphicon glyphicon-calendar">@Model.DatePublished</p>
-    <p class="glyphicon glyphicon-list">@Model.Category.ToString()</p>
-    <p class="glyphicon glyphicon-user">@Model.Author</p>
-
-    @Html.Raw(HttpUtility.HtmlDecode(Model.Text))
-</div>
-
-@if (HttpContext.Current.GetOwinContext().Authentication.User.Identity.IsAuthenticated)
-{
-    <div id="comment-form">
-        @Html.Partial("_CommentNews", new AddCommentViewModel { CommentedItemId = Model.Id })
+    <div class="row">
+        <h2 class="title">@Model.Title</h2>
+        <img src="@Model.ImageUrl" alt=""/>
     </div>
-}
+    
+    <div class="row">
+        <span class="glyphicon glyphicon-calendar">@string.Format("{0:D} at {0:HH:mm}", Model.DatePublished)</span>
+        <span class="glyphicon glyphicon-list">@Model.Category.ToString()</span>
+        <span class="glyphicon glyphicon-user">@Model.Author</span>
+    </div>
+    @Html.Raw(HttpUtility.HtmlDecode(Model.Text))
+    
+
+    @if (HttpContext.Current.GetOwinContext().Authentication.User.Identity.IsAuthenticated)
+    {
+        <div id="comment-form well">
+            @Html.Partial("_CommentNews", new AddCommentViewModel { CommentedItemId = Model.Id })
+        </div>
+    }
+    
+    <div id="comments">
+        @if (Model.Comments.Any())
+            {
+                foreach (var comment in Model.Comments)
+                {
+                    var curr = new CommentViewModel(comment);
+
+                <div class="media-body">
+                    @Html.Partial("_CommentPartial", curr)
+                </div>
+            }
+        }
+    </div>
+
+</div>
