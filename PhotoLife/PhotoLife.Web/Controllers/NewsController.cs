@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Security;
 using CloudinaryDotNet;
 using PagedList;
 using PhotoLife.Authentication.Providers;
@@ -63,14 +64,14 @@ namespace PhotoLife.Controllers
             return this.PartialView("_PagedNewsListPartial", model);
         }
 
-        // [Authorize(Roles = "Administrators")]
+        [Authorize(Roles = "Administrators")]
         public ActionResult Add()
         {
             return View(this.viewModelFactory.CreateAddNewsViewModel(this.cloudinary));
         }
 
         // Post: News
-        //[Authorize(Roles = "Administrators")]
+        [Authorize(Roles = "Administrators")]
         [HttpPost]
         public ActionResult Add(AddNewsViewModel model)
         {

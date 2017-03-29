@@ -149,6 +149,7 @@
     <Compile Include="Controllers\News\Add_Should.cs" />
     <Compile Include="Controllers\News\All_Should.cs" />
     <Compile Include="Controllers\News\Constructor_Should.cs" />
+    <Compile Include="Controllers\News\Details_Should.cs" />
     <Compile Include="Controllers\Post\Add_Should.cs" />
     <Compile Include="Controllers\Post\All_Should.cs" />
     <Compile Include="Controllers\Post\ConstructorShould.cs" />
