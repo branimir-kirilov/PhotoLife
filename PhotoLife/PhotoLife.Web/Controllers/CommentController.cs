@@ -32,11 +32,16 @@ namespace PhotoLife.Controllers
         [HttpPost]
         public ActionResult CommentPost(AddCommentViewModel model)
         {
-            var userId = this.authProvider.CurrentUserId;
+            if (ModelState.IsValid)
+            {
+                var userId = this.authProvider.CurrentUserId;
 
-            this.commentService.AddCommentToPost(model.Content, model.CommentedItemId, userId);
+                this.commentService.AddCommentToPost(model.Content, model.CommentedItemId, userId);
 
-            return this.RedirectToAction("Details", "Post", new { id = model.CommentedItemId});
+                return this.RedirectToAction("Details", "Post", new { id = model.CommentedItemId });
+            }
+
+            return View();
         }
 
         [Authorize]
@@ -44,11 +49,16 @@ namespace PhotoLife.Controllers
         [HttpPost]
         public ActionResult CommentNews(AddCommentViewModel model)
         {
-            var userId = this.authProvider.CurrentUserId;
+            if (ModelState.IsValid)
+            {
+                var userId = this.authProvider.CurrentUserId;
 
-            this.commentService.AddCommentToNews(model.Content, model.CommentedItemId, userId);
+                this.commentService.AddCommentToNews(model.Content, model.CommentedItemId, userId);
 
-            return this.RedirectToAction("Details", "News", new { id = model.CommentedItemId });
+                return this.RedirectToAction("Details", "News", new { id = model.CommentedItemId });
+            }
+
+            return View();
         }
     }
 }

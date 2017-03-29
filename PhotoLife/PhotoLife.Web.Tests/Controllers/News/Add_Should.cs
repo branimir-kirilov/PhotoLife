@@ -59,5 +59,37 @@ namespace PhotoLife.Web.Tests.Controllers.News
             //Assert
             Assert.AreEqual(model, res.Model);
         }
+
+        [Test]
+        public void _Return_ith_Model()
+        {
+            //Arrange
+            var fakeAcc = new CloudinaryDotNet.Account("fake", "fake", "fake");
+            var mockedCloudinary = new Mock<Cloudinary>(fakeAcc);
+
+            var model = new AddNewsViewModel()
+            {
+                Title = "Some title",
+                Text = "Some text",
+                Cloudinary = mockedCloudinary.Object
+            };
+
+            var mockedAuthProvider = new Mock<IAuthenticationProvider>();
+            mockedAuthProvider.Setup(a => a.CurrentUserId).Returns("userId");
+
+            var mockedNewsService = new Mock<INewsService>();
+
+            var mockedViewModelFactory = new Mock<IViewModelFactory>();
+            mockedViewModelFactory.Setup(v => v.CreateAddNewsViewModel(It.IsAny<Cloudinary>())).Returns(model);
+            
+            var newsControllerSUT = new NewsController(mockedAuthProvider.Object, mockedNewsService.Object, mockedViewModelFactory.Object, mockedCloudinary.Object);
+            newsControllerSUT.ModelState.Clear();
+
+            //Act
+            var res = newsControllerSUT.Add(model) as RedirectToRouteResult;
+
+            //Assert
+            Assert.AreEqual("News", res.RouteValues["action"]);
+        }
     }
 }

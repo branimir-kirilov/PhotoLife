@@ -102,6 +102,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -146,6 +147,7 @@
     <Compile Include="Controllers\Account\Login_Should.cs" />
     <Compile Include="Controllers\Account\LogOff_Should.cs" />
     <Compile Include="Controllers\Account\Register_Should.cs" />
+    <Compile Include="Controllers\Comment\CommentPost_Should.cs" />
     <Compile Include="Controllers\Comment\Constructor_Should.cs" />
     <Compile Include="Controllers\News\Add_Should.cs" />
     <Compile Include="Controllers\News\All_Should.cs" />
