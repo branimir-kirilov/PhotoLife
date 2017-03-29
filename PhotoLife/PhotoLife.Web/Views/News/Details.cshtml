@@ -2,53 +2,19 @@
 @model PhotoLife.ViewModels.News.NewsDetailsViewModel
 
 @{
-    ViewBag.Title = "NewsDetails";
+    ViewBag.Title = Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>NewsDetails</h2>
+<div class="container">
+    <h2 class="title">@Model.Title</h2>
+    <img src="@Model.ImageUrl" alt="" />
+    
+    <p class="glyphicon glyphicon-calendar">@Model.DatePublished</p>
+    <p class="glyphicon glyphicon-list">@Model.Category.ToString()</p>
+    <p class="glyphicon glyphicon-user">@Model.Author</p>
 
-<div>
-    <h4>NewsDetailsViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        
-        <dt>
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ImageUrl)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DatePublished)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DatePublished)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Views)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Views)
-        </dd>
-
-    </dl>
-</div>
-
-<div>
-@Html.Raw(HttpUtility.HtmlDecode(Model.Text))
+    @Html.Raw(HttpUtility.HtmlDecode(Model.Text))
 </div>
 
 @if (HttpContext.Current.GetOwinContext().Authentication.User.Identity.IsAuthenticated)

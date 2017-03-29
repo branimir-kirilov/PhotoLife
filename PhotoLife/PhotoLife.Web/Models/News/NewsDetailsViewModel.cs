@@ -14,6 +14,7 @@ namespace PhotoLife.ViewModels.News
             this.DatePublished = news.DatePublished;
             this.Views = news.Views;
             this.Category = news.Category.Name;
+            this.Author = news.Author.UserName;
         }
 
         public NewsDetailsViewModel()
@@ -29,5 +30,6 @@ namespace PhotoLife.ViewModels.News
         public DateTime DatePublished { get; set; }
         public int Views { get; set; }
         public CategoryEnum Category { get; set; }
+        public string Author { get; set; }
     }
 }
