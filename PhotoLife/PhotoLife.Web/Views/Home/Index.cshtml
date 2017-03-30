@@ -32,11 +32,11 @@
                     <img class="img-circle img-responsive img-center img-posts" src="@urlSplit" alt="">
                     <h2>@news.Title</h2>
 
-                    <h5><strong>Views: </strong> @news.Views.ToString() </h5>
                     <h5><strong>Category: </strong> @news.Category.Name.ToString()</h5>
                     <h5><strong>Published: </strong> @news.DatePublished.ToShortDateString()</h5>
                     <h5><strong>Author: </strong> @news.Author.UserName</h5>
-
+                    <span class="glyphicon glyphicon-log-in"></span> @Html.ActionLink("View", "Details", new { controller = "News", id = news.NewsId })
+                    
                 </div>
             }
         </div>

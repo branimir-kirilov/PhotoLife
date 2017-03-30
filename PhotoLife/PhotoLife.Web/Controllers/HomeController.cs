@@ -36,6 +36,7 @@ namespace PhotoLife.Controllers
         }
 
         [AllowAnonymous]
+        [OutputCache(Duration = 60 * 5)]
         public ActionResult Index()
         {
             int topCount = 3;

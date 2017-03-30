@@ -144,3 +144,6 @@ textarea {
   text-align: justify;
   text-indent: 2em;
 }
+.img-news {
+  max-width: 60vw;
+}
