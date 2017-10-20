@@ -29,12 +29,7 @@ I managed to fit the whole messy thing in a little cardboard box and left a hole
 
 <img src="/WemosD1-CodeCoverageLEDStrip/inside.jpg" alt="Inside the box" width="300">
 
-## TODOs: 
-- Write tests
-- Bring up code coverage to at least 80%
-- Make admin page where posts can be managed and users can be banned, deleted, edited
-- Make user pages where they can see news and add posts (photos, they want to be seen and reviewed)
-- Implement adding comments
+## TODOs:
 - Implement counting views 
 - Implement counting likes (for posts only)
 - Improve user experience
